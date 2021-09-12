@@ -1,12 +1,12 @@
 const Router = require('express')
 const dishRouter = require('./dish')
 const contactRouter = require("./contact");
-const categorisRouter = require("./categoris");
+const categoriesRouter = require("./categories");
 
 
 const router = new Router();
 
-router.use("/categoris", categorisRouter);
+router.use("/categories", categoriesRouter);
 router.use("/contact", contactRouter);
 router.use("/dish", dishRouter);
 

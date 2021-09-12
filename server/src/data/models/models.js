@@ -21,10 +21,10 @@ const Dish = sequelize.define("dish", {
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
   available: { type: DataTypes.BOOLEAN, defaultValue: true },
   dascription: { type: DataTypes.STRING, allowNull: false },
+  top: { type: DataTypes.BOOLEAN, defaultValue: false },
   price: { type: DataTypes.INTEGER, allowNull: false },
-  img: { type: DataTypes.INTEGER, allowNull: false },
+  img: { type: DataTypes.STRING, allowNull: false },
   weight: { type: DataTypes.STRING },
-  top: { type: DataTypes.BOOLEAN },
 });
 
 Categories.hasMany(Dish);

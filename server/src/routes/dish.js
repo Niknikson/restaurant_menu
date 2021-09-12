@@ -1,9 +1,8 @@
 const Router = require("express");
 const router = new Router();
-const dishControler = require("../controlers/dishControler");
+const dishControler = require("../controllers/dishControler");
 
 router.get("/", dishControler.getDish);
-router.get('/:id', dishControler.getById);
-router.post('/', dishControler.postDish);
+router.post("/", dishControler.createDish);
 
 module.exports = router;
