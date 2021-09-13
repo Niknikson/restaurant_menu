@@ -4,6 +4,7 @@ const sequelize = require("./src/config/db");
 const express = require("express");
 const models = require("./src/data/models/models");
 const router = require("./src/routes/index");
+const errorHandler = require("./src/middleware/ErrorHandlingMiddleware");
 
 const PORT = process.env.PORT || 5000;
 
@@ -12,6 +13,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/restoran", router);
+
+// Обработка ошибок, последний Middleware
+app.use(errorHandler)
 
 const start = async () => {
   try {
