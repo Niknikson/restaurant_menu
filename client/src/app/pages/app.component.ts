@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
 
-  menu: string = 'active'
+  menu: string = ''
   
   ngOnInit(): void {
    
