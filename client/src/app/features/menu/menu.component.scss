@@ -1,0 +1,20 @@
+.nav__menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .menu__title {
+    border-bottom: 1px solid #aaaaaa;
+  }
+
+  .nav__items {
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
