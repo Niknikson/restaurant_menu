@@ -19,8 +19,8 @@ const Contact = sequelize.define("contact", {
     defaultValue: DataTypes.UUIDV1,
     allowNull: false,
   },
-  phone: { type: DataTypes.INTEGER },
-  adres: { type: DataTypes.STRING },
+  phone: { type: DataTypes.STRING },
+  address: { type: DataTypes.STRING },
 });
 
 const Dish = sequelize.define("dish", {
