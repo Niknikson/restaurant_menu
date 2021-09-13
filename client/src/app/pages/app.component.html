@@ -1,2 +1,25 @@
-<p>helo</p>
-<router-outlet></router-outlet>
+<div class="app">
+  <div class="heade">
+    <app-header></app-header>
+  </div>
+
+  <div class="menu" 
+    [ngClass]="{
+    active: menu === 'active',
+    '': menu === ''
+  }" 
+  >
+      <div class="blur">
+      <div class="menu__content" >
+       <button (click)="menu = '' " >Close</button>
+        </div>
+      </div>
+    </div>
+
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="footer">
+    <app-footer></app-footer>
+  </div>
+</div>

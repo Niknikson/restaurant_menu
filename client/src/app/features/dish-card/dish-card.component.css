@@ -1,0 +1,80 @@
+.dish__card{
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    width: 600px;
+    min-height: 250px;
+    font-family: "Georgian";
+    background-color: white;
+	border-radius: 1px;
+	box-shadow: 0 0 2px -1px rgba(0, 0, 0, 0.75);
+}
+
+.dish__img{
+display:flex ;
+align-items: flex-start;
+justify-content: center;
+min-width: 50%;
+max-width: 50%;
+object-fit:cover;
+}
+
+.text__conteiner{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.text{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.dish__name{
+    font-size: 0.6rem;
+}
+
+.dish__title{
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 0.7rem;
+    border-bottom: 1px solid grey;
+    font-family: "Playfair Display SC";
+}
+
+.dish__info{
+    padding: 0.7rem;
+    font-size: 0.8rem;
+    object-fit: cover;
+}
+
+.price__info{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-bottom: 15px;
+}
+
+.btn__by{
+    border: none;
+    padding: 5px 20px;
+    border-radius: 22px;
+    font-size: 14px;
+    cursor: pointer;
+    background:  rgb(207, 32, 42)  ;;
+    color: #fff;
+    flex: 0 0 auto;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.btn__by:hover{
+  background:   rgb(183, 18, 31);
+}
+
