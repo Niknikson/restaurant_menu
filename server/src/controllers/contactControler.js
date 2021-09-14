@@ -7,7 +7,7 @@ class ContactController {
       const contact = await Contact.findAll();
       res.status(200).json(contact);
     } catch (e) {
-      next(ApiError.badRequest(e.message));
+      next(ApiError.notFound(e.message));
     }
   }
 
@@ -15,7 +15,7 @@ class ContactController {
     const { phone, address } = req.body;
     try {
       const contact = await Contact.create({ phone, address });
-      res.status(200).json(contact);
+      res.status(201).json(contact);
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
@@ -25,7 +25,7 @@ class ContactController {
     const { name, address, id } = req.body;
     try {
       await Contact.update({ name, address }, { where: { id } });
-      res.json({ message: "Successfully updated." });
+      res.status(202).json({ message: "Successfully updated." });
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }

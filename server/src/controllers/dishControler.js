@@ -3,22 +3,27 @@ const ApiError = require("../error/ApiError");
 
 
 class DishController {
-  async getDish(req, res) {
-    let { categoryId } = req.query;
-    let dish;
-    console.log(categoryId);
-    if (!categoryId) {
-      dish = await Dish.findAll();
+  async getDish(req, res, next) {
+    try {
+      let dish = await Dish.findAll();
+      res.status(200).json(dish);
+    } catch (e) {
+      next(ApiError.notFound(e.message));
     }
-    if (categoryId) {
-      dish = await Dish.findAll({ where: { categoryId } });
+  }
+
+  async getDishByGategory(req, res, next) {
+    try {
+      let { id } = req.params;
+      let dish = await Dish.findAll({ where: { categoryId: id } });
+      res.status(200).json(dish);
+    } catch (e) {
+      next(ApiError.notFound(e.message));
     }
-    res.json(dish);
   }
 
   async createDish(req, res, next) {
     const { dascription, categoryId, weight, price, name, img } = req.body;
-    console.log('create dish')
     try {
       const dish = await Dish.create({
         dascription,
@@ -28,7 +33,7 @@ class DishController {
         name,
         img,
       });
-      res.status(200).json(dish);
+      res.status(201).json(dish);
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
@@ -41,7 +46,7 @@ class DishController {
         { dascription, categoryId, weight, price, name, img },
         { where: { id } }
       );
-      res.json({ message: "Successfully updated." });
+      res.status(202).json({ message: "Successfully updated." });
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
@@ -49,10 +54,10 @@ class DishController {
 
   async deleteDish(req, res, next) {
     const id = req.params.id;
-    console.log('delete')
+    console.log("delete");
     try {
       await Dish.destroy({ where: { id } });
-      res.json({ message: "Successfully deleted ." });
+      res.status(202).json({ message: "Successfully deleted." });
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }

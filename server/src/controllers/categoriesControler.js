@@ -7,7 +7,7 @@ class CategoriesController {
       const categories = await Categories.findAll();
       res.status(200).json(categories);
     } catch (e) {
-      next(ApiError.badRequest(e.message));
+      next(ApiError.notFound(e.message));
     }
   }
 
@@ -17,7 +17,7 @@ class CategoriesController {
       const category = await Categories.findOne({ where: { id } });
       res.status(200).json(category);
     } catch (e) {
-      next(ApiError.badRequest(e.message));
+      next(ApiError.notFound(e.message));
     }
   }
 
@@ -25,7 +25,7 @@ class CategoriesController {
     const { name } = req.body;
     try {
       const category = await Categories.create({ name });
-      res.status(200).json(category);
+      res.status(201).json(category);
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
@@ -34,8 +34,11 @@ class CategoriesController {
   async updateCategory(req, res, next) {
     const { name, id, available } = req.body;
     try {
-       await Categories.update({ name, available }, { where: {id} });
-       res.json({ message: "Successfully updated." });
+      await Categories.update(
+        { name, available },
+        { where: { id } }
+      );
+      res.status(202).json({ message: "Successfully updated."});
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
@@ -45,12 +48,11 @@ class CategoriesController {
     const id = req.params.id;
     try {
       await Categories.destroy({ where: { id } });
-      res.json({ message: "Successfully deleted ." });
+      res.status(202).json({ message: "Successfully deleted." });
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
   }
-  
 }
 
 module.exports = new CategoriesController();
