@@ -1,5 +1,12 @@
 const { Categories } = require("../data/models/models");
 const ApiError = require("../error/ApiError");
+const isUndefined = require("../utils/validator");
+const {
+  DELETE,
+  UPDATE,
+  NAME_UNDEFINED,
+  BODY_UNDEFINED,
+} = require("../constans/messages");
 
 class CategoriesController {
   async getAllCategories(req, res, next) {
@@ -24,6 +31,8 @@ class CategoriesController {
   async createCategory(req, res, next) {
     const { name } = req.body;
     try {
+      if (!name) throw new Error(NAME_UNDEFINED);
+        
       const category = await Categories.create({ name });
       res.status(201).json(category);
     } catch (e) {
@@ -34,11 +43,11 @@ class CategoriesController {
   async updateCategory(req, res, next) {
     const { name, id, available } = req.body;
     try {
-      await Categories.update(
-        { name, available },
-        { where: { id } }
-      );
-      res.status(202).json({ message: "Successfully updated."});
+      if (!isUndefined({ name, id, available }))
+        throw new Error(BODY_UNDEFINED);
+      
+      await Categories.update({ name, available }, { where: { id } });
+      res.status(202).json({ message: UPDATE });
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
@@ -48,7 +57,7 @@ class CategoriesController {
     const id = req.params.id;
     try {
       await Categories.destroy({ where: { id } });
-      res.status(202).json({ message: "Successfully deleted." });
+      res.status(202).json({ message: DELETE });
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }

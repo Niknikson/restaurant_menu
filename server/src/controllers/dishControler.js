@@ -1,6 +1,11 @@
 const { Dish } = require("../data/models/models");
 const ApiError = require("../error/ApiError");
-
+const isUndefined = require("../utils/validator");
+const {
+  DELETE,
+  UPDATE,
+  BODY_UNDEFINED,
+} = require("../constans/messages");
 
 class DishController {
   async getDish(req, res, next) {
@@ -13,8 +18,8 @@ class DishController {
   }
 
   async getDishByGategory(req, res, next) {
+    let { id } = req.params;
     try {
-      let { id } = req.params;
       let dish = await Dish.findAll({ where: { categoryId: id } });
       res.status(200).json(dish);
     } catch (e) {
@@ -25,6 +30,9 @@ class DishController {
   async createDish(req, res, next) {
     const { dascription, categoryId, weight, price, name, img } = req.body;
     try {
+      if (!isUndefined({ dascription, categoryId, weight, price, name, img }))
+        throw new Error(BODY_UNDEFINED);
+
       const dish = await Dish.create({
         dascription,
         categoryId,
@@ -40,13 +48,16 @@ class DishController {
   }
 
   async updateDish(req, res, next) {
-    const { dascription, categoryId, weight, price, name, img, id } = req.body;
+    const { dascription, categoryId, weight, price, name, img, id } = req.body
     try {
+      if (!isUndefined({ dascription, categoryId, weight, price, name, img, id }))
+        throw new Error(BODY_UNDEFINED);
+
       await Dish.update(
         { dascription, categoryId, weight, price, name, img },
         { where: { id } }
       );
-      res.status(202).json({ message: "Successfully updated." });
+      res.status(202).json({ message: UPDATE });
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
@@ -54,10 +65,9 @@ class DishController {
 
   async deleteDish(req, res, next) {
     const id = req.params.id;
-    console.log("delete");
     try {
       await Dish.destroy({ where: { id } });
-      res.status(202).json({ message: "Successfully deleted." });
+      res.status(202).json({ message: DELETE });
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }

@@ -9,16 +9,17 @@ const Categories = sequelize.define("categories", {
     allowNull: false,
   },
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
-  available: { type: DataTypes.BOOLEAN, defaultValue: true },
+  available: { type: DataTypes.BOOLEAN, defaultValue: true, allowNull: false },
 });
 
-const Contact = sequelize.define("contact", {
+const Info = sequelize.define("info", {
   id: {
     type: DataTypes.UUID,
     primaryKey: true,
     defaultValue: DataTypes.UUIDV1,
     allowNull: false,
   },
+  wifi: { type: DataTypes.STRING },
   phone: { type: DataTypes.STRING },
   address: { type: DataTypes.STRING },
 });
@@ -30,10 +31,10 @@ const Dish = sequelize.define("dish", {
     defaultValue: DataTypes.UUIDV1,
     allowNull: false,
   },
+  available: { type: DataTypes.BOOLEAN, defaultValue: true, allowNull: false },
+  top: { type: DataTypes.BOOLEAN, defaultValue: false, allowNull: false },
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
-  available: { type: DataTypes.BOOLEAN, defaultValue: true },
   dascription: { type: DataTypes.STRING, allowNull: false },
-  top: { type: DataTypes.BOOLEAN, defaultValue: false },
   price: { type: DataTypes.STRING, allowNull: false },
   img: { type: DataTypes.STRING, allowNull: false },
   weight: { type: DataTypes.STRING },
@@ -42,4 +43,4 @@ const Dish = sequelize.define("dish", {
 Categories.hasMany(Dish);
 Dish.belongsTo(Categories);
 
-module.exports = { Categories, Contact, Dish };
+module.exports = { Categories, Info, Dish };
