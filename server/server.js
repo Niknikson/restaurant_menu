@@ -1,9 +1,10 @@
 require("dotenv").config();
 const cors = require("cors");
-const sequelize = require("./src/config/db");
 const express = require("express");
-const models = require("./src/data/models/models");
+const sequelize = require("./src/config/db");
 const router = require("./src/routes/index");
+const models = require("./src/data/models/models");
+const errorHandler = require("./src/middleware/errorHandlingMiddleware");
 
 const PORT = process.env.PORT || 5000;
 
@@ -12,6 +13,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/restoran", router);
+
+// last Middleware
+app.use(errorHandler)
 
 const start = async () => {
   try {
