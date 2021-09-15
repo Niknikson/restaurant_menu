@@ -1,11 +1,6 @@
 const { Dish } = require("../data/models/models");
 const ApiError = require("../error/ApiError");
-const isUndefined = require("../utils/validator");
-const {
-  DELETE,
-  UPDATE,
-  BODY_UNDEFINED,
-} = require("../constans/messages");
+const { DELETE, UPDATE, ID_UNDEFINED } = require("../constans/messages");
 
 class DishController {
   async getDish(req, res, next) {
@@ -30,8 +25,7 @@ class DishController {
   async createDish(req, res, next) {
     const { dascription, categoryId, weight, price, name, img } = req.body;
     try {
-      if (!isUndefined({ dascription, categoryId, weight, price, name, img }))
-        throw new Error(BODY_UNDEFINED);
+      if (!id) throw new Error(ID_UNDEFINED);
 
       const dish = await Dish.create({
         dascription,
@@ -50,8 +44,7 @@ class DishController {
   async updateDish(req, res, next) {
     const { dascription, categoryId, weight, price, name, img, id } = req.body
     try {
-      if (!isUndefined({ dascription, categoryId, weight, price, name, img, id }))
-        throw new Error(BODY_UNDEFINED);
+      if (!id) throw new Error(ID_UNDEFINED);
 
       await Dish.update(
         { dascription, categoryId, weight, price, name, img },

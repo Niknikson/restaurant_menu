@@ -1,11 +1,11 @@
 const { Categories } = require("../data/models/models");
 const ApiError = require("../error/ApiError");
-const isUndefined = require("../utils/validator");
+const responeCodes = require('../constans/responseCodes')
 const {
   DELETE,
   UPDATE,
+  ID_UNDEFINED,
   NAME_UNDEFINED,
-  BODY_UNDEFINED,
 } = require("../constans/messages");
 
 class CategoriesController {
@@ -32,7 +32,7 @@ class CategoriesController {
     const { name } = req.body;
     try {
       if (!name) throw new Error(NAME_UNDEFINED);
-        
+
       const category = await Categories.create({ name });
       res.status(201).json(category);
     } catch (e) {
@@ -43,11 +43,10 @@ class CategoriesController {
   async updateCategory(req, res, next) {
     const { name, id, available } = req.body;
     try {
-      if (!isUndefined({ name, id, available }))
-        throw new Error(BODY_UNDEFINED);
-      
+      if (!id) throw new Error(ID_UNDEFINED);
+
       await Categories.update({ name, available }, { where: { id } });
-      res.status(202).json({ message: UPDATE });
+      res.status(202).send(String(responeCodes.UPDATE_SUCSESUFUL));
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
