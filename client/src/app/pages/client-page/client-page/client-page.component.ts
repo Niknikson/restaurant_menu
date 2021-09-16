@@ -1,13 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
-export class Contact {
-  constructor(
-    public id: number,
-    public phone: string,
-    public adres: string,
-  ) { }
-}
+import { DishesService } from 'src/app/service/dishes.servise';
 
 @Component({
   selector: 'app-client-page',
@@ -16,21 +8,10 @@ export class Contact {
 })
 export class ClientPageComponent implements OnInit {
 
-  contacts: Contact[] | undefined;
-
-  constructor(private httpClient: HttpClient) {}
+  constructor(private dishesService: DishesService) {}
 
   ngOnInit(): void {
-    // this.getContact()
+    this.dishesService.getDishes(this.dishesService.id);
   }
-
-  // getContact() {
-  //   this.httpClient
-  //     .get<any>('http://localhost:5000/restoran/contact')
-  //     .subscribe((response) => {
-  //       console.log(response);
-  //       this.contacts = response;
-  //     });
-  // }
 }
 

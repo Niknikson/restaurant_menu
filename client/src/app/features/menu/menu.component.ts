@@ -1,5 +1,5 @@
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
 
 export class Category {
   constructor(
@@ -15,6 +15,9 @@ export class Category {
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
+  //@Input() category!: Category;
+  //@Output() getDishesByCategory = new EventEmitter<number>();
+
   public categories: Category[] = [];
 
   constructor(private httpClient: HttpClient) {}
@@ -22,6 +25,11 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
     this.getCategories();
   }
+
+  // getyCategoryId(id: number) {
+  //   this.getDishesByCategory.emit(id)
+  //   console.log(id)
+  // }
 
   getCategories() {
     this.httpClient

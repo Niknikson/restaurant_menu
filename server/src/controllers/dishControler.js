@@ -23,7 +23,7 @@ class DishController {
   }
 
   async createDish(req, res, next) {
-    const { dascription, categoryId, weight, price, name, img } = req.body;
+    const { dascription, categoryId, weight, price, name, img, top } = req.body;
     try {
       if (!id) throw new Error(ID_UNDEFINED);
 
@@ -34,6 +34,7 @@ class DishController {
         price,
         name,
         img,
+        top,
       });
       res.status(201).json(dish);
     } catch (e) {
@@ -42,12 +43,12 @@ class DishController {
   }
 
   async updateDish(req, res, next) {
-    const { dascription, categoryId, weight, price, name, img, id } = req.body
+    const { dascription, categoryId, weight, price, top, name, img, id } = req.body
     try {
       if (!id) throw new Error(ID_UNDEFINED);
 
       await Dish.update(
-        { dascription, categoryId, weight, price, name, img },
+        { dascription, categoryId, weight, price, name, img, top },
         { where: { id } }
       );
       res.status(202).json({ message: UPDATE });
