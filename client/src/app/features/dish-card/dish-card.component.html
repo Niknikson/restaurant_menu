@@ -1,23 +1,20 @@
-<div class="dish__card">
-  <img class="dish__img" src="https://montecristomagazine.com/wp-content/uploads/2021/01/2021FoodPredictions-1.jpg" alt="альтернативный текст" />
-  <div class="text__conteiner">
-    <div class="text">
-      <div class="dish__title">Dish name : happy mell</div>
-      <div class="tag">#desert</div>
+<div *ngFor="let dish of dishesService.dishes">
+  <div class="dish__card">
+    <img class="dish__img" src="https://montecristomagazine.com/wp-content/uploads/2021/01/2021FoodPredictions-1.jpg" alt="альтернативный текст" />
+    <div class="text__conteiner">
+      <div class="text">
+      <div class="dish__title"> {{dish.name}} </div>
+      <div class="tag">{{ dish.top ? 'top' : '' }}</div>
       <div class="dish__info">
-          Lorem ipsum, dolor sit 
-          amet consectetur adipisicing elit. 
-          Iure dicta consectetur eveniet beatae 
-          architecto dignissimos magnam totam corporis. 
-          Fuga labore dolorum repellat molestiae. 
-          Earum vitae numquam optio error facere aliquam!
+       {{dish.dascription}}
         </div>
     </div>
     <div class="price__info">
-      <div class="price">99 $</div>
-      <!-- <button class="btn__by">
-        Order
-      </button> -->
+      <div class="price">{{dish.price}} $</div>
+    </div>
+    <div class="price__info">
+      <div class="price">{{dish.weight}} </div>
+    </div>
     </div>
   </div>
 </div>

@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { DishesService } from 'src/app/service/dishes.servise';
 import { Category } from './../menu/menu.component';
 
 @Component({
@@ -7,9 +8,15 @@ import { Category } from './../menu/menu.component';
   styleUrls: ['./menu-items.component.scss'],
 })
 export class MenuItemsComponent implements OnInit {
-  @Input() category!: Category;
+   @Input() category!: Category;
+  // @Output() getyCategoryId = new EventEmitter<number>();
 
-  constructor() {}
+  constructor(private dishesService: DishesService) {}
 
   ngOnInit(): void {}
+
+  handlerClick(id: number) {
+    //this.getyCategoryId.emit(id);
+    this.dishesService.setDishId(id)
+  }
 }
