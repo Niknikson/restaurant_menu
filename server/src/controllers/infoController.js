@@ -1,6 +1,6 @@
 const { Info } = require("../data/models/models");
 const ApiError = require("../error/ApiError");
-const { UPDATE, ID_UNDEFINED } = require("../constans/messages");
+const { UPDATE, ID_UNDEFINED } = require("../constants/messages");
 
 const postInfo = async (req, res, next) => {
   const { phone, address, wifi } = req.body;

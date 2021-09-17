@@ -15,7 +15,7 @@ export class MenuItemsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  handlerClick(id: number) {
+  handlerClick(id: string) {
     //this.getyCategoryId.emit(id);
     this.dishesService.setDishId(id)
   }

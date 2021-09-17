@@ -1,6 +1,7 @@
 const { Dish } = require("../data/models/models");
+const { cloudinary } = require("../config/cloudinary.config");
 const ApiError = require("../error/ApiError");
-const { DELETE, UPDATE, ID_UNDEFINED } = require("../constans/messages");
+const { DELETE, UPDATE, ID_UNDEFINED } = require("../constants/messages");
 
 class DishController {
   async getDish(req, res, next) {
@@ -12,7 +13,7 @@ class DishController {
     }
   }
 
-  async getDishByGategory(req, res, next) {
+  async getDishByCategory(req, res, next) {
     let { id } = req.params;
     try {
       let dish = await Dish.findAll({ where: { categoryId: id } });
@@ -23,32 +24,41 @@ class DishController {
   }
 
   async createDish(req, res, next) {
-    const { dascription, categoryId, weight, price, name, img, top } = req.body;
-    try {
-      if (!id) throw new Error(ID_UNDEFINED);
+    let { description, categoryId, weight, price, name, top, photo } = req.body;
 
-      const dish = await Dish.create({
-        dascription,
-        categoryId,
-        weight,
-        price,
-        name,
-        img,
-        top,
-      });
-      res.status(201).json(dish);
+    console.log(req.file);
+    try {
+      //const uploadedResponse = await cloudinary.uploader.upload(req.file.path);
+  
+      res.json({ uploadedResponse });
+    } catch (e) {
+      console.log("error", e.message);
+    }
+
+    try {
+      // const dish = await Dish.create({
+      //   description,
+      //   categoryId,
+      //   weight,
+      //   price,
+      //   name,
+      //   img,
+      //   top,
+      // });
+      // res.status(201).json(dish);
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
   }
 
   async updateDish(req, res, next) {
-    const { dascription, categoryId, weight, price, top, name, img, id } = req.body
+    const { description, categoryId, weight, price, top, name, img, id } =
+      req.body;
     try {
       if (!id) throw new Error(ID_UNDEFINED);
 
       await Dish.update(
-        { dascription, categoryId, weight, price, name, img, top },
+        { description, categoryId, weight, price, name, img, top },
         { where: { id } }
       );
       res.status(202).json({ message: UPDATE });

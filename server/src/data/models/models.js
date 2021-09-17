@@ -34,7 +34,7 @@ const Dish = sequelize.define("dish", {
   available: { type: DataTypes.BOOLEAN, defaultValue: true, allowNull: false },
   top: { type: DataTypes.BOOLEAN, defaultValue: false, allowNull: false },
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
-  dascription: { type: DataTypes.STRING, allowNull: false },
+  description: { type: DataTypes.STRING, allowNull: false },
   price: { type: DataTypes.STRING, allowNull: false },
   img: { type: DataTypes.STRING, allowNull: false },
   weight: { type: DataTypes.STRING },

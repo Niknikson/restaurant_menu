@@ -1,12 +1,12 @@
 const { Categories } = require("../data/models/models");
 const ApiError = require("../error/ApiError");
-const responeCodes = require('../constans/responseCodes')
+const responseCodes = require('../constants/responseCodes')
 const {
   DELETE,
   UPDATE,
   ID_UNDEFINED,
   NAME_UNDEFINED,
-} = require("../constans/messages");
+} = require("../constants/messages");
 
 class CategoriesController {
   async getAllCategories(req, res, next) {
@@ -46,7 +46,7 @@ class CategoriesController {
       if (!id) throw new Error(ID_UNDEFINED);
 
       await Categories.update({ name, available }, { where: { id } });
-      res.status(202).send(String(responeCodes.UPDATE_SUCSESUFUL));
+      res.status(202).send(String(responseCodes.UPDATE_SUCSESUFUL));
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
