@@ -1,6 +1,6 @@
 const Router = require('express')
-const dishRouter = require('./dish')
 const infoRouter = require("./info");
+const dishRouter = require('./dishes')
 const categoriesRouter = require("./categories");
 
 

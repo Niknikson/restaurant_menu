@@ -1,18 +1,14 @@
-const { Categories } = require("../data/models/models");
 const ApiError = require("../error/ApiError");
-const responeCodes = require('../constans/responseCodes')
-const {
-  DELETE,
-  UPDATE,
-  ID_UNDEFINED,
-  NAME_UNDEFINED,
-} = require("../constans/messages");
+const { Categories } = require("../data/models/models");
+const { RES_MESSAGES } = require("../constants/responseMessages");
+const STATUS_CODES = require("../constants/statusCodes");
 
 class CategoriesController {
+
   async getAllCategories(req, res, next) {
     try {
       const categories = await Categories.findAll();
-      res.status(200).json(categories);
+      res.status(STATUS_CODES.OK).json(categories);
     } catch (e) {
       next(ApiError.notFound(e.message));
     }
@@ -22,7 +18,7 @@ class CategoriesController {
     const id = req.params.id;
     try {
       const category = await Categories.findOne({ where: { id } });
-      res.status(200).json(category);
+      res.status(STATUS_CODES.OK).json(category);
     } catch (e) {
       next(ApiError.notFound(e.message));
     }
@@ -31,32 +27,29 @@ class CategoriesController {
   async createCategory(req, res, next) {
     const { name } = req.body;
     try {
-      if (!name) throw new Error(NAME_UNDEFINED);
-
-      const category = await Categories.create({ name });
-      res.status(201).json(category);
+      await Categories.create({ name });
+      res.status(STATUS_CODES.CREATED).send(String(RES_MESSAGES.CREATE));
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
   }
 
   async updateCategory(req, res, next) {
-    const { name, id, available } = req.body;
+    const { id } = req.params
+    const { name, available } = req.body;
     try {
-      if (!id) throw new Error(ID_UNDEFINED);
-
       await Categories.update({ name, available }, { where: { id } });
-      res.status(202).send(String(responeCodes.UPDATE_SUCSESUFUL));
+      res.status(STATUS_CODES.ACCEPTED).send(String(RES_MESSAGES.UPDATE));
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
   }
 
   async deleteCategory(req, res, next) {
-    const id = req.params.id;
+    const {id} = req.params;
     try {
       await Categories.destroy({ where: { id } });
-      res.status(202).json({ message: DELETE });
+      res.status(STATUS_CODES.ACCEPTED).send(String(RES_MESSAGES.DELETE));
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }

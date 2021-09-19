@@ -1,6 +1,6 @@
 export class Dish {
   constructor(
-    public id: number,
+    public id: string,
     public name: string,
     public img: string,
     public top: boolean,

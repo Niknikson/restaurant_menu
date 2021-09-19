@@ -7,21 +7,20 @@ import { Dish } from '../constants/dish';
 })
 export class DishesService {
   public dishes: Dish[] = [];
-  public id: number | string = '';
-  //public dishId!: number;
+  public id: string = '';
+  public dishId!: string;
 
   constructor(private httpClient: HttpClient) {}
 
-  setDishId(id: number) {
-    console.log('set', id);
-    //this.dishId = id;
-    this.getDishes(id);
+  setDishId(id: string) {
+    //console.log('set', id);
+    this.dishId = id;
+    this.getDishesByCategory();
   }
 
-  getDishes(id: number | string) {
-    console.log(id);
+  getDishesByCategory(id: string = '') {
     this.httpClient
-      .get<Dish[]>(`http://localhost:5000/restoran/dish/${id && id }`)
+      .get<Dish[]>(`http://localhost:5000/restoran/dish/${id}`)
       .subscribe((response) => {
         console.log(response);
         this.dishes = response;

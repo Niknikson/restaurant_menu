@@ -4,7 +4,7 @@ const validation = (schema) => async (req, res, next) => {
         await schema.validate(body)
         next()
     } catch (e) {
-        return res.status(400).json(e.message)
+        return res.status(422).json(e.message)
     }
 }
 
