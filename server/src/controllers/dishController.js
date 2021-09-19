@@ -1,67 +1,60 @@
 const { Dish } = require("../data/models/models");
 const { cloudinary } = require("../config/cloudinary.config");
 const ApiError = require("../error/ApiError");
-const { DELETE, UPDATE, ID_UNDEFINED } = require("../constants/messages");
+const STATUS_CODES = require("../constants/statusCodes");
+const { RES_MESSAGES } = require("../constants/responseMessages");
 
 class DishController {
-  async getDish(req, res, next) {
+  async getDishes(req, res, next) {
     try {
-      let dish = await Dish.findAll();
-      res.status(200).json(dish);
+      let dishes = await Dish.findAll({ where: { top: true } });
+      res.status(STATUS_CODES.OK).json(dishes);
     } catch (e) {
       next(ApiError.notFound(e.message));
     }
   }
 
-  async getDishByCategory(req, res, next) {
+  async getDishesByCategory(req, res, next) {
     let { id } = req.params;
     try {
       let dish = await Dish.findAll({ where: { categoryId: id } });
-      res.status(200).json(dish);
+      res.status(STATUS_CODES.OK).json(dish);
     } catch (e) {
       next(ApiError.notFound(e.message));
     }
   }
 
   async createDish(req, res, next) {
-    let { description, categoryId, weight, price, name, top, photo } = req.body;
-
-    console.log(req.file);
-    try {
-      //const uploadedResponse = await cloudinary.uploader.upload(req.file.path);
-  
-      res.json({ uploadedResponse });
-    } catch (e) {
-      console.log("error", e.message);
-    }
-
-    try {
-      // const dish = await Dish.create({
-      //   description,
-      //   categoryId,
-      //   weight,
-      //   price,
-      //   name,
-      //   img,
-      //   top,
-      // });
-      // res.status(201).json(dish);
-    } catch (e) {
-      next(ApiError.badRequest(e.message));
-    }
+    const { description, categoryId, weight, price, name, top } = req.body;
+    //console.log(req.file);
+    console.log(req.body);
+    // try {
+    //   const uploadedResponse = await cloudinary.uploader.upload(req.file.path);
+    //   const { url } = uploadedResponse;
+    //   await Dish.create({
+    //     description,
+    //     categoryId,
+    //     weight,
+    //     price,
+    //     name,
+    //     img: url,
+    //     top,
+    //   });
+    //   res.status(STATUS_CODES.CREATED).send(String(RES_MESSAGES.CREATE));
+    // } catch (e) {
+    //   next(ApiError.badRequest(e.message));
+    // }
   }
 
   async updateDish(req, res, next) {
-    const { description, categoryId, weight, price, top, name, img, id } =
-      req.body;
+    const { description, categoryId, weight, price, top, name, img } = req.body;
+    const { id } = req.params;
     try {
-      if (!id) throw new Error(ID_UNDEFINED);
-
       await Dish.update(
         { description, categoryId, weight, price, name, img, top },
         { where: { id } }
       );
-      res.status(202).json({ message: UPDATE });
+      res.status(STATUS_CODES.ACCEPTED).send(String(RES_MESSAGES.UPDATE));
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
@@ -71,7 +64,7 @@ class DishController {
     const id = req.params.id;
     try {
       await Dish.destroy({ where: { id } });
-      res.status(202).json({ message: DELETE });
+      res.status(STATUS_CODES.ACCEPTED).send(String(RES_MESSAGES.DELETE));
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }

@@ -1,8 +1,8 @@
-const responeCodes = {
+const responseCodes = {
   BODY_IS_EMPTY: 1,
   ID_IS_UNDEFINED: 2,
   NAME_UNDEFINED: 3,
-  UPDATE_SUCSESUFUL: 4,
+  UPDATE_SUCCESSFUL: 4,
 };
 
-module.exports = responeCodes;
+module.exports = responseCodes;

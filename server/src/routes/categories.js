@@ -1,16 +1,23 @@
 const Router = require("express");
 const router = new Router();
-const categorySchema = require("../data/validations/categorySchema");
 const validation = require("../middleware/validationMiddleware");
 const categoriesController = require("../controllers/categoriesController");
+const {
+  categoryCreateSchema,
+  categoryUpdateSchema,
+} = require("../data/schemas/categorySchema");
 
-router.post("/", categoriesController.createCategory);
 router.get("/", categoriesController.getAllCategories);
 router.get("/:id", categoriesController.getCategoryById);
 router.delete("/:id", categoriesController.deleteCategory);
-router.patch(
+router.post(
   "/",
-  validation(categorySchema),
+  validation(categoryCreateSchema),
+  categoriesController.createCategory
+);
+router.patch(
+  "/:id",
+  validation(categoryUpdateSchema),
   categoriesController.updateCategory
 );
 

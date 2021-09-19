@@ -13,5 +13,6 @@ export class ClientPageComponent implements OnInit {
   ngOnInit(): void {
     this.dishesService.getDishesByCategory(this.dishesService.id);
   }
+  
 }
 

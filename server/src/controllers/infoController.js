@@ -1,6 +1,8 @@
-const { Info } = require("../data/models/models");
 const ApiError = require("../error/ApiError");
-const { UPDATE, ID_UNDEFINED } = require("../constants/messages");
+const { Info } = require("../data/models/models");
+const { RES_MESSAGES } = require("../constants/responseMessages");
+const STATUS_CODES = require("../constants/statusCodes");
+
 
 const postInfo = async (req, res, next) => {
   const { phone, address, wifi } = req.body;
@@ -16,7 +18,7 @@ class InfoController {
   async getInfo(req, res, next) {
     try {
       const contact = await Info.findAll();
-      res.status(200).json(contact);
+      res.status(STATUS_CODES.OK).json(contact);
     } catch (e) {
       next(ApiError.notFound(e.message));
     }
@@ -29,10 +31,8 @@ class InfoController {
         return postInfo(req, res, next);
       }
 
-      if (!id) throw new Error(ID_UNDEFINED);
-
       await Info.update({ phone, address, wifi }, { where: { id } });
-      res.status(202).json({ message: UPDATE });
+      res.status(202).send(String(RES_MESSAGES.UPDATE));
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }

@@ -1,6 +1,6 @@
 const Router = require("express");
 const router = new Router();
-const infoSchema = require("../data/validations/infoSchema");
+const infoSchema = require("../data/schemas/infoSchema");
 const infoController = require("../controllers/infoController");
 const validation = require("../middleware/validationMiddleware");
 

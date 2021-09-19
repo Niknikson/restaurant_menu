@@ -15,8 +15,6 @@ app.use(express.json({ limit: "150mb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use("/menu", router);
 
-
-
 // last Middleware
 app.use(errorHandler)
 
