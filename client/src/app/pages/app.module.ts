@@ -13,6 +13,8 @@ import { AdminPageComponent } from './admin-page/admin-page/admin-page.component
 import { ClientPageComponent } from './client-page/client-page.component';
 import { BtnMenuComponent } from '../components/btn-menu/btn-menu/btn-menu.component';
 import { ButtonComponent } from './comon/button/button.component';
+import { CreateDishModalComponent } from './comon/create-dish-modal/create-dish-modal.component';
+import { CreateCategoryModalComponent } from './comon/create-category-modal/create-category-modal.component';
 
 
 @NgModule({
@@ -27,6 +29,8 @@ import { ButtonComponent } from './comon/button/button.component';
     DishCardComponent,
     BtnMenuComponent,
     ButtonComponent,
+    CreateDishModalComponent,
+    CreateCategoryModalComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

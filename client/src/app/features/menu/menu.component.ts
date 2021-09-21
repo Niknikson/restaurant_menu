@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DishesService } from 'src/app/service/dishes.service';
-import { MenuService } from 'src/app/service/menu.service';
+import { CategoryService } from 'src/app/service/category.service';
 
 
 @Component({
@@ -14,7 +14,7 @@ export class MenuComponent implements OnInit {
 
   constructor(
     private dishesService: DishesService,
-    public menuService: MenuService
+    public menuService: CategoryService
   ) {}
 
   ngOnInit(): void {

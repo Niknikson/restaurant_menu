@@ -6,16 +6,20 @@ import {Api} from '../constants/api'
 @Injectable({
   providedIn: 'root',
 })
-
 export class DishesService {
+  public createDishModal: boolean = false;
   public dishes: Dish[] = [];
- 
+
   constructor(private http: HttpClient) {}
 
-  getDishesByCategory(id: string = '') {
-    this.http.get<Dish[]>(`${Api.dish}${id}`)
-      .subscribe((res) => {
-        this.dishes = res;
-      });
+  toggleCreateModal() {
+    this.createDishModal = !this.createDishModal;
   }
+
+  getDishesByCategory(id: string = '') {
+    this.http.get<Dish[]>(`${Api.dish}${id}`).subscribe((res) => {
+      this.dishes = res;
+    });
+  }
+
 }

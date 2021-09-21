@@ -6,5 +6,7 @@
     <app-button [style]="'primary'" [buttonText]="'Add new dish'" [buttonSubmit]="true" [loading]="buttonLoading" (buttonClick)="addNewDish($event)">
     </app-button>
 </div>
+<app-create-category-modal></app-create-category-modal>
+<app-create-dish-modal></app-create-dish-modal>
 
 <app-dish-card *ngFor="let dish of dishesService.dishes" [dish]="dish"></app-dish-card>

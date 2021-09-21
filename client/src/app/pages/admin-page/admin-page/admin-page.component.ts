@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { CategoryService } from 'src/app/service/category.service';
 import { DishesService } from 'src/app/service/dishes.service';
 
 @Component({
@@ -11,16 +12,15 @@ export class AdminPageComponent implements OnInit {
 
   constructor(
     public dishesService: DishesService,
+    public categoryService: CategoryService
   ) {}
 
   ngOnInit(): void {}
 
   addNewCategory(event: any): void {
-    console.log('addNewCategory')
+    this.categoryService.toggleCreateModal()
   }
   addNewDish(event: any): void {
-    console.log('addNewDish')
+    this.dishesService.toggleCreateModal();
   }
-
- 
 }
