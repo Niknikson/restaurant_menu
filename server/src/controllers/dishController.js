@@ -28,22 +28,22 @@ class DishController {
     const { description, categoryId, weight, price, name, top } = req.body;
     //console.log(req.file);
     console.log(req.body);
-    // try {
-    //   const uploadedResponse = await cloudinary.uploader.upload(req.file.path);
-    //   const { url } = uploadedResponse;
-    //   await Dish.create({
-    //     description,
-    //     categoryId,
-    //     weight,
-    //     price,
-    //     name,
-    //     img: url,
-    //     top,
-    //   });
-    //   res.status(STATUS_CODES.CREATED).send(String(RES_MESSAGES.CREATE));
-    // } catch (e) {
-    //   next(ApiError.badRequest(e.message));
-    // }
+    try {
+      const uploadedResponse = await cloudinary.uploader.upload(req.file.path);
+      const { url } = uploadedResponse;
+      await Dish.create({
+        description,
+        categoryId,
+        weight,
+        price,
+        name,
+        img: url,
+        top,
+      });
+      res.status(STATUS_CODES.CREATED).send(String(RES_MESSAGES.CREATE));
+    } catch (e) {
+      next(ApiError.badRequest(e.message));
+    }
   }
 
   async updateDish(req, res, next) {

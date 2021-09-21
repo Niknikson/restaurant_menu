@@ -1,0 +1,7 @@
+
+    <app-menu></app-menu> 
+     <app-dish-card
+    *ngFor="let dish of dishesService.dishes"
+    [dish]="dish"
+    ></app-dish-card>
+

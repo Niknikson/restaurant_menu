@@ -1,12 +1,12 @@
-<div *ngFor="let dish of dishesService.dishes">
+
   <div class="dish__card">
-    <img class="dish__img" src="https://montecristomagazine.com/wp-content/uploads/2021/01/2021FoodPredictions-1.jpg" alt="альтернативный текст" />
+    <img class="dish__img" src={{dish.img}} alt="альтернативный текст" />
     <div class="text__conteiner">
       <div class="text">
       <div class="dish__title"> {{dish.name}} </div>
       <div class="tag">{{ dish.top ? 'top' : '' }}</div>
       <div class="dish__info">
-       {{dish.dascription}}
+       {{dish.description}}
         </div>
     </div>
     <div class="price__info">
@@ -17,4 +17,4 @@
     </div>
     </div>
   </div>
-</div>
+

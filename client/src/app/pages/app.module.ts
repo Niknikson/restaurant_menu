@@ -10,7 +10,9 @@ import { HeaderComponent } from '../components/header/header.component';
 import { DishCardComponent } from './../features/dish-card/dish-card.component';
 import { MenuItemsComponent } from '../features/menu-items/menu-items.component';
 import { AdminPageComponent } from './admin-page/admin-page/admin-page.component';
-import { ClientPageComponent } from './client-page/client-page/client-page.component';
+import { ClientPageComponent } from '../components/client-page/client-page/client-page.component';
+import { BtnMenuComponent } from '../components/btn-menu/btn-menu/btn-menu.component';
+
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { ClientPageComponent } from './client-page/client-page/client-page.compo
     AdminPageComponent,
     ClientPageComponent,
     DishCardComponent,
+    BtnMenuComponent,
+    
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

@@ -1,3 +1,5 @@
+@import '../../styles/colors.scss';
+
 .nav__menu {
   display: flex;
   align-items: center;
@@ -16,5 +18,26 @@
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
+  }
+}
+
+.nav__category {
+  text-transform: uppercase;
+  text-decoration: none;
+  color: $black;
+  margin: 3px;
+  font-size: small;
+  padding: 3px;
+  
+
+  &:hover {
+    text-decoration: none;
+    color: $main-blue-color;
+    cursor: pointer;
+  }
+
+  &:focus {
+    text-decoration: none;
+    color: $main-blue-color;
   }
 }

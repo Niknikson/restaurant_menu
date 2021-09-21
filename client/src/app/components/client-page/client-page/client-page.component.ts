@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DishesService } from 'src/app/service/dishes.servise';
+import { DishesService } from 'src/app/service/dishes.service';
 
 @Component({
   selector: 'app-client-page',
@@ -8,10 +8,10 @@ import { DishesService } from 'src/app/service/dishes.servise';
 })
 export class ClientPageComponent implements OnInit {
 
-  constructor(private dishesService: DishesService) {}
+  constructor(public dishesService: DishesService) {}
 
   ngOnInit(): void {
-    this.dishesService.getDishesByCategory(this.dishesService.id);
+    this.dishesService.getDishesByCategory();
   }
   
 }

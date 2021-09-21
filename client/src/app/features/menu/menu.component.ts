@@ -1,13 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { DishesService } from 'src/app/service/dishes.service';
+import { MenuService } from 'src/app/service/menu.service';
 
-export class Category {
-  constructor(
-    public id: string,
-    public name: string,
-    public available: boolean
-  ) {}
-}
 
 @Component({
   selector: 'app-menu',
@@ -16,20 +10,18 @@ export class Category {
 })
 export class MenuComponent implements OnInit {
 
-  public categories: Category[] = [];
+  @Input() title: string = 'Restaurant Menu';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private dishesService: DishesService,
+    public menuService: MenuService
+  ) {}
 
   ngOnInit(): void {
-    this.getCategories();
+    this.menuService.getCategories();
   }
 
-  getCategories() {
-    this.httpClient
-      .get<any>('http://localhost:5000/restoran/categories')
-      .subscribe((response) => {
-        console.log(response);
-        this.categories = response;
-      });
+  handlerClick() {
+    this.dishesService.getDishesByCategory();
   }
 }

@@ -19,9 +19,9 @@ const Info = sequelize.define("info", {
     defaultValue: DataTypes.UUIDV1,
     allowNull: false,
   },
-  wifi: { type: DataTypes.STRING },
-  phone: { type: DataTypes.STRING },
-  address: { type: DataTypes.STRING },
+  wifi: { type: DataTypes.STRING, defaultValue: '', },
+  phone: { type: DataTypes.STRING, defaultValue: '', },
+  address: { type: DataTypes.STRING,defaultValue: '', },
 });
 
 const Dish = sequelize.define("dish", {

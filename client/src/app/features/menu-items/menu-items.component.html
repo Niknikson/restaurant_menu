@@ -1,2 +1,5 @@
-<div class="nav__category" (click)="handlerClick(category.id)" >{{category.name}}</div>
-
+<div *ngIf="category.available">
+  <div class="nav__category" (click)="handlerClick(category.id)">
+    {{ category.name }}
+  </div>
+</div>
