@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { DishesService } from 'src/app/service/dishes.service';
 
 @Component({
@@ -7,8 +7,20 @@ import { DishesService } from 'src/app/service/dishes.service';
   styleUrls: ['./admin-page.component.scss'],
 })
 export class AdminPageComponent implements OnInit {
+  buttonLoading = false;
 
-  constructor(public dishesService: DishesService) {}
+  constructor(
+    public dishesService: DishesService,
+  ) {}
 
   ngOnInit(): void {}
+
+  addNewCategory(event: any): void {
+    console.log('addNewCategory')
+  }
+  addNewDish(event: any): void {
+    console.log('addNewDish')
+  }
+
+ 
 }

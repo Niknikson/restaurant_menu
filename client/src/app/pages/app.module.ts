@@ -12,6 +12,7 @@ import { MenuItemsComponent } from '../features/menu-items/menu-items.component'
 import { AdminPageComponent } from './admin-page/admin-page/admin-page.component';
 import { ClientPageComponent } from './client-page/client-page.component';
 import { BtnMenuComponent } from '../components/btn-menu/btn-menu/btn-menu.component';
+import { ButtonComponent } from './comon/button/button.component';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { BtnMenuComponent } from '../components/btn-menu/btn-menu/btn-menu.compo
     ClientPageComponent,
     DishCardComponent,
     BtnMenuComponent,
-    
+    ButtonComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

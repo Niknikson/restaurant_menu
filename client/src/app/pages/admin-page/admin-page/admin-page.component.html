@@ -1,6 +1,10 @@
-<app-menu
-></app-menu>
-<app-dish-card
-  *ngFor="let dish of dishesService.dishes"
-  [dish]="dish"
-></app-dish-card>
+<app-menu></app-menu>
+
+<div class="add__buttons">
+    <app-button [style]="'primary'" [buttonText]="'Add new category'" [buttonSubmit]="true" [loading]="buttonLoading" (buttonClick)="addNewCategory($event)">
+    </app-button>
+    <app-button [style]="'primary'" [buttonText]="'Add new dish'" [buttonSubmit]="true" [loading]="buttonLoading" (buttonClick)="addNewDish($event)">
+    </app-button>
+</div>
+
+<app-dish-card *ngFor="let dish of dishesService.dishes" [dish]="dish"></app-dish-card>
