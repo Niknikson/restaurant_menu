@@ -4,6 +4,11 @@ export interface Category {
      available: boolean
 }
 
+export interface CategoryP {
+  name: string;
+  available: boolean;
+}
+
 export interface Info {
   id: string,
   wifi: string,

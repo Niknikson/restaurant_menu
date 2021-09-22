@@ -5,8 +5,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
 })
-export class ButtonComponent implements OnInit {
-  @Input() buttonText!: string;
+export class ButtonComponent {
   @Input() style: string = '';
   @Input() buttonSubmit = false;
   @Input() set loading(loading: boolean) {
@@ -39,10 +38,6 @@ export class ButtonComponent implements OnInit {
   constructor() {
     this.buttonClick = new EventEmitter<any>();
     this.buttonType = this.buttonSubmit ? `submit` : `button`;
-  }
-
-  ngOnInit() {
-    this.buttonText = this.buttonText ? this.buttonText : `No buttonText`;
   }
 
   onClick(): any {

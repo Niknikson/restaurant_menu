@@ -18,6 +18,7 @@ export class DishesService {
 
   getDishesByCategory(id: string = '') {
     this.http.get<Dish[]>(`${Api.dish}${id}`).subscribe((res) => {
+      console.log(res);
       this.dishes = res;
     });
   }

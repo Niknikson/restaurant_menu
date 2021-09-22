@@ -25,10 +25,11 @@ class CategoriesController {
   }
 
   async createCategory(req, res, next) {
-    const { name } = req.body;
+    console.log(req.body);
+    const { name, available } = req.body;
     try {
-      await Categories.create({ name });
-      res.status(STATUS_CODES.CREATED).send(String(RES_MESSAGES.CREATE));
+      await Categories.create({ name, available });
+      res.status(STATUS_CODES.ACCEPTED).send({ msg: RES_MESSAGES.CREATE});
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
@@ -39,7 +40,7 @@ class CategoriesController {
     const { name, available } = req.body;
     try {
       await Categories.update({ name, available }, { where: { id } });
-      res.status(STATUS_CODES.ACCEPTED).send(String(RES_MESSAGES.UPDATE));
+      res.status(STATUS_CODES.ACCEPTED).send(RES_MESSAGES.UPDATE);
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }

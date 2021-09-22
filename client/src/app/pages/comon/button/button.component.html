@@ -1,13 +1,12 @@
-<button
-      type="buttonType"
-      class="button {{style}}"
-      (click)="onClick()"
-      [disabled]="isDisabled"
-      [ngStyle]="{
+<button 
+type="buttonType" 
+class="button {{style}}" 
+(click)="onClick()" 
+[disabled]="isDisabled" 
+[ngStyle]="{
         loading: loading,
         disabled: isDisabled,
         active: isActivated
-      }"
-    >
-      {{ buttonText }}
+      }">
+  <ng-content></ng-content>
 </button>

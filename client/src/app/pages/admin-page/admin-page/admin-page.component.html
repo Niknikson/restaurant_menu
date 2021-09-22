@@ -1,9 +1,17 @@
 <app-menu></app-menu>
 
 <div class="add__buttons">
-    <app-button [style]="'primary'" [buttonText]="'Add new category'" [buttonSubmit]="true" [loading]="buttonLoading" (buttonClick)="addNewCategory($event)">
+    <app-button [style]="'primary'"
+     [buttonSubmit]="true" 
+     [loading]="buttonLoading" 
+     (buttonClick)="addNewCategory($event)">
+    Add new category
     </app-button>
-    <app-button [style]="'primary'" [buttonText]="'Add new dish'" [buttonSubmit]="true" [loading]="buttonLoading" (buttonClick)="addNewDish($event)">
+    <app-button 
+    [style]="'primary'"
+    [buttonSubmit]="true" 
+    [loading]="buttonLoading" 
+    (buttonClick)="addNewDish($event)">Add new dish
     </app-button>
 </div>
 <app-create-category-modal></app-create-category-modal>
