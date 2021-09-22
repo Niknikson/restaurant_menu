@@ -1,24 +1,30 @@
-@import '../../styles/colors.scss';
-
+@import "../../styles/colors.scss";
 .nav__menu {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-
   .menu__title {
     border-bottom: 1px solid #aaaaaa;
   }
-
   .nav__items {
     margin-top: 15px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: row;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  .nav__items {
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
   }
+
 }
 
 .nav__category {
@@ -28,14 +34,11 @@
   margin: 3px;
   font-size: small;
   padding: 3px;
-  
-
   &:hover {
     text-decoration: none;
     color: $main-blue-color;
     cursor: pointer;
   }
-
   &:focus {
     text-decoration: none;
     color: $main-blue-color;

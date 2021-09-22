@@ -1,5 +1,12 @@
-<div *ngIf="category.available">
-  <div class="nav__category" (click)="handlerClick(category.id)">
-    {{ category.name }}
-  </div>
+<div *ngIf="this.router.url == '/'">
+    <div *ngIf="category.available">
+        <div class="nav__category" (click)="handlerClick(category.id)">
+            {{ category.name }}
+        </div>
+    </div>
+</div>
+<div *ngIf="this.router.url == '/admin'">
+    <div class="nav__category" (click)="handlerClick(category.id)">
+        {{ category.name }}
+    </div>
 </div>

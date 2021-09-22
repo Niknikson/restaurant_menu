@@ -13,7 +13,6 @@ export class CategoryService {
   constructor(private http: HttpClient) {}
 
   toggleCreateModal() {
-    console.log('toggle')
     this.createCategoryModal = !this.createCategoryModal;
   }
 

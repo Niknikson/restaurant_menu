@@ -7,7 +7,6 @@ import { HeaderService } from 'src/app/service/nav.service';
   styleUrls: ['./btn-menu.component.scss'],
 })
 export class BtnMenuComponent implements OnInit {
-  title: string = 'Menu';
 
   constructor(public headerService: HeaderService) {}
 

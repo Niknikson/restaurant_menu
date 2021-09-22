@@ -1,11 +1,8 @@
 <div class="nav__menu">
-  <h1 class="menu__title"> {{title}} </h1>
-  <div class="nav__items">
-    <div class="nav__category" (click)="handlerClick()">TOP</div>
-    <app-menu-items
-      *ngFor="let category of menuService.categories; let inx = index"
-      [category]="category"
-      >
-    </app-menu-items>
-  </div>
+    <h1 class="menu__title"> {{title}} </h1>
+    <div class="nav__items" [style.flex-direction]="menuDirection">
+        <div class="nav__category" (click)="handlerClick()">TOP</div>
+        <app-menu-items *ngFor="let category of menuService.categories; let inx = index" [category]="category">
+        </app-menu-items>
+    </div>
 </div>
