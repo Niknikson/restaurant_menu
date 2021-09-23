@@ -10,13 +10,15 @@
     (buttonClick)="addNewDish($event)">
     Add new dish
     </app-button>
-    <app-button [style]="'primary'" (buttonClick)="addNewDish($event)">
+    <app-button [style]="'primary'" (buttonClick)="activeModalInfo($event)">
        Update info
     </app-button>
 </div>
 
-<app-create-category-modal></app-create-category-modal>
-<app-create-dish-modal></app-create-dish-modal>
+
+<app-modal [title]="'Update info'" [active]="this.infoService.activeModal" 
+(buttonClick)="closeModalInfo()"
+></app-modal>
 
 <app-checkbox [(ngModel)]="inputOne" ></app-checkbox>
 <app-input [(ngModel)]="externalValue"></app-input>

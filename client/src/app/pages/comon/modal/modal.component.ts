@@ -1,15 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss']
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent  {
 
-  constructor() { }
+  @Input() title: string = ''
+  @Input() active: string = ''
+  
+  @Output() buttonClick: EventEmitter<any>;
 
-  ngOnInit(): void {
+   constructor() {
+    this.buttonClick = new EventEmitter<any>();
+  }
+
+  onClick(): any {
+      this.buttonClick.emit();
   }
 
 }

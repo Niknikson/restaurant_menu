@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class InfoService {
+  activeModal: string = ''
 
   constructor(private http: HttpClient) {}
 
