@@ -1,4 +1,4 @@
-import { Component, OnInit, forwardRef } from "@angular/core";
+import { Component, OnInit, forwardRef, Input } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -15,7 +15,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class InputComponent implements ControlValueAccessor{
 
-  //label: string = 'label'
+  @Input() label: string = 'label'
   
   private _value: any;
 

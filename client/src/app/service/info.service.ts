@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class InfoService {
-  activeModal: string = ''
+  activeModal: boolean = false
 
   constructor(private http: HttpClient) {}
 
@@ -16,4 +16,9 @@ export class InfoService {
     return this.http
       .get<Info>(Api.info)
   }
+
+  showModal() {
+    this.activeModal = !this.activeModal
+  }
+
 }

@@ -3,25 +3,13 @@
    align-items: center;
    justify-content: center;
    margin-top: 20px;
+   font-size: 1.4rem;
 }
 .content {
    display: flex;
    align-items: center;
    justify-content: space-around;
    flex-wrap: wrap;
-
-   .form {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      .input {
-         max-width: 130px;
-      }
-      .check{
-         margin-left: 20px;
-      }
-   }
 
    .button {
       display: flex;

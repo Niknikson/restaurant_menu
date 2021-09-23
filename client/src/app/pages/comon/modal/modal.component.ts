@@ -9,8 +9,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class ModalComponent  {
 
   @Input() title: string = ''
-  @Input() active: string = ''
-  
+  @Input() active: boolean = false
+
   @Output() buttonClick: EventEmitter<any>;
 
    constructor() {

@@ -1,1 +1,23 @@
-<p>update-info-modal works!</p>
+<div class="form">
+<form  [formGroup]="addForm" (ngSubmit)="onSubmit()" >
+    <div class="fields">
+        <div class="input">
+            <app-input [label]="'Address'" formControlName="address"></app-input>
+        </div>
+        <div class="input">
+            <app-input [label]="'Phone'" formControlName="phone"></app-input>
+        </div>
+        <div class="input">
+            <app-input [label]="'Wifi'" formControlName="wifi"></app-input>
+        </div>
+    </div>
+    <div class="button">
+        <app-button [style]="'success'" [buttonSubmit]="true">
+            Update
+        </app-button>
+        <app-button (buttonClick)="cancel()">
+            Cancel
+        </app-button>
+    </div>
+</form>
+</div>

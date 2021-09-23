@@ -7,21 +7,16 @@ input::-webkit-inner-spin-button {
 }
 
 
-@mixin upLabel {
-  top: -8px;
-  font-size: 0.7rem;
-  color: $black-color;
-}
+// @mixin upLabel {
+//   top: -8px;
+//   font-size: 0.7rem;
+//   color: $black-color;
+// }
 
-.conteiner {
+.container {
   display: flex;
   flex-direction: row;
   align-items: center;
-
-  .icon {
-    padding-top: 1px;
-    font-size: 1.2rem;
-  }
 
   &:focus.formInput__label {
     color: $primary;
@@ -48,7 +43,7 @@ input::-webkit-inner-spin-button {
       right: 0;
       bottom: 0;
       content: '';
-      color: black;
+      color: $black;
       position: absolute;
       transform: scaleX(0);
       transition: transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
@@ -66,10 +61,10 @@ input::-webkit-inner-spin-button {
     .formInput__input {
       width: 100%;
       background: none;
-      background-color: white;
-      color: $grey-dark-color;
-      font-size: inherit;
-      padding: 9px 0px 2px 0px;
+      background-color: $withe;
+      color: $black;
+      font-size: 0.8rem;
+      padding: 9px 0px 0px 0px;
       display: block;
       border: none;
       border-radius: 0;
@@ -80,10 +75,10 @@ input::-webkit-inner-spin-button {
         outline: none;
       }
 
-      &:focus ~ .formInput__label {
-        @include upLabel();
-        color: $primary;
-      }
+      // &:focus ~ .formInput__label {
+      //   @include upLabel();
+      //   color: $primary;
+      // }
     }
 
     input[type='password'] {
@@ -91,18 +86,18 @@ input::-webkit-inner-spin-button {
     }
 
     .formInput__label {
-      color: $grey-dark-color;
-      font-size: inherit;
-      font-weight: 450;
+      color: $grey;
+      font-size: 0.6rem;
+      font-weight: 150;
       position: absolute;
       pointer-events: none;
       left: 5px;
-      top: 8px;
+      top: -4px;
       transition: 300ms ease all;
 
-      &.formInput__label_up {
-        @include upLabel();
-      }
+      // &.formInput__label_up {
+      //   @include upLabel();
+      // }
     }
   }
 }

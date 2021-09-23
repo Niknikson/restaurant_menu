@@ -10,13 +10,13 @@ import {Api} from '../constants/api'
   providedIn: 'root',
 })
 export class CategoryService {
-  public createCategoryModal: boolean = false;
+  activeModal: boolean = false;
   public categories: Category[] = [];
 
   constructor(private http: HttpClient) {}
 
-  toggleCreateModal() {
-    this.createCategoryModal = !this.createCategoryModal;
+  showModal() {
+    this.activeModal = !this.activeModal;
   }
 
   getCategories(): Observable<Category[]> {

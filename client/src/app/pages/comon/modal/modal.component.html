@@ -1,6 +1,6 @@
 
-    <div class="modal-overlay {{active}}">
-        <div class="modal {{active}}">
+    <div class="modal-overlay" [ngClass]=" active ? 'active' : '' ">
+        <div class="modal" [ngClass]=" active ? 'active' : '' " >
     
             <a class="close-modal" (click)="onClick()">
                 <svg viewBox="0 0 20 20">

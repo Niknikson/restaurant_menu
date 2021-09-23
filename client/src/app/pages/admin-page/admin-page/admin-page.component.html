@@ -6,13 +6,23 @@
     <app-add-button-group></app-add-button-group>
 </div>
 
-
 <app-category-info></app-category-info>
 
-<app-modal [title]="'Update info'" [active]="this.infoService.activeModal" (buttonClick)="closeModalInfo()"></app-modal>
+
+<app-modal [title]="'Info'" [active]="this.infoService.activeModal" (buttonClick)="closeModalInfo()">
+    <app-form-info></app-form-info>
+</app-modal>
+
+<app-modal [title]="'Category'" [active]="this.categoryService.activeModal" (buttonClick)="closeModalCategory()">
+    <app-form-category></app-form-category>
+</app-modal>
+
 
 <!-- <app-checkbox [(ngModel)]="inputOne" ></app-checkbox>
 <app-input [(ngModel)]="externalValue"></app-input>
 {{externalValue}} -->
+
+
+
 
 <app-dish-card *ngFor="let dish of dishesService.dishes" [dish]="dish"></app-dish-card>
