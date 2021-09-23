@@ -14,13 +14,14 @@ import { AdminPageComponent } from './admin-page/admin-page/admin-page.component
 import { ClientPageComponent } from './client-page/client-page.component';
 import { BtnMenuComponent } from '../components/btn-menu/btn-menu/btn-menu.component';
 import { ButtonComponent } from './comon/button/button.component';
-import { CreateDishModalComponent } from './comon/create-dish-modal/create-dish-modal.component';
-import { CreateCategoryModalComponent } from './comon/create-category-modal/create-category-modal.component';
+import { FormDishComponent } from './comon/form-dish/form-dish.component';
+import { FormCategoryComponent } from './comon/form-category/form-category.component';
 import { InputComponent } from './comon/input/input.component';
-import { UpdateInfoModalComponent } from './comon/update-info-modal/update-info-modal.component';
+import { FormInfoComponent } from './comon/form-info/form-info.component';
 import { CategoryInfoComponent } from './comon/category-info/category-info.component';
 import { CheckboxComponent } from './comon/checkbox/checkbox.component';
 import { ModalComponent } from './comon/modal/modal.component';
+import { AddButtonGroupComponent } from './comon/add-button-group/add-button-group.component';
 
 
 @NgModule({
@@ -35,13 +36,14 @@ import { ModalComponent } from './comon/modal/modal.component';
     DishCardComponent,
     BtnMenuComponent,
     ButtonComponent,
-    CreateDishModalComponent,
-    CreateCategoryModalComponent,
+    FormDishComponent,
+    FormCategoryComponent,
     InputComponent,
-    UpdateInfoModalComponent,
+    FormInfoComponent,
     CategoryInfoComponent,
     CheckboxComponent,
     ModalComponent,
+    AddButtonGroupComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,31 @@
+.title{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-top: 20px;
+}
+.content {
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
+   flex-wrap: wrap;
+
+   .form {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .input {
+         max-width: 130px;
+      }
+      .check{
+         margin-left: 20px;
+      }
+   }
+
+   .button {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+   }
+}

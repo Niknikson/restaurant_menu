@@ -3,11 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoryService } from 'src/app/service/category.service';
 
 @Component({
-  selector: 'app-create-category-modal',
-  templateUrl: './create-category-modal.component.html',
-  styleUrls: ['./create-category-modal.component.scss'],
+  selector: 'app-form-category',
+  templateUrl: './form-category.component.html',
+  styleUrls: ['./form-category.component.scss'],
 })
-export class CreateCategoryModalComponent implements OnInit {
+export class FormCategoryComponent implements OnInit {
 
   addForm: FormGroup
 

@@ -1,27 +1,18 @@
-<app-menu></app-menu>
+<div class="admin__menu">
+    <app-menu></app-menu>
+</div>
 
-<div class="add__buttons">
-    <app-button [style]="'primary'"
-     (buttonClick)="addNewCategory($event)">
-    Add new category
-    </app-button>
-    <app-button 
-    [style]="'primary'"
-    (buttonClick)="addNewDish($event)">
-    Add new dish
-    </app-button>
-    <app-button [style]="'primary'" (buttonClick)="activeModalInfo($event)">
-       Update info
-    </app-button>
+<div class="button__group">
+    <app-add-button-group></app-add-button-group>
 </div>
 
 
-<app-modal [title]="'Update info'" [active]="this.infoService.activeModal" 
-(buttonClick)="closeModalInfo()"
-></app-modal>
+<app-category-info></app-category-info>
 
-<app-checkbox [(ngModel)]="inputOne" ></app-checkbox>
+<app-modal [title]="'Update info'" [active]="this.infoService.activeModal" (buttonClick)="closeModalInfo()"></app-modal>
+
+<!-- <app-checkbox [(ngModel)]="inputOne" ></app-checkbox>
 <app-input [(ngModel)]="externalValue"></app-input>
-{{externalValue}}
+{{externalValue}} -->
 
 <app-dish-card *ngFor="let dish of dishesService.dishes" [dish]="dish"></app-dish-card>

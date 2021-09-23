@@ -21,17 +21,17 @@ export class AdminPageComponent implements OnInit {
 
   ngOnInit(): void { }
   
-  activeModalInfo(event: any): void {
-   this.infoService.activeModal = 'active'
-  }
+  // activeModalInfo(event: any): void {
+  //  this.infoService.activeModal = 'active'
+  // }
   closeModalInfo() {
     this.infoService.activeModal = ''
   }
 
-  addNewCategory(event: any): void {
-    this.categoryService.toggleCreateModal()
-  }
-  addNewDish(event: any): void {
-    this.dishesService.toggleCreateModal();
-  }
+  // addNewCategory(event: any): void {
+  //   this.categoryService.toggleCreateModal()
+  // }
+  // addNewDish(event: any): void {
+  //   this.dishesService.toggleCreateModal();
+  // }
 }

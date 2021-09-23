@@ -1,6 +1,9 @@
-.add__buttons{
-  margin-top: 10px;
+.admin__menu{
  display: flex;
- align-items: center;
- justify-content: space-around;
+    justify-content: center;
+}
+
+.button__group{
+    display: flex;
+    justify-content: center;
 }

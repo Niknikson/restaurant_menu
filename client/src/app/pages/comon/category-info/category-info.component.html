@@ -1,1 +1,22 @@
-
+<div class="title">Category</div>
+<div class="content">
+    <div class="form">
+        <div class="input">
+            <app-input [(ngModel)]="value"></app-input>
+        </div>
+        <div class="check"
+        ><app-checkbox [(ngModel)]="check"></app-checkbox>
+    </div>  
+    </div>
+    <div class="button">
+        <app-button [style]="'success'" (buttonClick)="update()">
+            Update
+        </app-button>
+        <app-button (buttonClick)="cancel()">
+            Cancel
+        </app-button>
+        <app-button [style]="'secondary'" (buttonClick)="delete()">
+            Delete
+        </app-button>
+    </div>
+</div>
