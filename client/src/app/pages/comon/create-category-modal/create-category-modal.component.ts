@@ -20,6 +20,7 @@ export class CreateCategoryModalComponent implements OnInit {
         Validators.maxLength(20),
       ]),
       available: formBuilder.control(true),
+      inp: formBuilder.control(''),
     });
    }
   

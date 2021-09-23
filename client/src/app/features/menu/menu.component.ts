@@ -18,9 +18,9 @@ export class MenuComponent implements OnInit {
     public menuService: CategoryService
   ) {}
 
-   async ngOnInit(): Promise<any> {
-   
-     let promis = await this.menuService.getCategories().toPromise()
+  async ngOnInit(): Promise<any> {
+     
+    this.menuService.getCategories().toPromise()
      
   }
 

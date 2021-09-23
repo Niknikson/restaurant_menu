@@ -2,19 +2,24 @@
 
 <div class="add__buttons">
     <app-button [style]="'primary'"
-     [buttonSubmit]="true" 
-     [loading]="buttonLoading" 
      (buttonClick)="addNewCategory($event)">
     Add new category
     </app-button>
     <app-button 
     [style]="'primary'"
-    [buttonSubmit]="true" 
-    [loading]="buttonLoading" 
-    (buttonClick)="addNewDish($event)">Add new dish
+    (buttonClick)="addNewDish($event)">
+    Add new dish
+    </app-button>
+    <app-button [style]="'primary'" (buttonClick)="addNewDish($event)">
+       Update info
     </app-button>
 </div>
+
 <app-create-category-modal></app-create-category-modal>
 <app-create-dish-modal></app-create-dish-modal>
+
+<app-checkbox [(ngModel)]="inputOne" ></app-checkbox>
+<app-input [(ngModel)]="externalValue"></app-input>
+{{externalValue}}
 
 <app-dish-card *ngFor="let dish of dishesService.dishes" [dish]="dish"></app-dish-card>

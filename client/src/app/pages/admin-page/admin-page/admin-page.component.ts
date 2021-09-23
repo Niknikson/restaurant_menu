@@ -9,13 +9,17 @@ import { DishesService } from 'src/app/service/dishes.service';
 })
 export class AdminPageComponent implements OnInit {
   buttonLoading = false;
+  inputOne = true
+  externalValue = 'nik'
 
   constructor(
     public dishesService: DishesService,
     public categoryService: CategoryService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
+  
+ 
 
   addNewCategory(event: any): void {
     this.categoryService.toggleCreateModal()

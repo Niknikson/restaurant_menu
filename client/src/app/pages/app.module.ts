@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -16,6 +16,11 @@ import { BtnMenuComponent } from '../components/btn-menu/btn-menu/btn-menu.compo
 import { ButtonComponent } from './comon/button/button.component';
 import { CreateDishModalComponent } from './comon/create-dish-modal/create-dish-modal.component';
 import { CreateCategoryModalComponent } from './comon/create-category-modal/create-category-modal.component';
+import { InputComponent } from './comon/input/input.component';
+import { UpdateInfoModalComponent } from './comon/update-info-modal/update-info-modal.component';
+import { CategoryInfoComponent } from './comon/category-info/category-info.component';
+import { CheckboxComponent } from './comon/checkbox/checkbox.component';
+import { ModalComponent } from './comon/modal/modal.component';
 
 
 @NgModule({
@@ -32,9 +37,15 @@ import { CreateCategoryModalComponent } from './comon/create-category-modal/crea
     ButtonComponent,
     CreateDishModalComponent,
     CreateCategoryModalComponent,
+    InputComponent,
+    UpdateInfoModalComponent,
+    CategoryInfoComponent,
+    CheckboxComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
