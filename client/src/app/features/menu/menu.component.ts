@@ -13,14 +13,16 @@ export class MenuComponent implements OnInit {
   @Input() title: string = 'Restaurant Menu';
   @Input() menuDirection: string = 'row';
 
+  data: any
+
   constructor(
     private dishesService: DishesService,
-    public menuService: CategoryService
+    public categoryService: CategoryService
   ) {}
 
   async ngOnInit(): Promise<any> {
-     
-    this.menuService.getCategories().toPromise()
+    this.categoryService.currentCategories.subscribe(data=> this.data = data) 
+    this.categoryService.getCategories().toPromise()
      
   }
 

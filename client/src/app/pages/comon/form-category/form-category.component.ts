@@ -29,7 +29,10 @@ export class FormCategoryComponent implements OnInit {
 
   onSubmit() {
     console.log(this.form.value)
-    //this.categoryService.postCategory(this.addForm.value);
+    this.categoryService.postCategory(this.form.value).subscribe(res => {
+      console.log(res)
+      this.categoryService.getCategories().toPromise()
+    })
   }
 
   errorControl(name: string) {

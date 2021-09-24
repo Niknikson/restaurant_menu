@@ -4,7 +4,7 @@ export interface Category {
      available: boolean
 }
 
-export interface CategoryP {
+export interface CategoryPost {
   name: string;
   available: boolean;
 }
