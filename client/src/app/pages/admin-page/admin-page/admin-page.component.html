@@ -9,11 +9,11 @@
 <app-category-info></app-category-info>
 
 
-<app-modal [title]="'Info'" [active]="this.infoService.activeModal" (buttonClick)="closeModalInfo()">
+<app-modal [title]="'Info'" [active]="activeInfoModal" (buttonClick)="closeModalInfo()">
     <app-form-info></app-form-info>
 </app-modal>
 
-<app-modal [title]="'Category'" [active]="this.categoryService.activeModal" (buttonClick)="closeModalCategory()">
+<app-modal [title]="'Category'" [active]="activeCategoryModal" (buttonClick)="closeModalCategory()">
     <app-form-category></app-form-category>
 </app-modal>
 

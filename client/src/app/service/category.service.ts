@@ -1,8 +1,8 @@
 import { Category, CategoryPost } from '../constants/interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import {Api} from '../constants/api'
 
 
@@ -10,27 +10,32 @@ import {Api} from '../constants/api'
   providedIn: 'root',
 })
 export class CategoryService {
-  activeModal: boolean = false;
-  category: Category = {
+
+  categories: Category[] = [];
+
+  private categorySource = new BehaviorSubject<Category>({
     id: '',
     name: '',
     available: false
-  }
-  categories: Category[] = [];
+  })
+  category = this.categorySource.asObservable()
+
+  private modalSource = new BehaviorSubject<boolean>(false)
+  activeModal = this.modalSource.asObservable()
 
   private categoriesSource = new BehaviorSubject<Category[]>([])
   currentCategories = this.categoriesSource.asObservable()
 
   constructor(private http: HttpClient) {}
 
-  showModal() {
-    this.activeModal = !this.activeModal;
+  showModal(data:boolean) {
+    this.modalSource.next(data) 
   }
 
   getCategory(id: string): Observable<Category> {
     return this.http.get<Category>(`${Api.categories}${id}`).pipe(
       map((data: Category) => {
-        this.category = data;
+        this.categorySource.next(data)
         return data;
       })
     );
@@ -40,7 +45,6 @@ export class CategoryService {
     return this.http.get<Category[]>(Api.categories).pipe(
       map((data: Category[]) => {
         this.categoriesSource.next(data)
-        this.categories = data;
         return data;
       })
     );
@@ -50,6 +54,15 @@ export class CategoryService {
     return this.http.post<CategoryPost>(Api.categories, data)
   }
 
+  deleteCategory(id: string ): Observable<any> {
+    return this.http.delete<any>(`${Api.categories}${id}`).pipe(map((res)=>{
+      if(res.msg == "Successfully deleted."){
+        this.categorySource.next({
+         id: '',
+         name: '',
+         available: false})
+      }}))
+  }
  
 }
 

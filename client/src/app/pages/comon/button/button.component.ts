@@ -40,8 +40,8 @@ export class ButtonComponent {
     this.buttonType = this.buttonSubmit ? `submit` : `button`;
   }
 
-  onClick(): any {
-      this.buttonClick.emit();
+  onClick(event: any): any {
+      this.buttonClick.emit(event);
   }
   
 }

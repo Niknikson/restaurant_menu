@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryService } from 'src/app/service/category.service';
+import { Category } from './../../../constants/interface';
 
 @Component({
   selector: 'app-category-info',
@@ -7,22 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryInfoComponent implements OnInit {
 
-  value = 'nik'
-  check = true
+  category!: Category
 
-  constructor() { }
+  constructor(private categoryService: CategoryService) { }
 
   ngOnInit(): void {
+    this.categoryService.category.subscribe(data=> this.category = data) 
   }
+  
 
-  update() {
-    console.log(this.value, this.check)
-  }
-  cancel() {
-    console.log('clear')
-  }
+update(){
+
+}
+
   delete() {
-    console.log('delete')
+    this.categoryService.deleteCategory(this.category.id).subscribe(res=>{
+      this.categoryService.getCategories().toPromise()
+    })
+    
   }
 
 }

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { InfoService } from 'src/app/service/info.service';
+import { Info } from './../../../constants/interface';
+
 
 @Component({
   selector: 'app-form-info',
@@ -7,18 +10,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./form-info.component.scss']
 })
 export class FormInfoComponent implements OnInit {
-  value = ""
+ 
+  info!: Info
+  form: FormGroup
 
-   addForm: FormGroup
-
-  constructor(private formBuilder: FormBuilder) {
-
-    this.addForm = this.formBuilder.group({
-      address: formBuilder.control('', [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(20),
-      ]),
+  constructor(private formBuilder: FormBuilder,
+    private infoService: InfoService) {
+    
+    this.form = this.formBuilder.group({
+      address: formBuilder.control(''),
       phone: formBuilder.control(''),
       wifi: formBuilder.control('',),
     });
@@ -26,19 +26,37 @@ export class FormInfoComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.infoService.info.subscribe(data => { this.info = data })
   }
 
   onSubmit() {
-    console.log(this.addForm.value)
-    //this.categoryService.postCategory(this.addForm.value);
+    this.infoService.patchInfo({...this.form.value, id: this.info.id}).subscribe((res) => {
+      if ( res.msg  == 'Successfully updated.') {
+        this.infoService.fetchInfo().toPromise()
+        this.infoService.showModal(false)
+        this.resetValue()
+      } else {
+        alert(res.msg)
+      }
+    })
   }
 
-  errorControl(name: string) {
-    return this.addForm.get(name)
+  resetValue() {
+    this.form.patchValue({
+       address: '',
+       phone: '',
+       wifi: ''
+   });
   }
 
-  cancel() {
-    
+  cancel(event: any) {
+    event.preventDefault();
+    this.resetValue()
+    this.infoService.showModal(false)
+  }
+
+   errorControl(name: string) {
+    return this.form.get(name)
   }
 
 }

@@ -9,22 +9,17 @@ import { HeaderService } from '../../service/nav.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  info: Info = {
-    id: '',
-    wifi: '',
-    phone: '',
-    address: '',
-  };
+
+  info!: Info 
 
   constructor(
-    public infoService: InfoService,
-    public headerService: HeaderService
+    private infoService: InfoService,
+    private headerService: HeaderService
   ) {}
 
   ngOnInit(): void {
-    this.infoService
-      .fetchInfo()
-      .subscribe((response) => (this.info = response));
+    this.infoService.fetchInfo().toPromise()
+    this.infoService.info.subscribe(data => this.info = data)
   }
 
   handlerClickBtn() {

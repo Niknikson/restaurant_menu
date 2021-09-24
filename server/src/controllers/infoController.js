@@ -19,10 +19,11 @@ class InfoController {
   }
 
   async updateInfo(req, res, next) {
-    const { phone, address, wifi, id, isNew } = req.body;
+    const { phone, address, wifi, id } = req.body;
+    console.log(req.body)
     try { 
       await Info.update({ phone, address, wifi }, { where: { id } })
-      res.status(202).send(String(RES_MESSAGES.UPDATE));
+      res.status(202).send({ msg: RES_MESSAGES.UPDATE});
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }

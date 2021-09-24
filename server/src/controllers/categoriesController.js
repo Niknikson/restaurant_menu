@@ -50,7 +50,7 @@ class CategoriesController {
     const {id} = req.params;
     try {
       await Categories.destroy({ where: { id } });
-      res.status(STATUS_CODES.ACCEPTED).send(String(RES_MESSAGES.DELETE));
+      res.status(STATUS_CODES.ACCEPTED).send({msg:RES_MESSAGES.DELETE});
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }

@@ -28,10 +28,9 @@ export class FormCategoryComponent implements OnInit {
 
 
   onSubmit() {
-    console.log(this.form.value)
     this.categoryService.postCategory(this.form.value).subscribe(res => {
-      console.log(res)
       this.categoryService.getCategories().toPromise()
+      this.categoryService.showModal(false)
     })
   }
 
@@ -41,7 +40,7 @@ export class FormCategoryComponent implements OnInit {
 
   cancel() {
     this.form.reset()
-    this.categoryService.showModal()
+    this.categoryService.showModal(false)
   }
 
 

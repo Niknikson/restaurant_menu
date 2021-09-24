@@ -20,10 +20,9 @@ export class MenuComponent implements OnInit {
     public categoryService: CategoryService
   ) {}
 
-  async ngOnInit(): Promise<any> {
+   ngOnInit() {
     this.categoryService.currentCategories.subscribe(data=> this.data = data) 
-    this.categoryService.getCategories().toPromise()
-     
+    this.categoryService.getCategories().toPromise() 
   }
 
   handlerClick() {

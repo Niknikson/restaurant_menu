@@ -12,21 +12,26 @@ export class AdminPageComponent implements OnInit {
   buttonLoading = false;
   inputOne = true
   externalValue = 'nik'
-
+  
+  activeCategoryModal!: boolean;
+  activeInfoModal!: boolean;
   constructor(
     public dishesService: DishesService,
     public categoryService: CategoryService,
     public infoService: InfoService
   ) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.categoryService.activeModal.subscribe(activeModal => this.activeCategoryModal = activeModal)
+    this.infoService.activeModal.subscribe(activeModal=> this.activeInfoModal = activeModal)
+   }
   
   
   closeModalInfo() {
-    this.infoService.showModal()
+    this.infoService.showModal(false)
   }
 
   closeModalCategory() {
-    this.categoryService.showModal()
+    this.categoryService.showModal(false)
   }  
 }

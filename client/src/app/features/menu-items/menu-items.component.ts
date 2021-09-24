@@ -22,7 +22,7 @@ export class MenuItemsComponent implements OnInit {
   handlerClick(id: string) {
     this.dishesService.getDishesByCategory(id);
     this.categoryService.getCategory(id).subscribe(res => {
-     
+     console.log(res)
     })
   }
 }
