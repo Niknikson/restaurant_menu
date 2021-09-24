@@ -31,11 +31,18 @@ export class InfoService {
   }
 
   patchInfo(data: Info): Observable<any> {
-    return this.http.patch<any>(Api.info, data)
+    return this.http.patch<any>(Api.info, data).pipe(map((res) => {
+      if ( res.msg  == 'Successfully updated.') {
+        this.infoSource.next(data)
+      } else {
+       console.log(res.msg)
+      }
+      return res
+    }))
   }
 
-  showModal(data:boolean) {
-    this.modalSource.next(data) 
+  showModal() {
+    this.modalSource.next(!this.modalSource.value) 
   }
 
 }

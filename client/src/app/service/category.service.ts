@@ -28,8 +28,8 @@ export class CategoryService {
 
   constructor(private http: HttpClient) {}
 
-  showModal(data:boolean) {
-    this.modalSource.next(data) 
+  showModal() {
+    this.modalSource.next(!this.modalSource.value) 
   }
 
   getCategory(id: string): Observable<Category> {
@@ -50,13 +50,20 @@ export class CategoryService {
     );
   }
 
-  postCategory(data: CategoryPost): Observable<CategoryPost> {
-    return this.http.post<CategoryPost>(Api.categories, data)
+  postCategory(data: CategoryPost): Observable<any> {
+    return this.http.post<any>(Api.categories, data).pipe(map((res) => {
+      if (res.msg == "Successfully created.") {
+        this.categoriesSource.next([...this.categoriesSource.value, {...res.category}])
+        return res
+      }}))
+
   }
 
   deleteCategory(id: string ): Observable<any> {
     return this.http.delete<any>(`${Api.categories}${id}`).pipe(map((res)=>{
-      if(res.msg == "Successfully deleted."){
+      if (res.msg == "Successfully deleted.") {
+        let newData = this.categoriesSource.value.filter(el=> el.id !== id)
+        this.categoriesSource.next(newData)
         this.categorySource.next({
          id: '',
          name: '',

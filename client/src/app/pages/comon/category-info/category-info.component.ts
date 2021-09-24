@@ -23,8 +23,8 @@ update(){
 }
 
   delete() {
-    this.categoryService.deleteCategory(this.category.id).subscribe(res=>{
-      this.categoryService.getCategories().toPromise()
+    this.categoryService.deleteCategory(this.category.id).subscribe(res => {
+      console.log('delete')
     })
     
   }

@@ -2,13 +2,13 @@
 <form  [formGroup]="form" (ngSubmit)="onSubmit()" >
     <div class="fields">
         <div class="input">
-            <app-input [label]="'Address'" [placeholder]="info.address" formControlName="address"></app-input>
+            <app-input [label]="'Address'"  formControlName="address"></app-input>
         </div>
         <div class="input">
-            <app-input [label]="'Phone'" [placeholder]="info.phone" formControlName="phone"></app-input>
+            <app-input [label]="'Phone'"  formControlName="phone"></app-input>
         </div>
         <div class="input">
-            <app-input [label]="'Wifi'" [placeholder]="info.wifi" formControlName="wifi"></app-input>
+            <app-input [label]="'Wifi'" formControlName="wifi"></app-input>
         </div>
     </div>
     <div class="button">

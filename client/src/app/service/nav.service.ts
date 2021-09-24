@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class HeaderService {
-  public btnMenu: boolean = false;
+  
+   btnMenu: boolean = false;
 
   constructor() {}
 

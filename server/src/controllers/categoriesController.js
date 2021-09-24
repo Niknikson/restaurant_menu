@@ -28,8 +28,8 @@ class CategoriesController {
     console.log(req.body);
     const { name, available } = req.body;
     try {
-      await Categories.create({ name, available });
-      res.status(STATUS_CODES.ACCEPTED).send({ msg: RES_MESSAGES.CREATE});
+      const category = await Categories.create({ name, available });
+      res.status(STATUS_CODES.ACCEPTED).send({ category, msg: RES_MESSAGES.CREATE});
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }

@@ -11,7 +11,7 @@ import { Info } from './../../../constants/interface';
 })
 export class FormInfoComponent implements OnInit {
  
-  info!: Info
+  id!: string
   form: FormGroup
 
   constructor(private formBuilder: FormBuilder,
@@ -26,33 +26,31 @@ export class FormInfoComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.infoService.info.subscribe(data => { this.info = data })
+    this.infoService.info.subscribe(data => {
+      const { address, phone, wifi, id} = data
+      this.id = id
+       this.form.patchValue({
+       address,
+       phone,
+       wifi
+   });
+    })
+
   }
 
   onSubmit() {
-    this.infoService.patchInfo({...this.form.value, id: this.info.id}).subscribe((res) => {
+    this.infoService.patchInfo({...this.form.value, id: this.id}).subscribe((res) => {
       if ( res.msg  == 'Successfully updated.') {
-        this.infoService.fetchInfo().toPromise()
-        this.infoService.showModal(false)
-        this.resetValue()
+        this.infoService.showModal()
       } else {
-        alert(res.msg)
+       console.log(res.msg)
       }
     })
   }
 
-  resetValue() {
-    this.form.patchValue({
-       address: '',
-       phone: '',
-       wifi: ''
-   });
-  }
-
   cancel(event: any) {
     event.preventDefault();
-    this.resetValue()
-    this.infoService.showModal(false)
+    this.infoService.showModal()
   }
 
    errorControl(name: string) {

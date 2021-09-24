@@ -26,22 +26,25 @@ export class FormCategoryComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   onSubmit() {
     this.categoryService.postCategory(this.form.value).subscribe(res => {
-      this.categoryService.getCategories().toPromise()
-      this.categoryService.showModal(false)
+      this.categoryService.showModal()
+      this.resetValue()
     })
+  }
+
+  cancel(event: any) {
+    event.preventDefault()
+    this.resetValue()
+    this.categoryService.showModal()
   }
 
   errorControl(name: string) {
     return this.form.get(name)
   }
 
-  cancel() {
-    this.form.reset()
-    this.categoryService.showModal(false)
+  resetValue() {
+    this.form.patchValue({name: '', available: false});
   }
-
 
 }

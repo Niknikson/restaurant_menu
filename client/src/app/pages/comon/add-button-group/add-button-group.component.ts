@@ -18,11 +18,11 @@ export class AddButtonGroupComponent implements OnInit {
   }
 
   showModalInfo(event: any): void {
-   this.infoService.showModal(true)
+   this.infoService.showModal()
   }
 
   showModalCategory(event: any): void {
-    this.categoryService.showModal(true)
+    this.categoryService.showModal()
   }
   showModalDish(event: any): void {
     this.dishesService.toggleCreateModal();

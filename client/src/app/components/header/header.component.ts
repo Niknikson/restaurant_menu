@@ -18,7 +18,9 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.infoService.fetchInfo().toPromise()
+    this.infoService.fetchInfo().subscribe(res => {
+      console.log(res)
+    })
     this.infoService.info.subscribe(data => this.info = data)
   }
 

@@ -23,15 +23,17 @@ export class AdminPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.categoryService.activeModal.subscribe(activeModal => this.activeCategoryModal = activeModal)
-    this.infoService.activeModal.subscribe(activeModal=> this.activeInfoModal = activeModal)
-   }
+    this.infoService.activeModal.subscribe(activeModal => this.activeInfoModal = activeModal)
+    
+  }
+
   
   
   closeModalInfo() {
-    this.infoService.showModal(false)
+    this.infoService.showModal()
   }
 
   closeModalCategory() {
-    this.categoryService.showModal(false)
+    this.categoryService.showModal()
   }  
 }
