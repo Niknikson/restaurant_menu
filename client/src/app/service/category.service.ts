@@ -73,7 +73,14 @@ export class CategoryService {
   patchCategory(data: CategoryPost, id: string): Observable<any> {
     return this.http.patch<any>(`${Api.categories}${id}`, data).pipe(map((res) => {
       if (res.msg == "Successfully updated.") {
-        this.categoriesSource.next([...this.categoriesSource.value, {...res.category}])
+        this.categorySource.next({ id, ...data })
+        const newData = this.categoriesSource.value.map(category => {
+          if (category.id == id) {
+            category = {id,...data}
+          }
+          return category
+        })
+        this.categoriesSource.next(newData)
         return res
       }}))
   }

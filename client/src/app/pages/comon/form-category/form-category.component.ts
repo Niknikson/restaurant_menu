@@ -46,13 +46,12 @@ export class FormCategoryComponent implements OnInit {
   }
 
   onSubmit() {
-
     this.indicator == 'create' && this.categoryService.postCategory(this.form.value).subscribe(res => {
       this.categoryService.showModal()
       this.resetValue()
     })
 
-    this.indicator == 'create' && this.categoryService.patchCategory(this.form.value, this.category.id).subscribe(res => {
+    this.indicator == 'update' && this.categoryService.patchCategory(this.form.value, this.category.id).subscribe(res => {
       this.categoryService.showModal()
       this.resetValue()
     })
