@@ -1,0 +1,40 @@
+<div class="dish__card">
+    <div class="img__container">
+        <img class="img"
+            src='https://res.cloudinary.com/dsjs7ggfi/image/upload/v1631994669/delicious-homemade-hamburger-and-french-fries-picture-id1254672762_asoq0o.jpg'
+            alt="альтернативный текст" />
+    </div>
+    <div class="text__container">
+        <div class="dish__info">
+        <div class="title">
+            <app-input [label]="'Name'"></app-input>
+        </div>
+        <div class="tag">
+            <app-checkbox class="available" [label]="'Available'"></app-checkbox>
+            <app-checkbox [label]="'Top'"></app-checkbox>
+        </div>
+        <div class="description">
+            <textarea class="textarea"></textarea>
+        </div>
+            <div class="info">
+            <div class="price">
+                <app-input [label]="'Price'"></app-input>
+            </div>
+            <div class="weight">
+                <app-input [label]="'Weight'"></app-input>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="button">
+    <app-button [style]="'success'" >
+        Create
+    </app-button>
+    <app-button >
+        Cancel
+    </app-button>
+</div>

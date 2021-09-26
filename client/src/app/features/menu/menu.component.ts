@@ -26,6 +26,7 @@ export class MenuComponent implements OnInit {
   }
 
   handlerClick() {
+    this.categoryService.clearCategory()
     this.dishesService.getDishesByCategory();
   }
 }

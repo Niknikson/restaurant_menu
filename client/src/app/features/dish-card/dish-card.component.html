@@ -1,20 +1,71 @@
-
-  <div class="dish__card">
-    <img class="dish__img" src={{dish.img}} alt="альтернативный текст" />
-    <div class="text__conteiner">
-      <div class="text">
-      <div class="dish__title"> {{dish.name}} </div>
+<div *ngIf="!updateDishForm">
+<div class="dish__card">
+  <div class="img__container">
+    <img class="img" src={{dish.img}} alt="альтернативный текст" />
+  </div>
+  <div class="text__container">
+    <div class="dish__info">
+      <div class="title"> {{dish.name}} </div>
       <div class="tag">{{ dish.top ? 'top' : '' }}</div>
-      <div class="dish__info">
-       {{dish.description}}
-        </div>
+      <div class="description">
+        {{dish.description}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia nisi sint autem, neque
+        perspiciatis atque fugiat est id tenetur impedit eum animi hic
+      </div>
+      <div class="info">
+        <div class="price">{{dish.price}}$</div>
+        <div class="weight">{{dish.weight}} </div>
+      </div>
     </div>
-    <div class="price__info">
-      <div class="price">{{dish.price}} $</div>
-    </div>
-    <div class="price__info">
-      <div class="price">{{dish.weight}} </div>
-    </div>
+    <div *ngIf="this.router.url == '/admin'">
+      <div class="btn__group">
+        <app-button [style]="'primary'" (click)="showUpdateDishForm()">
+          Update
+        </app-button>
+      </div>
     </div>
   </div>
+</div>
+</div>
 
+
+
+<div *ngIf="updateDishForm">
+  <div class="dish__card">
+    <div class="img__container">
+      <img class="img"
+        src='https://res.cloudinary.com/dsjs7ggfi/image/upload/v1631994669/delicious-homemade-hamburger-and-french-fries-picture-id1254672762_asoq0o.jpg'
+        alt="альтернативный текст" />
+    </div>
+    <div class="text__container">
+      <div class="dish__info">
+        <div class="title__update">
+          <app-input [label]="'Name'"></app-input>
+        </div>
+        <div class="tag">
+          <app-checkbox class="available" [label]="'Available'"></app-checkbox>
+          <app-checkbox [label]="'Top'"></app-checkbox>
+        </div>
+        <div class="description__update">
+          <textarea class="textarea"></textarea>
+        </div>
+        <div class="info">
+          <div class="price">
+            <app-input [label]="'Price'"></app-input>
+          </div>
+          <div class="weight">
+            <app-input [label]="'Weight'"></app-input>
+          </div>
+        </div>
+      </div>
+      <div class="btn__group">
+        <app-button [style]="'success'">
+          Save
+        </app-button>
+        <app-button (click)="showUpdateDishForm()">
+          Cancel
+        </app-button>
+      </div>
+    </div>
+   
+  </div>
+</div>

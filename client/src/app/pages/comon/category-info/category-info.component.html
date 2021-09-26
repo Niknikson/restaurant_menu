@@ -1,10 +1,23 @@
-<div class="title"> {{category.name}} </div>
-<div class="content">
-    <div class="button">
-        <app-button [style]="'success'" (buttonClick)="update()">
-            Update
-        </app-button>
-        <app-button [style]="'secondary'" (buttonClick)="delete()">
-            Delete
-        </app-button>
-</div>
+<div *ngIf="category.id">
+    <div class="title"> {{category.name}} </div>
+    <div class="content">
+        <div class="button">
+            <app-button [style]="'success'" (buttonClick)="showUpdateCategoryModal()">
+                Update
+            </app-button>
+            <app-button [style]="'secondary'" (buttonClick)="toggleModalDelete()">
+                Delete
+            </app-button>
+        </div>
+    </div>
+    <app-modal [title]="'Are you sure'" [active]="activeDeleteModal"
+        (buttonClick)="toggleModalDelete()">
+        <div class="modal__button">
+            <app-button [style]="'secondary'" (buttonClick)="deleteCategory()">
+                Delete
+            </app-button>
+            <app-button  (buttonClick)="toggleModalDelete()">
+                Cancel
+            </app-button>
+        </div>
+    </app-modal>

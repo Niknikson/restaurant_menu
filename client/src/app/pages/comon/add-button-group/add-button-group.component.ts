@@ -22,10 +22,11 @@ export class AddButtonGroupComponent implements OnInit {
   }
 
   showModalCategory(event: any): void {
+    this.categoryService.createUpdateCategory('create')
     this.categoryService.showModal()
   }
   showModalDish(event: any): void {
-    this.dishesService.toggleCreateModal();
+    this.dishesService.showModal();
   }
 
 }

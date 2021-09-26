@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Category } from 'src/app/constants/interface';
 import { CategoryService } from 'src/app/service/category.service';
 
 @Component({
@@ -9,6 +10,8 @@ import { CategoryService } from 'src/app/service/category.service';
 })
 export class FormCategoryComponent implements OnInit {
 
+  indicator!: string
+  category!: Category
   form: FormGroup
 
   constructor(public categoryService: CategoryService,
@@ -24,13 +27,36 @@ export class FormCategoryComponent implements OnInit {
    }
   
   ngOnInit(): void {
+    this.categoryService.category.subscribe(data => this.category = data)
+    this.categoryService.createUpdateIndicator.subscribe(data => {
+      this.indicator = data
+      if (this.indicator == 'update') {
+        const {name, available } = this.category
+        this.form.patchValue({
+          name,
+          available,
+        })
+      } else {
+         this.form.patchValue({
+           name: '',
+          available: true
+        })
+      }
+    })
   }
 
   onSubmit() {
-    this.categoryService.postCategory(this.form.value).subscribe(res => {
+
+    this.indicator == 'create' && this.categoryService.postCategory(this.form.value).subscribe(res => {
       this.categoryService.showModal()
       this.resetValue()
     })
+
+    this.indicator == 'create' && this.categoryService.patchCategory(this.form.value, this.category.id).subscribe(res => {
+      this.categoryService.showModal()
+      this.resetValue()
+    })
+
   }
 
   cancel(event: any) {
@@ -44,7 +70,7 @@ export class FormCategoryComponent implements OnInit {
   }
 
   resetValue() {
-    this.form.patchValue({name: '', available: false});
+    this.form.patchValue({name: '', available: true});
   }
 
 }

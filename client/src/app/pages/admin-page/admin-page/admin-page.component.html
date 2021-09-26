@@ -17,6 +17,10 @@
     <app-form-category></app-form-category>
 </app-modal>
 
+<app-modal [title]="'Dish'" [active]="activeDishesModal" (buttonClick)="closeModalDish()">
+    <app-form-dish></app-form-dish>
+</app-modal>
+
 
 <!-- <app-checkbox [(ngModel)]="inputOne" ></app-checkbox>
 <app-input [(ngModel)]="externalValue"></app-input>

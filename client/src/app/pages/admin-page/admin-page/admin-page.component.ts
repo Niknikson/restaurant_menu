@@ -12,9 +12,11 @@ export class AdminPageComponent implements OnInit {
   buttonLoading = false;
   inputOne = true
   externalValue = 'nik'
-  
+
+  activeDishesModal!: boolean;
   activeCategoryModal!: boolean;
   activeInfoModal!: boolean;
+  
   constructor(
     public dishesService: DishesService,
     public categoryService: CategoryService,
@@ -24,10 +26,12 @@ export class AdminPageComponent implements OnInit {
   ngOnInit(): void {
     this.categoryService.activeModal.subscribe(activeModal => this.activeCategoryModal = activeModal)
     this.infoService.activeModal.subscribe(activeModal => this.activeInfoModal = activeModal)
-    
+    this.dishesService.activeModal.subscribe(activeModal => this.activeDishesModal = activeModal)
   }
 
-  
+  closeModalDish() {
+    this.dishesService.showModal()
+  } 
   
   closeModalInfo() {
     this.infoService.showModal()

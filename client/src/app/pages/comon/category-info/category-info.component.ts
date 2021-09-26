@@ -9,24 +9,29 @@ import { Category } from './../../../constants/interface';
 })
 export class CategoryInfoComponent implements OnInit {
 
+  activeDeleteModal: boolean = false
   category!: Category
 
   constructor(private categoryService: CategoryService) { }
 
   ngOnInit(): void {
-    this.categoryService.category.subscribe(data=> this.category = data) 
+    this.categoryService.category.subscribe(data =>this.category = data)
+    
   }
   
-
-update(){
-
+   showUpdateCategoryModal(){
+     this.categoryService.showModal()
+     this.categoryService.createUpdateCategory('update')
 }
 
-  delete() {
+  deleteCategory() {
     this.categoryService.deleteCategory(this.category.id).subscribe(res => {
       console.log('delete')
     })
-    
+  }
+
+  toggleModalDelete() {
+    this.activeDeleteModal = !this.activeDeleteModal
   }
 
 }

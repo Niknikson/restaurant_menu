@@ -20,6 +20,9 @@ export class CategoryService {
   })
   category = this.categorySource.asObservable()
 
+  private createUpdateSource = new BehaviorSubject<string>('create')
+  createUpdateIndicator = this.createUpdateSource.asObservable()
+
   private modalSource = new BehaviorSubject<boolean>(false)
   activeModal = this.modalSource.asObservable()
 
@@ -30,6 +33,15 @@ export class CategoryService {
 
   showModal() {
     this.modalSource.next(!this.modalSource.value) 
+  }
+
+  createUpdateCategory(indicator: string) {
+    console.log(indicator)
+    this.createUpdateSource.next(indicator) 
+  }
+
+  clearCategory() {
+    this.categorySource.value.id = ''
   }
 
   getCategory(id: string): Observable<Category> {
@@ -56,7 +68,14 @@ export class CategoryService {
         this.categoriesSource.next([...this.categoriesSource.value, {...res.category}])
         return res
       }}))
+  }
 
+  patchCategory(data: CategoryPost, id: string): Observable<any> {
+    return this.http.patch<any>(`${Api.categories}${id}`, data).pipe(map((res) => {
+      if (res.msg == "Successfully updated.") {
+        this.categoriesSource.next([...this.categoriesSource.value, {...res.category}])
+        return res
+      }}))
   }
 
   deleteCategory(id: string ): Observable<any> {

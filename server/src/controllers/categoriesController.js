@@ -40,7 +40,7 @@ class CategoriesController {
     const { name, available } = req.body;
     try {
       await Categories.update({ name, available }, { where: { id } });
-      res.status(STATUS_CODES.ACCEPTED).send(RES_MESSAGES.UPDATE);
+      res.status(STATUS_CODES.ACCEPTED).send({ msg:RES_MESSAGES.UPDATE});
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
