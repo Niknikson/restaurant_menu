@@ -1,40 +1,49 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit($event)">
 <div class="dish__card">
     <div class="img__container">
-        <img class="img"
+        <img class="img" *ngIf="!imageSrc"
             src='https://res.cloudinary.com/dsjs7ggfi/image/upload/v1631994669/delicious-homemade-hamburger-and-french-fries-picture-id1254672762_asoq0o.jpg'
             alt="альтернативный текст" />
+        <img class="img" [src]="imageSrc" *ngIf="imageSrc">
     </div>
     <div class="text__container">
         <div class="dish__info">
         <div class="title">
-            <app-input [label]="'Name'"></app-input>
+            <app-input [label]="'Name'" formControlName="name"></app-input>
         </div>
         <div class="tag">
-            <app-checkbox class="available" [label]="'Available'"></app-checkbox>
-            <app-checkbox [label]="'Top'"></app-checkbox>
+            <select formControlName="categoryId">
+                <option *ngFor="let category of categories" [ngValue]="category.id">
+                    {{category.name}}
+                </option>
+            </select>
+            <app-checkbox class="available" formControlName="available" [label]="'Available'"></app-checkbox>
+            <app-checkbox [label]="'Top'" formControlName="top"></app-checkbox>
         </div>
         <div class="description">
-            <textarea class="textarea"></textarea>
+            <textarea class="textarea" formControlName="description"></textarea>
         </div>
             <div class="info">
             <div class="price">
-                <app-input [label]="'Price'"></app-input>
+                <app-input [label]="'Price'" formControlName="price"></app-input>
             </div>
             <div class="weight">
-                <app-input [label]="'Weight'"></app-input>
+                <app-input [label]="'Weight'" formControlName="weight"></app-input>
             </div>
             </div>
         </div>
     </div>
 </div>
-
-
-
 <div class="button">
-    <app-button [style]="'success'" >
+    <input class="input__file"  type="file" (change)="onFileChange($event)">
+</div>
+<div class="button">
+    <app-button [buttonSubmit]="true" [style]="'success'" >
         Create
     </app-button>
     <app-button >
         Cancel
     </app-button>
 </div>
+</form>
+

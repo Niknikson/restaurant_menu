@@ -21,7 +21,7 @@ export class MenuComponent implements OnInit {
   ) {}
 
    ngOnInit() {
-    this.categoryService.currentCategories.subscribe(data=> this.data = data) 
+    this.categoryService.categories.subscribe(data=> this.data = data) 
     this.categoryService.getCategories().toPromise() 
   }
 

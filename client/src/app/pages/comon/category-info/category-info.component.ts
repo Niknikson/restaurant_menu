@@ -27,6 +27,7 @@ export class CategoryInfoComponent implements OnInit {
   deleteCategory() {
     this.categoryService.deleteCategory(this.category.id).subscribe(res => {
       console.log('delete')
+      this.toggleModalDelete()
     })
   }
 

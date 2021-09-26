@@ -11,8 +11,6 @@ import {Api} from '../constants/api'
 })
 export class CategoryService {
 
-  categories: Category[] = [];
-
   private categorySource = new BehaviorSubject<Category>({
     id: '',
     name: '',
@@ -27,7 +25,7 @@ export class CategoryService {
   activeModal = this.modalSource.asObservable()
 
   private categoriesSource = new BehaviorSubject<Category[]>([])
-  currentCategories = this.categoriesSource.asObservable()
+  categories = this.categoriesSource.asObservable()
 
   constructor(private http: HttpClient) {}
 
@@ -66,8 +64,9 @@ export class CategoryService {
     return this.http.post<any>(Api.categories, data).pipe(map((res) => {
       if (res.msg == "Successfully created.") {
         this.categoriesSource.next([...this.categoriesSource.value, {...res.category}])
-        return res
-      }}))
+      }
+      return res
+    }))
   }
 
   patchCategory(data: CategoryPost, id: string): Observable<any> {
@@ -81,8 +80,9 @@ export class CategoryService {
           return category
         })
         this.categoriesSource.next(newData)
-        return res
-      }}))
+      }
+      return res
+    }))
   }
 
   deleteCategory(id: string ): Observable<any> {
@@ -94,7 +94,9 @@ export class CategoryService {
          id: '',
          name: '',
          available: false})
-      }}))
+      }
+      return res
+    }))
   }
  
 }

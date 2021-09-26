@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Dish } from '../constants/interface';
+import { Dish, DishPost } from '../constants/interface';
 import {Api} from '../constants/api'
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -25,5 +26,14 @@ export class DishesService {
       this.dishes = res;
     });
   }
+  postDish(data: DishPost, file: any): Observable<any> {
+    return this.http.post<any>(Api.dish, data, file).pipe(map((res) => {
+      // if (res.msg == "Successfully created.") {
+        
+      // }
+      return res
+    }))
+  }
+  
 
 }

@@ -26,3 +26,14 @@ export interface Dish {
  available: boolean,
  description: string,
 }
+
+export interface DishPost {
+ id: string,
+ name: string,
+ img: string,
+ top: boolean,
+ price: string,
+ weight: string,
+ available: boolean,
+ description: string,
+}
