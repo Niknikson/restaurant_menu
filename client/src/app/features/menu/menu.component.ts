@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DishesService } from 'src/app/service/dishes.service';
 import { CategoryService } from 'src/app/service/category.service';
 import { scrollTop } from 'src/app/helpers/helpers';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,13 +15,15 @@ export class MenuComponent implements OnInit {
   @Input() menuDirection: string = 'row';
 
   data: any
+  role!: string
 
   constructor(
-    private dishesService: DishesService,
+    private router: Router,
     public categoryService: CategoryService
   ) {}
 
-   ngOnInit() {
+  ngOnInit() {
+    this.role = this.router.url.split('/')[1]
     this.categoryService.categories.subscribe(data=> this.data = data) 
     this.categoryService.getCategories().toPromise() 
   }
@@ -30,6 +33,5 @@ export class MenuComponent implements OnInit {
     scrollTop()
   }
   
- 
 
 }

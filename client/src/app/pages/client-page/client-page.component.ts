@@ -9,13 +9,9 @@ import { DishesService } from 'src/app/service/dishes.service';
 })
 export class ClientPageComponent implements OnInit {
 
-  dishes!: Dish[]
-
-  constructor(public dishesService: DishesService) {}
+  constructor() {}
 
   ngOnInit(): void {
-     this.dishesService.dishes.subscribe(dishes => this.dishes = dishes)
-    this.dishesService.getDishesByCategory().toPromise()
   }
   
 }

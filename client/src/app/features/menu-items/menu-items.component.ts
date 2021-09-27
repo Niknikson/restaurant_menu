@@ -13,15 +13,12 @@ import { Category } from '../../constants/interface';
 export class MenuItemsComponent implements OnInit {
   @Input() category!: Category;
   role!: any
-  constructor(private dishesService: DishesService,
-    private categoryService: CategoryService,
+  constructor(
     private router: Router) {
-    
      }
 
   ngOnInit(): void {
     this.role = this.router.url.split('/')[1]
-    console.log(this.role)
   }
 
   routMenuClick(id: string) {
