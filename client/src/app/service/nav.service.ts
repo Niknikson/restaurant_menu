@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -11,6 +10,7 @@ export class HeaderService {
   constructor() {}
 
   toggleBtnMenu() {
+    console.log('btn')
     this.btnMenu = !this.btnMenu;
   }
 }

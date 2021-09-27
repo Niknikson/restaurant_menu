@@ -44,7 +44,7 @@
           <div class="title__update">
             <app-input [label]="'Name'" formControlName="name"></app-input>
           </div>
-          <div class="tag">
+          <div class="tag__update">
             <select formControlName="categoryId">
               <option *ngFor="let category of categories" [ngValue]="category.id">
                 {{category.name}}
@@ -82,7 +82,8 @@
 
 <!-- Delete modal -->
 
-<app-modal [title]="'Are you sure?'" [active]="activeDeleteModal" (buttonClick)="toggleModalDelete()">
+<app-modal [title]="''" [active]="activeDeleteModal" (buttonClick)="toggleModalDelete()">
+  <h4 class="question">Are you sure you want to delete dish {{dish.name}}</h4>
   <div class="modal__button">
     <app-button [style]="'secondary'" (buttonClick)="deleteDish(dish.id)">
       Delete

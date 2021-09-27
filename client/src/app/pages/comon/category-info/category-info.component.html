@@ -10,8 +10,9 @@
             </app-button>
         </div>
     </div>
-    <app-modal [title]="'Are you sure'" [active]="activeDeleteModal"
+    <app-modal [title]="''" [active]="activeDeleteModal"
         (buttonClick)="toggleModalDelete()">
+        <h4 class="question">Are you sure you want to delete category {{category.name}}</h4>
         <div class="modal__button">
             <app-button [style]="'secondary'" (buttonClick)="deleteCategory()">
                 Delete

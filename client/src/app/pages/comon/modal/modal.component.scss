@@ -27,13 +27,8 @@ $easing: cubic-bezier(.55,0,.1,1);
       visibility: visible;
     }
   }
-} // media query
+} 
 
-
-
-/**
- * Modal
- */
 .modal {
   display: flex;
   align-items: center;
@@ -41,10 +36,8 @@ $easing: cubic-bezier(.55,0,.1,1);
   position: relative;
   margin: 0 auto;
   background-color: #fff;
-  //width: 400px;
   min-width: 300px;
   max-width: 75rem;
- // min-height: 20rem;
   padding: 1rem;
   border-radius: 3px;
   opacity: 0;
@@ -84,7 +77,7 @@ $easing: cubic-bezier(.55,0,.1,1);
 
     .title{
       font-size: 1.5rem;
-      margin-bottom: 10px;
+      margin-bottom: 20px 0 20px 0;
     }
 
   } 
@@ -107,9 +100,7 @@ $easing: cubic-bezier(.55,0,.1,1);
 
 
 
-/**
- * Mobile styling
- */
+
 @media only screen and (max-width: 39.9375em) {
   
   h1 {
@@ -131,4 +122,4 @@ $easing: cubic-bezier(.55,0,.1,1);
   .close-modal {
     right: 20px !important;
   }
-} // media query
+} 

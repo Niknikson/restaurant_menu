@@ -1,12 +1,14 @@
-<div *ngIf="this.router.url == '/'">
+<div *ngIf="roleUser == ''">
     <div *ngIf="category.available">
-        <div class="nav__category" (click)="handlerClick(category.id)">
+        <div class="nav__category" (click)="routMenuClick(category.id)">
             {{ category.name }}
         </div>
     </div>
 </div>
-<div *ngIf="this.router.url == '/admin'">
-    <div class="nav__category" (click)="handlerClick(category.id)">
+<div *ngIf="roleAdmin == 'admin'">
+    <div class="nav__category" 
+    [routerLink]="['/admin/', category.id]" 
+    (click)="routMenuClick(category.id)">
         {{ category.name }}
     </div>
 </div>

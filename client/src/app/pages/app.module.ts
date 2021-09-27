@@ -22,6 +22,8 @@ import { CategoryInfoComponent } from './comon/category-info/category-info.compo
 import { CheckboxComponent } from './comon/checkbox/checkbox.component';
 import { ModalComponent } from './comon/modal/modal.component';
 import { AddButtonGroupComponent } from './comon/add-button-group/add-button-group.component';
+import { DishesComponent } from './comon/dishes/dishes.component';
+import { SearchFormComponent } from './comon/search-form/search-form.component';
 
 
 @NgModule({
@@ -44,6 +46,8 @@ import { AddButtonGroupComponent } from './comon/add-button-group/add-button-gro
     CheckboxComponent,
     ModalComponent,
     AddButtonGroupComponent,
+    DishesComponent,
+    SearchFormComponent,
   ],
   imports: [
     BrowserModule,

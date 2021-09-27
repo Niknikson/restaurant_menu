@@ -1,12 +1,11 @@
-<div *ngIf="headerService.btnMenu">
-  <div class="modal" (click)="closeNavMenu()" >
+
+  <div class="modal" [ngClass]=" headerService.btnMenu ? 'active' : '' " (click)="closeNavMenu()" >
     <div class="modal-content"
     (click)="onEvent($event)">
-      <span class="close">&times;</span>
       <app-menu 
       [title]="'Menu'"
       [menuDirection]="'colum'"
       ></app-menu> 
     </div>
   </div>
-</div>
+

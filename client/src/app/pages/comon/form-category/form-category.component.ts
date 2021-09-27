@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Category } from 'src/app/constants/interface';
 import { CategoryService } from 'src/app/service/category.service';
 
@@ -9,20 +9,22 @@ import { CategoryService } from 'src/app/service/category.service';
   styleUrls: ['./form-category.component.scss'],
 })
 export class FormCategoryComponent implements OnInit {
-
+  
   indicator!: string
   category!: Category
   form: FormGroup
+  submitted = false;  
+  loading = true;
 
   constructor(public categoryService: CategoryService,
     private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-      name: formBuilder.control('', [
+      name: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(20),
       ]),
-      available: formBuilder.control(true),
+      available: new FormControl(true),
     });
    }
   
@@ -47,15 +49,17 @@ export class FormCategoryComponent implements OnInit {
 
   onSubmit() {
     this.indicator == 'create' && this.categoryService.postCategory(this.form.value).subscribe(res => {
-      this.categoryService.showModal()
-      this.resetValue()
-    })
+       if (res.msg == "Successfully created.") {
+         this.categoryService.showModal()
+          this.resetValue()}
+    }, (err)=> console.log(err))
 
     this.indicator == 'update' && this.categoryService.patchCategory(this.form.value, this.category.id).subscribe(res => {
-      this.categoryService.showModal()
-      this.resetValue()
-    })
-
+      if (res.msg == "Successfully updated.") {
+       this.categoryService.showModal()
+       this.resetValue()
+      }
+    },(err)=> console.log(err)  )
   }
 
   cancel(event: any) {
@@ -64,12 +68,10 @@ export class FormCategoryComponent implements OnInit {
     this.categoryService.showModal()
   }
 
-  errorControl(name: string) {
-    return this.form.get(name)
-  }
-
   resetValue() {
     this.form.patchValue({name: '', available: true});
   }
 
+  get name() { return this.form.get('name'); }
+  
 }

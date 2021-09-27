@@ -8,5 +8,7 @@ class="button {{style}}"
         disabled: isDisabled,
         active: isActivated
       }">
-  <ng-content></ng-content>
+  <div *ngIf="loading">Loading...</div>
+  <div *ngIf="!loading"><ng-content></ng-content></div>
+  
 </button>

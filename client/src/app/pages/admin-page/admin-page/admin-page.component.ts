@@ -11,7 +11,7 @@ import { InfoService } from 'src/app/service/info.service';
 })
 export class AdminPageComponent implements OnInit {
 
-  dishes!: Dish[]
+  
   activeDishesModal!: boolean;
   activeCategoryModal!: boolean;
   activeInfoModal!: boolean;
@@ -23,8 +23,6 @@ export class AdminPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.dishesService.dishes.subscribe(dishes => this.dishes = dishes)
-
     this.categoryService.activeModal.subscribe(activeModal => this.activeCategoryModal = activeModal)
     this.infoService.activeModal.subscribe(activeModal => this.activeInfoModal = activeModal)
     this.dishesService.activeModal.subscribe(activeModal => this.activeDishesModal = activeModal)

@@ -11,20 +11,29 @@ import { Category } from '../../constants/interface';
 })
 export class MenuItemsComponent implements OnInit {
   @Input() category!: Category;
-
+  roleAdmin!: any
+  roleUser!: any
   constructor(private dishesService: DishesService,
     private categoryService: CategoryService,
-    public router: Router) { }
+    private router: Router) { }
 
   ngOnInit(): void {
+    this.roleAdmin = this.router.config[1].path
+    this.roleUser = this.router.config[0].path
   }
 
-  handlerClick(id: string) {
-     this.dishesService.getDishesByCategory(id).subscribe(res => {
-      console.log('get by id Dishes')
-    })
-    this.categoryService.getCategory(id).subscribe(res => {
-      console.log('get by id Category')
-    })
+   scrollTop() {
+        let scrollToTop = window.setInterval(() => {
+            let pos = window.pageYOffset;
+            if (pos > 0) {
+                window.scrollTo(0, pos - 20); 
+            } else {
+                window.clearInterval(scrollToTop);
+            }
+        }, 16);
+    }
+
+  routMenuClick(id: string) {
+    this.scrollTop()
   }
 }

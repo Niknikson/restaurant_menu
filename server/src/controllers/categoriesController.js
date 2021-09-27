@@ -7,7 +7,11 @@ class CategoriesController {
 
   async getAllCategories(req, res, next) {
     try {
-      const categories = await Categories.findAll();
+      const categories = await Categories.findAll({
+        order: [
+        [ 'createdAt', 'ASC'],
+        ]
+      });
       res.status(STATUS_CODES.OK).json(categories);
     } catch (e) {
       next(ApiError.notFound(e.message));

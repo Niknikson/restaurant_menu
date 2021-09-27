@@ -2,14 +2,18 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="fields">
       <div class="input">
-        <app-input [label]="'Name'" formControlName="name"></app-input>
+        <app-input id="name" [label]="'Name'" formControlName="name"></app-input>
       </div>
       <div class="checkbox">
         <app-checkbox [label]="'available'" formControlName="available"></app-checkbox>
       </div>
     </div>
     <div class="button">
-      <app-button [style]="'success'" [isDisabled]="form.invalid && form.touched"  [buttonSubmit]="true">
+      <app-button 
+      [style]="'success'" 
+      [buttonSubmit]="true"
+      [loading]="loading"
+      >
         Create
       </app-button>
       <app-button (buttonClick)="cancel($event)">
