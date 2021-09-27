@@ -13,6 +13,8 @@ export class FormInfoComponent implements OnInit {
  
   id!: string
   form: FormGroup
+   loading = false;
+  disabled = false;
 
   constructor(private formBuilder: FormBuilder,
     private infoService: InfoService) {
@@ -39,12 +41,12 @@ export class FormInfoComponent implements OnInit {
   }
 
   onSubmit() {
+    this.toggleLoadingBtn()
     this.infoService.patchInfo({...this.form.value, id: this.id}).subscribe((res) => {
       if ( res.msg  == 'Successfully updated.') {
         this.infoService.showModal()
-      } else {
-       console.log(res.msg)
-      }
+      } 
+    this.toggleLoadingBtn() 
     })
   }
 
@@ -53,8 +55,9 @@ export class FormInfoComponent implements OnInit {
     this.infoService.showModal()
   }
 
-   errorControl(name: string) {
-    return this.form.get(name)
+  toggleLoadingBtn() {
+  this.loading = !this.loading;
+  this.disabled = !this.disabled ;
   }
 
 }

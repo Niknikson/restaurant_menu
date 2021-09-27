@@ -16,7 +16,7 @@
           <div class="weight">{{dish.weight}} </div>
         </div>
       </div>
-      <div *ngIf="this.router.url == '/admin'">
+      <div *ngIf="roleAdmin == 'admin'">
         <div class="btn__group">
           <app-button [style]="'primary'" (click)="showUpdateDishForm()">
             Update

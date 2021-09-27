@@ -12,6 +12,7 @@
       <app-button 
       [style]="'success'" 
       [buttonSubmit]="true"
+      [isDisabled]="disabled"
       [loading]="loading"
       >
         Create
@@ -21,5 +22,6 @@
       </app-button>
     </div>
   </form>
+  <div  class="response" *ngIf="responseMsg"> {{responseMsg}} </div>
 </div>
  

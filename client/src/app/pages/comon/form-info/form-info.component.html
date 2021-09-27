@@ -12,7 +12,12 @@
         </div>
     </div>
     <div class="button">
-        <app-button [style]="'success'" [buttonSubmit]="true">
+        <app-button 
+        [style]="'success'" 
+        [buttonSubmit]="true"
+        [isDisabled]="disabled"
+        [loading]="loading"
+        >
             Update
         </app-button>
         <app-button (buttonClick)="cancel($event)">

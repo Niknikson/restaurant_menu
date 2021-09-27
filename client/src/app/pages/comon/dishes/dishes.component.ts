@@ -22,7 +22,7 @@ export class DishesComponent implements OnInit {
   ngOnInit(): void {
     this.dishesService.dishes.subscribe(dishes => this.dishes = dishes)
     this.route.params.subscribe(params => {
-
+      console.log(params.id)
     this.dishesService.getDishesByCategory(params.id).subscribe(res => {
     })
     this.categoryService.getCategory(params.id).subscribe(res => {

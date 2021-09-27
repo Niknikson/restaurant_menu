@@ -13,7 +13,9 @@ import {Category, Dish} from '../../constants/interface'
 export class DishCardComponent implements OnInit {
 
   @Input() dish!: Dish;
+
   form: FormGroup
+  roleAdmin!: any
   categories!: Category[]
   updateDishForm: boolean = false
   activeDeleteModal: boolean = false
@@ -22,7 +24,7 @@ export class DishCardComponent implements OnInit {
     private categoryService: CategoryService,
     private dishesService: DishesService,
     private formBuilder: FormBuilder,
-    public router: Router,
+    private router: Router,
   ) {
     this.form = this.formBuilder.group({
       name: formBuilder.control('', [
@@ -53,6 +55,7 @@ export class DishCardComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.roleAdmin  = this.router.url.split('/')[1]
     this.categoryService.categories.subscribe(data => this.categories = data)
    }
   

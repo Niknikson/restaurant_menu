@@ -24,6 +24,7 @@ import { ModalComponent } from './comon/modal/modal.component';
 import { AddButtonGroupComponent } from './comon/add-button-group/add-button-group.component';
 import { DishesComponent } from './comon/dishes/dishes.component';
 import { SearchFormComponent } from './comon/search-form/search-form.component';
+import { AllModalComponent } from './comon/all-modal/all-modal.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { SearchFormComponent } from './comon/search-form/search-form.component';
     AddButtonGroupComponent,
     DishesComponent,
     SearchFormComponent,
+    AllModalComponent,
   ],
   imports: [
     BrowserModule,

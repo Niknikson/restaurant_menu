@@ -5,7 +5,12 @@ import { ClientPageComponent } from './client-page/client-page.component';
 import { DishesComponent } from './comon/dishes/dishes.component';
 
 const routes: Routes = [
-  { path: 'home', component: ClientPageComponent },
+  {
+    path: 'menu', component: ClientPageComponent,
+  children: [
+      {path: ':id', component: DishesComponent}
+    ]
+  },
   {
     path: 'admin', component: AdminPageComponent,
     children: [

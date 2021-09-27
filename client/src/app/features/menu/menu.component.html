@@ -2,7 +2,7 @@
     <h1 class="menu__title"> {{title}} </h1>
     <div class="nav__items" [style.flex-direction]="menuDirection">
         <div class="nav__category" [routerLink]="['/admin/', '']"  (click)="handlerClick()">TOP</div>
-        <app-menu-items *ngFor="let category of data; let inx = index" [category]="category">
+        <app-menu-items *ngFor="let category of data" [category]="category">
         </app-menu-items>
     </div>
 </div>

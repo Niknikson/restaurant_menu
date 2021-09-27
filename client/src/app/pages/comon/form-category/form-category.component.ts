@@ -10,11 +10,13 @@ import { CategoryService } from 'src/app/service/category.service';
 })
 export class FormCategoryComponent implements OnInit {
   
+  responseMsg!: string
   indicator!: string
   category!: Category
   form: FormGroup
   submitted = false;  
-  loading = true;
+  loading = false;
+  disabled = false;
 
   constructor(public categoryService: CategoryService,
     private formBuilder: FormBuilder) {
@@ -48,18 +50,23 @@ export class FormCategoryComponent implements OnInit {
   }
 
   onSubmit() {
+    this.toggleLoadingBtn(true)
     this.indicator == 'create' && this.categoryService.postCategory(this.form.value).subscribe(res => {
        if (res.msg == "Successfully created.") {
-         this.categoryService.showModal()
-          this.resetValue()}
-    }, (err)=> console.log(err))
+         //this.categoryService.showModal()
+         this.resetValue()
+         this.responseMsg = res.msg
+       }
+      this.toggleLoadingBtn(false)
+    },(err)=> this.toggleLoadingBtn(false))
 
     this.indicator == 'update' && this.categoryService.patchCategory(this.form.value, this.category.id).subscribe(res => {
       if (res.msg == "Successfully updated.") {
        this.categoryService.showModal()
        this.resetValue()
       }
-    },(err)=> console.log(err)  )
+      this.toggleLoadingBtn(false)
+    },(err)=> this.toggleLoadingBtn(false)  )
   }
 
   cancel(event: any) {
@@ -72,6 +79,11 @@ export class FormCategoryComponent implements OnInit {
     this.form.patchValue({name: '', available: true});
   }
 
+  toggleLoadingBtn(value: boolean) {
+  this.loading = value;
+  this.disabled = value ;
+  }
+  
   get name() { return this.form.get('name'); }
   
 }

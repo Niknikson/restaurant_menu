@@ -38,12 +38,18 @@
     <input class="input__file"  type="file" (change)="onFileChange($event)">
 </div>
 <div class="button">
-    <app-button [buttonSubmit]="true" [style]="'success'" >
+    <app-button 
+    [buttonSubmit]="true" 
+    [style]="'success'" 
+    [isDisabled]="disabled"
+    [loading]="loading"
+    >
         Create
     </app-button>
     <app-button >
         Cancel
     </app-button>
 </div>
+
 </form>
 

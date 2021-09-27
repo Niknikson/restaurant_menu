@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DishesService } from 'src/app/service/dishes.service';
 import { CategoryService } from 'src/app/service/category.service';
-
+import { scrollTop } from 'src/app/helpers/helpers';
 
 
 @Component({
@@ -27,18 +27,9 @@ export class MenuComponent implements OnInit {
 
   handlerClick() {
     this.categoryService.clearCategory()
-    this.scrollTop()
+    scrollTop()
   }
   
-  scrollTop() {
-        let scrollToTop = window.setInterval(() => {
-            let pos = window.pageYOffset;
-            if (pos > 0) {
-                window.scrollTo(0, pos - 20); 
-            } else {
-                window.clearInterval(scrollToTop);
-            }
-        }, 16);
-  }
+ 
 
 }
