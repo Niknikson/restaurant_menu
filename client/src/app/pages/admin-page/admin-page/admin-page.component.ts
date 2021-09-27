@@ -1,4 +1,5 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {  Component, OnInit } from '@angular/core';
+import { Dish } from 'src/app/constants/interface';
 import { CategoryService } from 'src/app/service/category.service';
 import { DishesService } from 'src/app/service/dishes.service';
 import { InfoService } from 'src/app/service/info.service';
@@ -9,10 +10,8 @@ import { InfoService } from 'src/app/service/info.service';
   styleUrls: ['./admin-page.component.scss'],
 })
 export class AdminPageComponent implements OnInit {
-  buttonLoading = false;
-  inputOne = true
-  externalValue = 'nik'
 
+  dishes!: Dish[]
   activeDishesModal!: boolean;
   activeCategoryModal!: boolean;
   activeInfoModal!: boolean;
@@ -24,6 +23,8 @@ export class AdminPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.dishesService.dishes.subscribe(dishes => this.dishes = dishes)
+
     this.categoryService.activeModal.subscribe(activeModal => this.activeCategoryModal = activeModal)
     this.infoService.activeModal.subscribe(activeModal => this.activeInfoModal = activeModal)
     this.dishesService.activeModal.subscribe(activeModal => this.activeDishesModal = activeModal)

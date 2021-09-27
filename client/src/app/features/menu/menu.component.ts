@@ -27,6 +27,8 @@ export class MenuComponent implements OnInit {
 
   handlerClick() {
     this.categoryService.clearCategory()
-    this.dishesService.getDishesByCategory();
+     this.dishesService.getDishesByCategory().subscribe(res => {
+      console.log('get by Top Dishes')
+    })
   }
 }

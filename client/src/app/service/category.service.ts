@@ -75,7 +75,7 @@ export class CategoryService {
         this.categorySource.next({ id, ...data })
         const newData = this.categoriesSource.value.map(category => {
           if (category.id == id) {
-            category = {id,...data}
+            category = {...data, id}
           }
           return category
         })

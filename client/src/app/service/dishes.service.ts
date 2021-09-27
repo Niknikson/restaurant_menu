@@ -9,10 +9,12 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class DishesService {
-  public dishes: Dish[] = [];
 
   private modalSource = new BehaviorSubject<boolean>(false)
   activeModal = this.modalSource.asObservable()
+
+  private dishesSource = new BehaviorSubject<Dish[]>([])
+  dishes = this.dishesSource.asObservable()
 
   constructor(private http: HttpClient) {}
 
@@ -20,17 +22,50 @@ export class DishesService {
     this.modalSource.next(!this.modalSource.value) 
   }
 
-  getDishesByCategory(id: string = '') {
-    this.http.get<Dish[]>(`${Api.dish}${id}`).subscribe((res) => {
-      console.log(res);
-      this.dishes = res;
-    });
+   getDishesByCategory(id: string = ''): Observable<Dish[]> {
+    return this.http.get<Dish[]>(`${Api.dish}${id}`).pipe(
+      map((data: Dish[]) => {
+        console.log(data)
+        this.dishesSource.next(data)
+        return data;
+      })
+    );
   }
-  postDish(data: DishPost, file: any): Observable<any> {
-    return this.http.post<any>(Api.dish, data, file).pipe(map((res) => {
-      // if (res.msg == "Successfully created.") {
-        
-      // }
+
+  postDish(data: FormData,): Observable<any> {
+    return this.http.post<any>(Api.dish, data).pipe(map((res) => {
+      if (res.msg == "Successfully created.") {
+        this.dishesSource.next([...this.dishesSource.value, {...res.data}])
+      }
+      return res
+    }))
+  }
+
+  patchDish(data: Dish, id: string): Observable<any> {
+    // const formData = new FormData()
+    // formData.append('file', file)
+    // formData.append('data', JSON.stringify(data))
+    return this.http.patch<any>(`${Api.dish}${id}`, data).pipe(map((res) => {
+      if (res.msg == "Successfully updated.") {
+        const newData = this.dishesSource.value.map( dish => {
+          if (dish.id === id) {
+            dish = { ...data, id }
+          }
+          return dish
+        })
+        this.dishesSource.next(newData)
+      }
+      return res
+    }))
+  }
+
+
+  deleteDish(id: string ): Observable<string> {
+    return this.http.delete<any>(`${Api.dish}${id}`).pipe(map((res)=>{
+      if (res.msg == "Successfully deleted.") {
+        let newData = this.dishesSource.value.filter(el=> el.id !== id)
+        this.dishesSource.next(newData)
+      }
       return res
     }))
   }

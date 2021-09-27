@@ -24,7 +24,8 @@ export interface Dish {
  price: string,
  weight: string,
  available: boolean,
- description: string,
+description: string,
+categoryId: string,
 }
 
 export interface DishPost {

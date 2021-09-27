@@ -4,9 +4,6 @@ import { Category } from 'src/app/constants/interface';
 import { CategoryService } from 'src/app/service/category.service';
 import { DishesService } from './../../../service/dishes.service';
 
-
-import { HttpClient } from '@angular/common/http';
-
 @Component({
   selector: 'app-form-dish',
   templateUrl: './form-dish.component.html',
@@ -46,7 +43,7 @@ export class FormDishComponent implements OnInit {
       weight: formBuilder.control('', [
         Validators.required,
       ]),
-      file: formBuilder.control(null, [
+      img: formBuilder.control('', [
         Validators.required,
       ]),
     });
@@ -56,11 +53,14 @@ export class FormDishComponent implements OnInit {
     this.categoryService.categories.subscribe(data => this.categories = data)
   }
 
-  onSubmit(event: any) {
-    this.dishService.postDish(this.form.value,this.file).subscribe(res => {
+  onSubmit() {
+    const formData = new FormData()
+    formData.append('file', this.file)
+    formData.append('data', JSON.stringify(this.form.value))
+    this.dishService.postDish(formData).subscribe(res => {
       
     })
-    console.log(this.form.value)
+    
   }
 
   onFileChange(event: any) {
@@ -69,11 +69,11 @@ export class FormDishComponent implements OnInit {
       const [file] = event.target.files;
       this.file = file 
       reader.readAsDataURL(file);
-      console.log(this.file)
+      //console.log(this.file)
       reader.onload = () => {
         this.imageSrc = reader.result as string;
         this.form.patchValue({
-          file: reader.result
+          img: 'img'
         });
       };
     }

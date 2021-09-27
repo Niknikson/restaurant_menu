@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CategoryService } from 'src/app/service/category.service';
 import { DishesService } from 'src/app/service/dishes.service';
-import {Dish} from '../../constants/interface'
+import {Category, Dish} from '../../constants/interface'
 
 @Component({
   selector: 'app-dish-card',
@@ -11,15 +13,78 @@ import {Dish} from '../../constants/interface'
 export class DishCardComponent implements OnInit {
 
   @Input() dish!: Dish;
+  form: FormGroup
+  categories!: Category[]
   updateDishForm: boolean = false
+  activeDeleteModal: boolean = false
 
-  constructor(public dishesService: DishesService,
-  public router: Router) { }
+  constructor(
+    private categoryService: CategoryService,
+    private dishesService: DishesService,
+    private formBuilder: FormBuilder,
+    public router: Router,
+  ) {
+    this.form = this.formBuilder.group({
+      name: formBuilder.control('', [
+        Validators.required,
+      ]),
+      top: formBuilder.control(false, [
+        Validators.required,
+      ]),
+      available: formBuilder.control(true, [
+        Validators.required,
+      ]),
+      categoryId: formBuilder.control('', [
+        Validators.required,
+      ]),
+      description: formBuilder.control('', [
+        Validators.required,
+      ]),
+      price: formBuilder.control('', [
+        Validators.required,
+      ]),
+      weight: formBuilder.control('', [
+        Validators.required,
+      ]),
+      img: formBuilder.control('', [
+        Validators.required,
+      ]),
+    });
+   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.categoryService.categories.subscribe(data => this.categories = data)
+   }
   
   showUpdateDishForm() {
     this.updateDishForm = !this.updateDishForm
+    this.form.patchValue({
+       name: this.dish.name,
+       available: this.dish.available,
+       top: this.dish.top,
+       categoryId: this.dish.categoryId,
+       description: this.dish.description,
+       price: this.dish.price,
+       weight: this.dish.weight,
+       img: this.dish.img,
+    })
+  }
+
+   toggleModalDelete() {
+    this.activeDeleteModal = !this.activeDeleteModal
+  }
+
+  onSubmit() {
+     this.dishesService.patchDish(this.form.value, this.dish.id).subscribe(res => {
+      console.log('updated')
+    })
+  }
+
+  deleteDish(id: string) {
+    this.dishesService.deleteDish(id).subscribe(res => {
+      console.log('delete')
+      this.toggleModalDelete()
+    })
   }
 
 }

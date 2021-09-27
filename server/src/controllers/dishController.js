@@ -25,22 +25,24 @@ class DishController {
   }
 
   async createDish(req, res, next) {
-    const { description, categoryId, weight, price, name, top } = req.body;
+    const { description, categoryId, weight, price, name, top } = JSON.parse(req.body.data)
     //console.log(req.file);
-    console.log(req.body,req.file.path);
+    //console.log(JSON.parse(req.body.data));
     try {
-      // const uploadedResponse = await cloudinary.uploader.upload(req.file.path);
-      // const { url } = uploadedResponse;
-      // await Dish.create({
-      //   description,
-      //   categoryId,
-      //   weight,
-      //   price,
-      //   name,
-      //   img: url,
-      //   top,
-      // });
-      res.status(STATUS_CODES.CREATED).send(String(RES_MESSAGES.CREATE));
+       const uploadedResponse = await cloudinary.uploader.upload(req.file.path);
+       const { url } = uploadedResponse;
+       const dish = await Dish.create({
+        description,
+        categoryId,
+        weight,
+        price,
+        name,
+        img: url,
+        top,
+       });
+      console.log(dish.dataValues)
+      res.status(STATUS_CODES.CREATED).json({ data: dish.dataValues, msg: RES_MESSAGES.CREATE });
+
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
@@ -49,12 +51,13 @@ class DishController {
   async updateDish(req, res, next) {
     const { description, categoryId, weight, price, top, name, img } = req.body;
     const { id } = req.params;
+    console.log('update')
     try {
       await Dish.update(
         { description, categoryId, weight, price, name, img, top },
         { where: { id } }
       );
-      res.status(STATUS_CODES.ACCEPTED).send(String(RES_MESSAGES.UPDATE));
+      res.status(STATUS_CODES.ACCEPTED).send({msg: RES_MESSAGES.UPDATE });
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
@@ -64,7 +67,7 @@ class DishController {
     const id = req.params.id;
     try {
       await Dish.destroy({ where: { id } });
-      res.status(STATUS_CODES.ACCEPTED).send(String(RES_MESSAGES.DELETE));
+      res.status(STATUS_CODES.ACCEPTED).send({msg: RES_MESSAGES.DELETE });
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }

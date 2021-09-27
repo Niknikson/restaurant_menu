@@ -11,7 +11,7 @@
     max-width: 1000px;
     margin: 40px;
     box-sizing: border-box;
-    height: 350px;
+    height: 380px;
 
     .img__container {
         width: 50%;
@@ -48,6 +48,12 @@
                 font-size: 1.5rem;
                 padding: 0.7rem;
                 text-transform: capitalize;
+            }
+            .tag {
+                width: 80%;
+               display:  flex;
+               //align-items: center;
+               justify-content: space-between;
             }
             .available {
                 margin-right: 20px;
@@ -115,4 +121,12 @@
             }
         }
     }
+}
+
+
+
+.modal__button{
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }

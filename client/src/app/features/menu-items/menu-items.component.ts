@@ -20,9 +20,11 @@ export class MenuItemsComponent implements OnInit {
   }
 
   handlerClick(id: string) {
-    this.dishesService.getDishesByCategory(id);
+     this.dishesService.getDishesByCategory(id).subscribe(res => {
+      console.log('get by id Dishes')
+    })
     this.categoryService.getCategory(id).subscribe(res => {
-      console.log('menuitem')
+      console.log('get by id Category')
     })
   }
 }
