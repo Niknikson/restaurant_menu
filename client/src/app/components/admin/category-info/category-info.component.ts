@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/app/service/category.service';
-import { Category } from './../../../constants/interface';
+import { Category } from '../../../constants/interface';
 
 @Component({
   selector: 'app-category-info',

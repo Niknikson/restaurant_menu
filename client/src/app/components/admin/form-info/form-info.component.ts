@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InfoService } from 'src/app/service/info.service';
-import { Info } from './../../../constants/interface';
+import { Info } from '../../../constants/interface';
 
 
 @Component({

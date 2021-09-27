@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Category } from 'src/app/constants/interface';
 import { CategoryService } from 'src/app/service/category.service';
-import { DishesService } from './../../../service/dishes.service';
+import { DishesService } from '../../../service/dishes.service';
 
 @Component({
   selector: 'app-form-dish',

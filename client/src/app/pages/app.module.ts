@@ -13,18 +13,18 @@ import { MenuItemsComponent } from '../features/menu-items/menu-items.component'
 import { AdminPageComponent } from './admin-page/admin-page/admin-page.component';
 import { ClientPageComponent } from './client-page/client-page.component';
 import { BtnMenuComponent } from '../components/btn-menu/btn-menu/btn-menu.component';
-import { ButtonComponent } from './comon/button/button.component';
-import { FormDishComponent } from './comon/form-dish/form-dish.component';
-import { FormCategoryComponent } from './comon/form-category/form-category.component';
-import { InputComponent } from './comon/input/input.component';
-import { FormInfoComponent } from './comon/form-info/form-info.component';
-import { CategoryInfoComponent } from './comon/category-info/category-info.component';
-import { CheckboxComponent } from './comon/checkbox/checkbox.component';
-import { ModalComponent } from './comon/modal/modal.component';
-import { AddButtonGroupComponent } from './comon/add-button-group/add-button-group.component';
-import { DishesComponent } from './comon/dishes/dishes.component';
-import { SearchFormComponent } from './comon/search-form/search-form.component';
-import { AllModalComponent } from './comon/all-modal/all-modal.component';
+import { ButtonComponent } from '../features/button/button.component';
+import { FormDishComponent } from '../components/admin/form-dish/form-dish.component';
+import { FormCategoryComponent } from '../components/admin/form-category/form-category.component';
+import { InputComponent } from '../features/input/input.component';
+import { FormInfoComponent } from '../components/admin/form-info/form-info.component';
+import { CategoryInfoComponent } from '../components/admin/category-info/category-info.component';
+import { CheckboxComponent } from '../features/checkbox/checkbox.component';
+import { ModalComponent } from '../features/modal/modal.component';
+import { AddButtonGroupComponent } from '../components/admin/add-button-group/add-button-group.component';
+import { DishesComponent } from '../components/dishes/dishes.component';
+import { SearchFormComponent } from '../components/admin/search-form/search-form.component';
+import { AllModalComponent } from '../components/admin/all-modal/all-modal.component';
 
 
 @NgModule({
