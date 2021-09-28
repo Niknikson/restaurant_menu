@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { InfoService } from 'src/app/service/info.service';
 
 
@@ -20,15 +20,15 @@ export class FormInfoComponent implements OnInit {
     private infoService: InfoService) {
     
     this.form = this.formBuilder.group({
-      address: formBuilder.control('',[
+      address: new FormControl('',[
         Validators.minLength(5),
         Validators.maxLength(30),
       ]),
-      phone: formBuilder.control('',[
-        Validators.minLength(5),
+      phone: new FormControl('',[
+        Validators.minLength(10),
         Validators.maxLength(30),
       ]),
-      wifi: formBuilder.control('',[
+      wifi: new FormControl('',[
         Validators.minLength(5),
         Validators.maxLength(30),
       ]),
@@ -52,20 +52,23 @@ export class FormInfoComponent implements OnInit {
     if (this.form.invalid) {
       return
     }
+    
     this.toggleLoadingBtn(true)
-    this.infoService.patchInfo({...this.form.value, id: this.id}).subscribe((res) => {
-      if ( res.msg  == 'Successfully updated.') {
+
+    this.infoService.patchInfo({ ...this.form.value, id: this.id })
+      .subscribe((res) => {res.msg  === 'Successfully updated.' &&
         this.infoService.showModal()
-      } 
-    }).add(() => {
-      this.toggleLoadingBtn(false)
-      this.submitted = false
-    });
+    }).add(() => this.falseLoadingSubmitted());
   }
 
   cancel(event: any) {
     event.preventDefault();
     this.infoService.showModal()
+  }
+
+  falseLoadingSubmitted() {
+    this.toggleLoadingBtn(false)
+    this.submitted = false
   }
 
   toggleLoadingBtn(value: boolean) {

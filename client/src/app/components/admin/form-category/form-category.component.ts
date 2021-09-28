@@ -54,18 +54,18 @@ export class FormCategoryComponent implements OnInit {
     }
     this.toggleLoadingBtn(true)
 
-    this.indicator == 'create' && this.categoryService.postCategory(this.form.value)
+    this.indicator === 'create' && this.categoryService.postCategory(this.form.value)
       .subscribe(res => {
        res.msg == "Successfully created." && this.closeModalAndReset()
     },(err)=>  {
-      err.error.message == "Validation error" && this.setErrorMsgUniqueName()
+      err.error.message === "Validation error" && this.setErrorMsgUniqueName()
       }).add(() => this.falseLoadingSubmitted() );
     
-    this.indicator == 'update' && this.categoryService.patchCategory(this.form.value, this.category.id)
+    this.indicator === 'update' && this.categoryService.patchCategory(this.form.value, this.category.id)
       .subscribe(res => {
         res.msg == "Successfully updated." && this.closeModalAndReset()
       }, (err) => {
-       err.error.message == "Validation error" && this.setErrorMsgUniqueName()
+       err.error.message === "Validation error" && this.setErrorMsgUniqueName()
     }).add(() => this.falseLoadingSubmitted());
 
   }
@@ -83,7 +83,7 @@ export class FormCategoryComponent implements OnInit {
   }
 
   setErrorMsgUniqueName(){
-   this.responseMsg = 'Name must be unique'
+   this.responseMsg = 'Name already exists'
   }
 
   falseLoadingSubmitted() {
@@ -100,5 +100,6 @@ export class FormCategoryComponent implements OnInit {
   this.loading = value;
   this.disabled = value ;
   }
+
   
 }

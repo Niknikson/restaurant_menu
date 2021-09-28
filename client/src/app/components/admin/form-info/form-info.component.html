@@ -27,8 +27,23 @@
         </app-button>
     </div>
     <div class="errors">
-        <div *ngIf="submitted && form.controls.name.errors?.required" class="error"> Name is required </div>
-        <div *ngIf=" submitted && form.controls.name.errors?.minlength" class="error">Name must be more then 3 </div>
+        <div *ngIf=" submitted && form.controls.address.errors?.minlength" 
+        class="error">Address must be at least <br> 5 characters
+            long.</div>
+        <div *ngIf=" submitted && form.controls.address.errors?.maxlength" 
+        class="error">Address can be max 30 <br> characters long.</div>
+        <div *ngIf=" submitted && form.controls.phone.errors?.minlength" 
+        class="error">Phone must be at least <br> 10 characters
+            long.</div>
+        <div *ngIf=" submitted && form.controls.phone.errors?.maxlength" 
+        class="error">Phone can be max 30 <br> characters long.
+        </div>
+        <div *ngIf=" submitted && form.controls.wifi.errors?.minlength" 
+        class="error">Wifi must be at least <br> 5 characters
+            long.</div>
+        <div *ngIf=" submitted && form.controls.wifi.errors?.maxlength" 
+        class="error">Wifi can be max 30 <br> characters long.
+        </div>
     </div>
 </form>
 </div>
