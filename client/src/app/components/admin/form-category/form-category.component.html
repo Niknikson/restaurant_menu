@@ -24,6 +24,7 @@
     <div class="errors">
       <div *ngIf="submitted && form.controls.name.errors?.required" class="error"> Name is required </div>
       <div *ngIf=" submitted && form.controls.name.errors?.minlength" class="error">Name must be more then 3 </div>
+      <div *ngIf=" submitted && form.controls.name.errors?.maxlength" class="error">Name must be les then 20 </div>
     </div>
   </form>
   <div  class="response" *ngIf="responseMsg"> {{responseMsg}} </div>

@@ -26,6 +26,7 @@ import { AddButtonGroupComponent } from '../components/admin/add-button-group/ad
 import { DishesComponent } from '../components/dishes/dishes.component';
 import { SearchFormComponent } from '../components/search-form/search-form.component';
 import { AllModalComponent } from '../components/admin/all-modal/all-modal.component';
+import { DishesWithoutCategoryComponent } from './common/dishes-without-category/dishes-without-category.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { AllModalComponent } from '../components/admin/all-modal/all-modal.compo
     DishesComponent,
     SearchFormComponent,
     AllModalComponent,
+    DishesWithoutCategoryComponent,
   ],
   imports: [
     BrowserModule,

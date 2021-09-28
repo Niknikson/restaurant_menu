@@ -3,7 +3,7 @@
 .dish__card {
     display: flex;
     flex-direction: row;
-    //background-color: $withe;
+    background-color: $withe;
     border-radius: 1px;
     -webkit-box-shadow: 7px 6px 33px 1px rgba(34, 60, 80, 0.28);
     -moz-box-shadow: 7px 6px 33px 1px rgba(34, 60, 80, 0.28);
@@ -49,6 +49,9 @@
                 font-size: 1.5rem;
                 padding: 0.7rem;
                 border-bottom: 1px solid grey;
+//                  -webkit-box-shadow: 1px -13px 12px -7px rgba(34, 60, 80, 0.12) inset;
+// -moz-box-shadow: 1px -13px 12px -7px rgba(34, 60, 80, 0.12) inset;
+// box-shadow: 1px -13px 12px -7px rgba(34, 60, 80, 
                 font-family: "Playfair Display SC";
                 text-transform: capitalize;
             }

@@ -1,0 +1,6 @@
+<div class="loading" *ngIf="isLoading">
+    <h3>Loading...</h3>
+</div>
+<div *ngIf="!isLoading">
+        <app-dish-card *ngFor="let dish of dishes" [dish]="dish"></app-dish-card>
+</div>

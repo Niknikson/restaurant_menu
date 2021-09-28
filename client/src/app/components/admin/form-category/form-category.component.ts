@@ -10,13 +10,13 @@ import { CategoryService } from 'src/app/service/category.service';
 })
 export class FormCategoryComponent implements OnInit {
   
-  responseMsg!: string 
+  form: FormGroup
   indicator!: string
   category!: Category
-  form: FormGroup
-  submitted: boolean = false;  
+  responseMsg!: string 
   loading: boolean = false;
   disabled: boolean = false;
+  submitted: boolean = false;  
 
   constructor(public categoryService: CategoryService,
     private formBuilder: FormBuilder) {
@@ -24,7 +24,7 @@ export class FormCategoryComponent implements OnInit {
       name: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(5),
+        Validators.maxLength(20),
       ]),
       available: new FormControl(true),
     });
@@ -41,53 +41,40 @@ export class FormCategoryComponent implements OnInit {
           available,
         })
       } else {
-         this.form.patchValue({
-           name: '',
-          available: true
-        })
+         this.resetValue()
       }
     })
   }
 
   onSubmit() {
+    this.responseMsg = ''
     this.submitted = true
-
-    console.log( this.form.controls.name.errors )
     if (this.form.invalid) {
-      console.log('invalid')
       return
     }
-   
+    this.toggleLoadingBtn(true)
 
-    // this.responseMsg = ''
-    // this.toggleLoadingBtn(true)
-    // this.indicator == 'create' && this.categoryService.postCategory(this.form.value).subscribe(res => {
-    //    if (res.msg == "Successfully created.") {
-    //      this.categoryService.showModal()
-    //      this.resetValue()
-    //    }
-    // },(err)=>  {
-    //   if (err.error.message == "Validation error") {
-    //    this.responseMsg = 'Name must be unique'
-    //   }
-    // }).add(() => this.toggleLoadingBtn(false));
-
-    // this.indicator == 'update' && this.categoryService.patchCategory(this.form.value, this.category.id).subscribe(res => {
-    //   if (res.msg == "Successfully updated.") {
-    //    this.categoryService.showModal()
-    //    this.resetValue()
-    //   }
-    // }, (err) => {
-    //   if (err.error.message == "Validation error") {
-    //    this.responseMsg = 'Name must be unique'
-    //   }
-    // }).add(() => this.toggleLoadingBtn(false));
+    this.indicator == 'create' && this.categoryService.postCategory(this.form.value)
+      .subscribe(res => {
+       res.msg == "Successfully created." && this.closeModalAndReset()
+    },(err)=>  {
+      err.error.message == "Validation error" && this.setErrorMsgUniqueName()
+      }).add(() => this.falseLoadingSubmitted() );
+    
+    this.indicator == 'update' && this.categoryService.patchCategory(this.form.value, this.category.id)
+      .subscribe(res => {
+        res.msg == "Successfully updated." && this.closeModalAndReset()
+      }, (err) => {
+       err.error.message == "Validation error" && this.setErrorMsgUniqueName()
+    }).add(() => this.falseLoadingSubmitted());
 
   }
 
   cancel(event: any) {
     event.preventDefault()
+    this.responseMsg = ''
     this.resetValue()
+    this.submitted = false
     this.categoryService.showModal()
   }
 
@@ -95,11 +82,23 @@ export class FormCategoryComponent implements OnInit {
     this.form.patchValue({name: '', available: true});
   }
 
+  setErrorMsgUniqueName(){
+   this.responseMsg = 'Name must be unique'
+  }
+
+  falseLoadingSubmitted() {
+    this.toggleLoadingBtn(false)
+    this.submitted = false
+  }
+
+  closeModalAndReset() {
+    this.categoryService.showModal()
+    this.resetValue()
+  }
+
   toggleLoadingBtn(value: boolean) {
   this.loading = value;
   this.disabled = value ;
   }
-  
-  // get name() { return this.form.get('name'); }
   
 }

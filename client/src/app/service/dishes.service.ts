@@ -32,6 +32,15 @@ export class DishesService {
     );
   }
 
+  getDishesWithoutCategory(): Observable<Dish[]> {
+    return this.http.get<Dish[]>(`${Api.dishWithoutCategory}`).pipe(
+      map((data: Dish[]) => {
+        this.dishesSource.next(data)
+        return data;
+      })
+    );
+  }
+
   postDish(data: FormData,): Observable<any> {
     return this.http.post<any>(Api.dish, data).pipe(map((res) => {
       if (res.msg == "Successfully created.") {
