@@ -1,5 +1,12 @@
 @import "../../../styles/colors.scss";
 
+// .form{
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     flex-direction: column;
+// }
+
 .dish__card {
     display: flex;
     flex-direction: row;
@@ -165,4 +172,18 @@ select {
     -moz-appearance: none;
     appearance: none;
     -ms-appearance: none;
+}
+
+.errors__dish {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $secondary;
+    flex-wrap: wrap;
+    max-width: 600px;
+    .error {
+        margin: 0 5px 0 5px;
+    }
 }

@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="dish__card">
         <div class="img__container">
             <img class="img" *ngIf="!imageSrc"
@@ -35,14 +35,12 @@
             </div>
         </div>
     </div>
-    
     <div class="btn__upload">
             <label class="file__upload">
                 <input type="file" (change)="onFileChange($event)" />
                 Select file format png
             </label>
     </div>
-
     <div class="button">
         <app-button [buttonSubmit]="true" [style]="'success'" [isDisabled]="disabled" [loading]="loading">
             Create
@@ -50,6 +48,28 @@
         <app-button (buttonClick)="cancel($event)">
             Cancel
         </app-button>
+    </div>
+
+    <div class="errors__dish">
+        <div *ngIf="submitted && form.controls.name.errors?.required" class="error"> Name is required. </div>
+        <div *ngIf="submitted && form.controls.categoryId.errors?.required" class="error"> Category is required. </div>
+        <div *ngIf="submitted && form.controls.description.errors?.required" class="error"> Description is required. </div>
+        <div *ngIf="submitted && form.controls.price.errors?.required" class="error"> Price is required. </div>
+        <div *ngIf="submitted && form.controls.weight.errors?.required" class="error"> Weight is required. </div>
+        <div *ngIf="submitted && form.controls.img.errors?.required" class="error"> Img is required. </div>
+        <div *ngIf=" submitted && form.controls.name.errors?.maxlength" class="error">Name can be max 30 <br> characters
+            long.
+        </div>
+        <div *ngIf=" submitted && form.controls.description.errors?.maxlength" class="error">Description can be max 100 characters
+            long.
+        </div>
+        <div *ngIf=" submitted && form.controls.price.errors?.maxlength" class="error">Price can be max 10 characters
+            long.
+        </div>
+        <div *ngIf=" submitted && form.controls.weight.errors?.maxlength" class="error">Weight can be max 10 characters
+            long.
+        </div>
+        <div *ngIf="errorMsg"> {{errorMsg}} </div>
     </div>
 
 </form>

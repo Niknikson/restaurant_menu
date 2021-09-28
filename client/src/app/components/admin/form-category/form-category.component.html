@@ -25,8 +25,8 @@
       <div *ngIf="submitted && form.controls.name.errors?.required" class="error"> Name is required </div>
       <div *ngIf=" submitted && form.controls.name.errors?.minlength" class="error">Name must be at least <br> 3 characters long.</div>
       <div *ngIf=" submitted && form.controls.name.errors?.maxlength" class="error">Name can be max 20 <br> characters long.</div>
+      <div *ngIf="errorMsg"> {{errorMsg}} </div>
     </div>
   </form>
-  <div  class="response" *ngIf="responseMsg"> {{responseMsg}} </div>
 </div>
  

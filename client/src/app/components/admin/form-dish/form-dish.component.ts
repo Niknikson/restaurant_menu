@@ -15,8 +15,10 @@ export class FormDishComponent implements OnInit {
   imageSrc!: string
   categories!: Category[]
   form: FormGroup
+  errorMsg!: string 
   loading: boolean = false;
   disabled: boolean = false;
+  submitted: boolean = false;  
 
   constructor(
     private dishesService: DishesService,
@@ -26,24 +28,24 @@ export class FormDishComponent implements OnInit {
     this.form = this.formBuilder.group({
       name: formBuilder.control('', [
         Validators.required,
+        Validators.maxLength(30),
       ]),
-      top: formBuilder.control(false, [
-        Validators.required,
-      ]),
-      available: formBuilder.control(true, [
-        Validators.required,
-      ]),
+      top: formBuilder.control(false),
+      available: formBuilder.control(true),
       categoryId: formBuilder.control('', [
         Validators.required,
       ]),
       description: formBuilder.control('', [
         Validators.required,
+        Validators.maxLength(100),
       ]),
       price: formBuilder.control('', [
         Validators.required,
+        Validators.maxLength(10),
       ]),
       weight: formBuilder.control('', [
         Validators.required,
+        Validators.maxLength(10),
       ]),
       img: formBuilder.control('', [
         Validators.required,
@@ -56,15 +58,22 @@ export class FormDishComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitted = true
+
+    if (this.form.invalid) {
+      return
+    }
+    
     this.toggleLoadingBtn(true)
     const formData = new FormData()
     formData.append('file', this.file)
     formData.append('data', JSON.stringify(this.form.value))
-    this.dishesService.postDish(formData).subscribe(res => {
-       if (res.msg == "Successfully created.") {
-         this.dishesService.showModal();
-       }
-    }).add(() => this.toggleLoadingBtn(false));
+
+    // this.dishesService.postDish(formData).subscribe(res => {
+    //   res.msg === "Successfully created." && this.dishesService.showModal()
+    // }, (err) => {
+    //    err.error.message === "Validation error" && this.setErrorMsgUniqueName()
+    // }).add(() => this.toggleLoadingBtn(false));
     
   }
 
@@ -75,7 +84,6 @@ export class FormDishComponent implements OnInit {
       const [file] = event.target.files;
       this.file = file 
       reader.readAsDataURL(file);
-      //console.log(this.file)
       reader.onload = () => {
         this.imageSrc = reader.result as string;
         this.form.patchValue({
@@ -93,6 +101,10 @@ export class FormDishComponent implements OnInit {
   toggleLoadingBtn(value: boolean) {
   this.loading = value;
   this.disabled = value ;
+  }
+
+  setErrorMsgUniqueName(){
+   this.errorMsg = 'Name already exists'
   }
   
 }

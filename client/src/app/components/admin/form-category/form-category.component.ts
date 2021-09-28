@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/constants/interface';
 import { CategoryService } from 'src/app/service/category.service';
 
@@ -8,12 +8,13 @@ import { CategoryService } from 'src/app/service/category.service';
   templateUrl: './form-category.component.html',
   styleUrls: ['./form-category.component.scss'],
 })
+  
 export class FormCategoryComponent implements OnInit {
   
   form: FormGroup
   indicator!: string
   category!: Category
-  responseMsg!: string 
+  errorMsg!: string 
   loading: boolean = false;
   disabled: boolean = false;
   submitted: boolean = false;  
@@ -32,22 +33,15 @@ export class FormCategoryComponent implements OnInit {
   
   ngOnInit(): void {
     this.categoryService.category.subscribe(data => this.category = data)
-    this.categoryService.createUpdateIndicator.subscribe(data => {
-      this.indicator = data
-      if (this.indicator == 'update') {
-        const {name, available } = this.category
-        this.form.patchValue({
-          name,
-          available,
-        })
-      } else {
-         this.resetValue()
-      }
+    this.categoryService.createUpdateIndicator.subscribe(indicator => {
+      const {name, available } = this.category
+      this.indicator = indicator
+      this.indicator == 'update' ?  this.setCategoryValueToForm(name,available) : this.resetValue()
     })
   }
 
   onSubmit() {
-    this.responseMsg = ''
+    this.errorMsg = ''
     this.submitted = true
     if (this.form.invalid) {
       return
@@ -72,7 +66,7 @@ export class FormCategoryComponent implements OnInit {
 
   cancel(event: any) {
     event.preventDefault()
-    this.responseMsg = ''
+    this.errorMsg = ''
     this.resetValue()
     this.submitted = false
     this.categoryService.showModal()
@@ -83,7 +77,7 @@ export class FormCategoryComponent implements OnInit {
   }
 
   setErrorMsgUniqueName(){
-   this.responseMsg = 'Name already exists'
+   this.errorMsg = 'Name already exists'
   }
 
   falseLoadingSubmitted() {
@@ -101,5 +95,11 @@ export class FormCategoryComponent implements OnInit {
   this.disabled = value ;
   }
 
+  setCategoryValueToForm(name:string,available:boolean) {
+     this.form.patchValue({
+          name,
+          available,
+        })
+  }
   
 }
