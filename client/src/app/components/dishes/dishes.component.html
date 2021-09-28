@@ -1,1 +1,11 @@
-<app-dish-card *ngFor="let dish of dishes" [dish]="dish"></app-dish-card>
+<div *ngIf="role == 'admin'">
+        <app-dish-card *ngFor="let dish of dishes" [dish]="dish"></app-dish-card>
+</div>
+<div *ngIf="role == 'menu'">
+    <ng-container *ngFor="let dish of dishes">
+        <app-dish-card *ngIf="dish.available" [dish]="dish"></app-dish-card>
+    </ng-container>
+</div>
+
+
+

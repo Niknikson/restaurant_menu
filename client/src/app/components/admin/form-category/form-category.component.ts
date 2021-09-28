@@ -14,9 +14,9 @@ export class FormCategoryComponent implements OnInit {
   indicator!: string
   category!: Category
   form: FormGroup
-  submitted = false;  
-  loading = false;
-  disabled = false;
+  submitted: boolean = false;  
+  loading: boolean = false;
+  disabled: boolean = false;
 
   constructor(public categoryService: CategoryService,
     private formBuilder: FormBuilder) {
@@ -57,16 +57,14 @@ export class FormCategoryComponent implements OnInit {
          this.resetValue()
          this.responseMsg = res.msg
        }
-      this.toggleLoadingBtn(false)
-    },(err)=> this.toggleLoadingBtn(false))
+    },(err)=> console.log(err)).add(() => this.toggleLoadingBtn(false));
 
     this.indicator == 'update' && this.categoryService.patchCategory(this.form.value, this.category.id).subscribe(res => {
       if (res.msg == "Successfully updated.") {
        this.categoryService.showModal()
        this.resetValue()
       }
-      this.toggleLoadingBtn(false)
-    },(err)=> this.toggleLoadingBtn(false)  )
+    },(err)=> console.log(err)).add(() => this.toggleLoadingBtn(false));
   }
 
   cancel(event: any) {

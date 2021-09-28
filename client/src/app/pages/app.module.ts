@@ -3,6 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MenuComponent } from '../features/menu/menu.component';
@@ -23,7 +24,7 @@ import { CheckboxComponent } from '../features/checkbox/checkbox.component';
 import { ModalComponent } from '../features/modal/modal.component';
 import { AddButtonGroupComponent } from '../components/admin/add-button-group/add-button-group.component';
 import { DishesComponent } from '../components/dishes/dishes.component';
-import { SearchFormComponent } from '../components/admin/search-form/search-form.component';
+import { SearchFormComponent } from '../components/search-form/search-form.component';
 import { AllModalComponent } from '../components/admin/all-modal/all-modal.component';
 
 

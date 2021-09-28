@@ -7,14 +7,21 @@
             </app-button>
             <app-button [style]="'secondary'" (buttonClick)="toggleModalDelete()">
                 Delete
+                <!-- <i class="material-icons md-18">delete</i> -->
             </app-button>
         </div>
+
     </div>
     <app-modal [title]="''" [active]="activeDeleteModal"
         (buttonClick)="toggleModalDelete()">
         <h4 class="question">Are you sure you want to delete category {{category.name}}</h4>
         <div class="modal__button">
-            <app-button [style]="'secondary'" (buttonClick)="deleteCategory()">
+            <app-button 
+            [style]="'secondary'" 
+            (buttonClick)="deleteCategory()"
+            [isDisabled]="disabled"
+            [loading]="loading"
+            >
                 Delete
             </app-button>
             <app-button  (buttonClick)="toggleModalDelete()">

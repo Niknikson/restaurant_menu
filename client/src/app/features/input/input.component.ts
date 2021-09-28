@@ -15,10 +15,10 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class InputComponent implements ControlValueAccessor{
 
-  @Input() label: string = 'label'
+  @Input() label: string = ''
   @Input() placeholder: string = ''
   
-  private _value: any;
+private _value: any;
 
 public get value(){
   return this._value;
@@ -34,10 +34,6 @@ writeValue(obj: any): void {
   this._value = obj;
 }
 
-// Optional
-onSomeEventOccured(newValue: any){
-  this.value = newValue;
-}
   
   registerOnChange(fn: any): void {
     this.onChange = fn;

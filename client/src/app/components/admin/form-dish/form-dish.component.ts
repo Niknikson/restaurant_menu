@@ -15,11 +15,11 @@ export class FormDishComponent implements OnInit {
   imageSrc!: string
   categories!: Category[]
   form: FormGroup
-  loading = false;
-  disabled = false;
+  loading: boolean = false;
+  disabled: boolean = false;
 
   constructor(
-    private dishService: DishesService,
+    private dishesService: DishesService,
     private categoryService: CategoryService,
     private formBuilder: FormBuilder
   ) {
@@ -56,16 +56,16 @@ export class FormDishComponent implements OnInit {
   }
 
   onSubmit() {
-    this.toggleLoadingBtn()
+    this.toggleLoadingBtn(true)
     const formData = new FormData()
     formData.append('file', this.file)
     formData.append('data', JSON.stringify(this.form.value))
-    this.dishService.postDish(formData).subscribe(res => {
+    this.dishesService.postDish(formData).subscribe(res => {
        if (res.msg == "Successfully created.") {
-         
+         this.dishesService.showModal();
        }
-      this.toggleLoadingBtn()
-    })
+      
+    }).add(() => this.toggleLoadingBtn(false));
     
   }
 
@@ -85,9 +85,9 @@ export class FormDishComponent implements OnInit {
     }
   }
 
-   toggleLoadingBtn() {
-  this.loading = !this.loading;
-  this.disabled = !this.disabled ;
+  toggleLoadingBtn(value: boolean) {
+  this.loading = value;
+  this.disabled = value ;
   }
   
 }

@@ -11,6 +11,8 @@ export class CategoryInfoComponent implements OnInit {
 
   activeDeleteModal: boolean = false
   category!: Category
+  loading: boolean = false;
+  disabled: boolean = false;
 
   constructor(private categoryService: CategoryService) { }
 
@@ -25,14 +27,21 @@ export class CategoryInfoComponent implements OnInit {
 }
 
   deleteCategory() {
+    this.toggleLoadingBtn(true)
     this.categoryService.deleteCategory(this.category.id).subscribe(res => {
-      console.log('delete')
-      this.toggleModalDelete()
-    })
+      if (res.msg == 'Successfully deleted.') {
+       this.toggleModalDelete()
+      }
+    }).add(() => this.toggleLoadingBtn(false));
   }
 
   toggleModalDelete() {
     this.activeDeleteModal = !this.activeDeleteModal
+  }
+
+  toggleLoadingBtn(value: boolean) {
+  this.loading = value;
+  this.disabled = value ;
   }
 
 }

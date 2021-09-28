@@ -17,6 +17,8 @@ export class DishCardComponent implements OnInit {
   form: FormGroup
   roleAdmin!: any
   categories!: Category[]
+  loading: boolean = false;
+  disabled: boolean = false;
   updateDishForm: boolean = false
   activeDeleteModal: boolean = false
 
@@ -79,15 +81,23 @@ export class DishCardComponent implements OnInit {
 
   onSubmit() {
      this.dishesService.patchDish(this.form.value, this.dish.id).subscribe(res => {
-      console.log('updated')
+      if (res.msg == "Successfully updated.") {
+      this.updateDishForm = !this.updateDishForm
+      }
     })
   }
 
   deleteDish(id: string) {
     this.dishesService.deleteDish(id).subscribe(res => {
-      console.log('delete')
-      this.toggleModalDelete()
+      if (res.msg == 'Successfully deleted.') {
+       this.toggleModalDelete()
+      }
     })
+  }
+
+  toggleLoadingBtn(value: boolean) {
+  this.loading = value;
+  this.disabled = value ;
   }
 
 }

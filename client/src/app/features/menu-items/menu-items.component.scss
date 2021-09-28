@@ -8,6 +8,7 @@
   font-size: small;
   padding: 3px;
   
+ 
 
   &:hover {
     text-decoration: none;
@@ -20,3 +21,8 @@
     color: $main-blue-color;
   }
 }
+
+ .available{
+    color: $grey;
+    text-decoration: line-through;
+  }

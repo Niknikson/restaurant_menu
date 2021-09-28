@@ -35,7 +35,8 @@ export class DishesService {
   postDish(data: FormData,): Observable<any> {
     return this.http.post<any>(Api.dish, data).pipe(map((res) => {
       if (res.msg == "Successfully created.") {
-        this.dishesSource.next([...this.dishesSource.value, {...res.data}])
+        //this.dishesSource.next([...this.dishesSource.value, {...res.data}])
+        
       }
       return res
     }))
@@ -45,7 +46,9 @@ export class DishesService {
     // const formData = new FormData()
     // formData.append('file', file)
     // formData.append('data', JSON.stringify(data))
+    console.log(data)
     return this.http.patch<any>(`${Api.dish}${id}`, data).pipe(map((res) => {
+      console.log(res)
       if (res.msg == "Successfully updated.") {
         const newData = this.dishesSource.value.map( dish => {
           if (dish.id === id) {
@@ -60,7 +63,7 @@ export class DishesService {
   }
 
 
-  deleteDish(id: string ): Observable<string> {
+  deleteDish(id: string ): Observable<any> {
     return this.http.delete<any>(`${Api.dish}${id}`).pipe(map((res)=>{
       if (res.msg == "Successfully deleted.") {
         let newData = this.dishesSource.value.filter(el=> el.id !== id)

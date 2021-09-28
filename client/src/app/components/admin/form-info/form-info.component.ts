@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InfoService } from 'src/app/service/info.service';
-import { Info } from '../../../constants/interface';
+
 
 
 @Component({
@@ -13,8 +13,8 @@ export class FormInfoComponent implements OnInit {
  
   id!: string
   form: FormGroup
-   loading = false;
-  disabled = false;
+  loading: boolean = false;
+  disabled: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
     private infoService: InfoService) {
@@ -41,13 +41,12 @@ export class FormInfoComponent implements OnInit {
   }
 
   onSubmit() {
-    this.toggleLoadingBtn()
+    this.toggleLoadingBtn(true)
     this.infoService.patchInfo({...this.form.value, id: this.id}).subscribe((res) => {
       if ( res.msg  == 'Successfully updated.') {
         this.infoService.showModal()
       } 
-    this.toggleLoadingBtn() 
-    })
+    }).add(() => this.toggleLoadingBtn(false));
   }
 
   cancel(event: any) {
@@ -55,9 +54,9 @@ export class FormInfoComponent implements OnInit {
     this.infoService.showModal()
   }
 
-  toggleLoadingBtn() {
-  this.loading = !this.loading;
-  this.disabled = !this.disabled ;
+  toggleLoadingBtn(value: boolean) {
+  this.loading = value;
+  this.disabled = value ;
   }
 
 }

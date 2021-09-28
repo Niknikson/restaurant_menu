@@ -25,7 +25,7 @@ class DishController {
   }
 
   async createDish(req, res, next) {
-    const { description, categoryId, weight, price, name, top } = JSON.parse(req.body.data)
+    const { description, categoryId, available, weight, price, name, top } = JSON.parse(req.body.data)
     //console.log(req.file);
     //console.log(JSON.parse(req.body.data));
     try {
@@ -33,6 +33,7 @@ class DishController {
        const { url } = uploadedResponse;
        const dish = await Dish.create({
         description,
+        available,
         categoryId,
         weight,
         price,
@@ -49,12 +50,12 @@ class DishController {
   }
 
   async updateDish(req, res, next) {
-    const { description, categoryId, weight, price, top, name, img } = req.body;
+    const { description, categoryId, weight, price, top, name, img, available } = req.body;
     const { id } = req.params;
     console.log('update')
     try {
       await Dish.update(
-        { description, categoryId, weight, price, name, img, top },
+        { description, categoryId, weight, price, name, img, top, available },
         { where: { id } }
       );
       res.status(STATUS_CODES.ACCEPTED).send({msg: RES_MESSAGES.UPDATE });

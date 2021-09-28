@@ -1,0 +1,14 @@
+<div class="form">
+    <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="fields">
+            <div class="input">
+                <app-input [placeholder]="'Search by dish name'" formControlName="name"></app-input>
+            </div>
+        </div>
+        <div class="button">
+            <app-button [buttonSubmit]="true" [isDisabled]="disabled" [loading]="loading">
+                Search
+            </app-button>
+        </div>
+    </form>
+</div>

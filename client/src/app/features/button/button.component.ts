@@ -21,7 +21,7 @@ export class ButtonComponent {
  
   @Output() buttonClick: EventEmitter<any>;
   buttonType: string;
-  private _loading!: boolean;
+  
   private _isDisabled!: boolean;
 
 
