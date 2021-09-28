@@ -22,5 +22,12 @@
 }
 
 .errors{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: $secondary-color;
+
+    .error{
+        color: $secondary;
+    }
 }

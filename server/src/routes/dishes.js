@@ -13,6 +13,7 @@ const router = new Router();
 router.get("/", dishController.getDishes);
 router.delete("/:id", dishController.deleteDish);
 router.get("/:id", dishController.getDishesByCategory);
+router.get("/without/category", dishController.getDishesWithoutCategory);
 router.patch("/:id", validation(dishUpdateSchema), dishController.updateDish);
 router.post(
   "/",

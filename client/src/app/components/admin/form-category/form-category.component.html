@@ -21,14 +21,10 @@
         Cancel
       </app-button>
     </div>
-    <div>form.valid= {{ form.valid }}</div>
-    <div>form.invalid = {{ form.invalid }}</div>
-    <div>form.status = {{ form.status }}</div>
-    <div>form.disabled = {{ form.disabled }}</div>
-    <div *ngIf="form.controls.name.errors?.required"
-        class="error">  Name is required </div>
-    <!-- <div *ngIf=" submitted && form.controls.name.errors?.minLength" class="error">
-       Name must be more then 3 </div> -->
+    <div class="errors">
+      <div *ngIf="submitted && form.controls.name.errors?.required" class="error"> Name is required </div>
+      <div *ngIf=" submitted && form.controls.name.errors?.minlength" class="error">Name must be more then 3 </div>
+    </div>
   </form>
   <div  class="response" *ngIf="responseMsg"> {{responseMsg}} </div>
 </div>

@@ -14,7 +14,8 @@ const routes: Routes = [
   {
     path: 'admin', component: AdminPageComponent,
     children: [
-      {path: ':id', component: DishesComponent}
+      { path: ':id', component: DishesComponent },
+      {path: '', component: DishesComponent}
     ]
   },
 ];

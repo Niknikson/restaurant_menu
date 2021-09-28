@@ -82,7 +82,8 @@ export class DishCardComponent implements OnInit {
   onSubmit() {
      this.dishesService.patchDish(this.form.value, this.dish.id).subscribe(res => {
       if (res.msg == "Successfully updated.") {
-      this.updateDishForm = !this.updateDishForm
+        this.updateDishForm = !this.updateDishForm
+        this.router.navigate([this.router.url]);
       }
     })
   }
@@ -90,7 +91,8 @@ export class DishCardComponent implements OnInit {
   deleteDish(id: string) {
     this.dishesService.deleteDish(id).subscribe(res => {
       if (res.msg == 'Successfully deleted.') {
-       this.toggleModalDelete()
+        this.toggleModalDelete()
+        this.router.navigate([this.router.url]);
       }
     })
   }

@@ -22,7 +22,8 @@ export class DishesService {
     this.modalSource.next(!this.modalSource.value) 
   }
 
-   getDishesByCategory(id: string = ''): Observable<Dish[]> {
+  getDishesByCategory(id: string = ''): Observable<Dish[]> {
+     console.log(id)
     return this.http.get<Dish[]>(`${Api.dish}${id}`).pipe(
       map((data: Dish[]) => {
         this.dishesSource.next(data)

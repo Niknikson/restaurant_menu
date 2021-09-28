@@ -24,7 +24,7 @@ export class FormCategoryComponent implements OnInit {
       name: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(20),
+        Validators.maxLength(5),
       ]),
       available: new FormControl(true),
     });
@@ -51,11 +51,12 @@ export class FormCategoryComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true
-    console.log( this.form.value)
-    // if (this.form.invalid) {
-    //   console.log('invalid')
-    //   return
-    // }
+
+    console.log( this.form.controls.name.errors )
+    if (this.form.invalid) {
+      console.log('invalid')
+      return
+    }
    
 
     // this.responseMsg = ''

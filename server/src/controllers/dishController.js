@@ -14,6 +14,15 @@ class DishController {
     }
   }
 
+    async getDishesWithoutCategory(req, res, next) {
+    try {
+      let dishes = await Dish.findAll({ where: { categoryId: null } });
+      res.status(STATUS_CODES.OK).json(dishes);
+    } catch (e) {
+      next(ApiError.notFound(e.message));
+    }
+  }
+
   async getDishesByCategory(req, res, next) {
     let { id } = req.params;
     try {
@@ -26,8 +35,6 @@ class DishController {
 
   async createDish(req, res, next) {
     const { description, categoryId, available, weight, price, name, top } = JSON.parse(req.body.data)
-    //console.log(req.file);
-    //console.log(JSON.parse(req.body.data));
     try {
        const uploadedResponse = await cloudinary.uploader.upload(req.file.path);
        const { url } = uploadedResponse;
