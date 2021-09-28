@@ -29,12 +29,12 @@ class CategoriesController {
   }
 
   async createCategory(req, res, next) {
-    console.log(req.body);
     const { name, available } = req.body;
     try {
       const category = await Categories.create({ name, available });
       res.status(STATUS_CODES.ACCEPTED).send({ category, msg: RES_MESSAGES.CREATE});
     } catch (e) {
+      console.log(e.message)
       next(ApiError.badRequest(e.message));
     }
   }

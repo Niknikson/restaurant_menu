@@ -8,8 +8,7 @@
         <div class="title" [ngClass]=" !dish.available ? 'available' : '' "> {{dish.name}} </div>
         <div class="tag">{{ dish.top ? 'top' : '' }}</div>
         <div class="description">
-          {{dish.description}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia nisi sint autem, neque
-          perspiciatis atque fugiat est id tenetur impedit eum animi hic
+          {{dish.description}} 
         </div>
         <div class="info">
           <div class="price">{{dish.price}}$</div>
@@ -45,7 +44,7 @@
             <app-input [label]="'Name'" formControlName="name"></app-input>
           </div>
           <div class="tag__update">
-            <select formControlName="categoryId">
+            <select class="select" formControlName="categoryId">
               <option *ngFor="let category of categories" [ngValue]="category.id">
                 {{category.name}}
               </option>

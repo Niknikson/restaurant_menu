@@ -10,7 +10,7 @@ import { CategoryService } from 'src/app/service/category.service';
 })
 export class FormCategoryComponent implements OnInit {
   
-  responseMsg!: string
+  responseMsg!: string 
   indicator!: string
   category!: Category
   form: FormGroup
@@ -50,21 +50,38 @@ export class FormCategoryComponent implements OnInit {
   }
 
   onSubmit() {
-    this.toggleLoadingBtn(true)
-    this.indicator == 'create' && this.categoryService.postCategory(this.form.value).subscribe(res => {
-       if (res.msg == "Successfully created.") {
-         //this.categoryService.showModal()
-         this.resetValue()
-         this.responseMsg = res.msg
-       }
-    },(err)=> console.log(err)).add(() => this.toggleLoadingBtn(false));
+    this.submitted = true
+    console.log( this.form.value)
+    // if (this.form.invalid) {
+    //   console.log('invalid')
+    //   return
+    // }
+   
 
-    this.indicator == 'update' && this.categoryService.patchCategory(this.form.value, this.category.id).subscribe(res => {
-      if (res.msg == "Successfully updated.") {
-       this.categoryService.showModal()
-       this.resetValue()
-      }
-    },(err)=> console.log(err)).add(() => this.toggleLoadingBtn(false));
+    // this.responseMsg = ''
+    // this.toggleLoadingBtn(true)
+    // this.indicator == 'create' && this.categoryService.postCategory(this.form.value).subscribe(res => {
+    //    if (res.msg == "Successfully created.") {
+    //      this.categoryService.showModal()
+    //      this.resetValue()
+    //    }
+    // },(err)=>  {
+    //   if (err.error.message == "Validation error") {
+    //    this.responseMsg = 'Name must be unique'
+    //   }
+    // }).add(() => this.toggleLoadingBtn(false));
+
+    // this.indicator == 'update' && this.categoryService.patchCategory(this.form.value, this.category.id).subscribe(res => {
+    //   if (res.msg == "Successfully updated.") {
+    //    this.categoryService.showModal()
+    //    this.resetValue()
+    //   }
+    // }, (err) => {
+    //   if (err.error.message == "Validation error") {
+    //    this.responseMsg = 'Name must be unique'
+    //   }
+    // }).add(() => this.toggleLoadingBtn(false));
+
   }
 
   cancel(event: any) {
@@ -82,6 +99,6 @@ export class FormCategoryComponent implements OnInit {
   this.disabled = value ;
   }
   
-  get name() { return this.form.get('name'); }
+  // get name() { return this.form.get('name'); }
   
 }

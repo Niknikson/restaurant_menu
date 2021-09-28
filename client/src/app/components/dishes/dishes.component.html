@@ -1,11 +1,13 @@
-<div *ngIf="role == 'admin'">
+<div class="loading" *ngIf="isLoading">
+    <h3>Loading...</h3>
+</div>
+<div *ngIf="!isLoading">
+    <div *ngIf="role == 'admin'">
         <app-dish-card *ngFor="let dish of dishes" [dish]="dish"></app-dish-card>
+    </div>
+    <div *ngIf="role == 'menu'">
+        <ng-container *ngFor="let dish of dishes">
+            <app-dish-card *ngIf="dish.available" [dish]="dish"></app-dish-card>
+        </ng-container>
+    </div>
 </div>
-<div *ngIf="role == 'menu'">
-    <ng-container *ngFor="let dish of dishes">
-        <app-dish-card *ngIf="dish.available" [dish]="dish"></app-dish-card>
-    </ng-container>
-</div>
-
-
-

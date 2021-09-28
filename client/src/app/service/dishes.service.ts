@@ -25,7 +25,6 @@ export class DishesService {
    getDishesByCategory(id: string = ''): Observable<Dish[]> {
     return this.http.get<Dish[]>(`${Api.dish}${id}`).pipe(
       map((data: Dish[]) => {
-        console.log(data)
         this.dishesSource.next(data)
         return data;
       })
@@ -35,8 +34,7 @@ export class DishesService {
   postDish(data: FormData,): Observable<any> {
     return this.http.post<any>(Api.dish, data).pipe(map((res) => {
       if (res.msg == "Successfully created.") {
-        //this.dishesSource.next([...this.dishesSource.value, {...res.data}])
-        
+        //this.dishesSource.next([...this.dishesSource.value, {...res.data}]) 
       }
       return res
     }))
@@ -46,7 +44,6 @@ export class DishesService {
     // const formData = new FormData()
     // formData.append('file', file)
     // formData.append('data', JSON.stringify(data))
-    console.log(data)
     return this.http.patch<any>(`${Api.dish}${id}`, data).pipe(map((res) => {
       console.log(res)
       if (res.msg == "Successfully updated.") {

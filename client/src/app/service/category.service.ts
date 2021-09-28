@@ -34,7 +34,6 @@ export class CategoryService {
   }
 
   createUpdateCategory(indicator: string) {
-    console.log(indicator)
     this.createUpdateSource.next(indicator) 
   }
 

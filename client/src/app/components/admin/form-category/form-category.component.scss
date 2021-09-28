@@ -18,5 +18,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: $success;
+    color: $secondary-color;
+}
+
+.errors{
+    color: $secondary-color;
 }

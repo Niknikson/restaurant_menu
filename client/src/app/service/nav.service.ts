@@ -10,7 +10,6 @@ export class HeaderService {
   constructor() {}
 
   toggleBtnMenu() {
-    console.log('btn')
     this.btnMenu = !this.btnMenu;
   }
 }

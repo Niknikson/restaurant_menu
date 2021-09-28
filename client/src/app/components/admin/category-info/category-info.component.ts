@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from 'src/app/service/category.service';
 import { Category } from '../../../constants/interface';
 
@@ -13,14 +14,17 @@ export class CategoryInfoComponent implements OnInit {
   category!: Category
   loading: boolean = false;
   disabled: boolean = false;
+  isLoading: boolean = false;
 
-  constructor(private categoryService: CategoryService) { }
+  constructor(
+    private categoryService: CategoryService,
+    private route: ActivatedRoute,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
-    this.categoryService.category.subscribe(data =>this.category = data)
-    
+    this.categoryService.category.subscribe(data =>this.category = data)  
   }
-  
    showUpdateCategoryModal(){
      this.categoryService.showModal()
      this.categoryService.createUpdateCategory('update')
@@ -30,7 +34,8 @@ export class CategoryInfoComponent implements OnInit {
     this.toggleLoadingBtn(true)
     this.categoryService.deleteCategory(this.category.id).subscribe(res => {
       if (res.msg == 'Successfully deleted.') {
-       this.toggleModalDelete()
+        this.toggleModalDelete()
+        this.router.navigate(['/admin/']);
       }
     }).add(() => this.toggleLoadingBtn(false));
   }

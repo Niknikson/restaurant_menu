@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { scrollTop } from 'src/app/helpers/helpers';
+import { CategoryService } from 'src/app/service/category.service';
 import { Category } from '../../constants/interface';
 
 @Component({
@@ -12,7 +13,9 @@ export class MenuItemsComponent implements OnInit {
   @Input() category!: Category;
     role!: any
   constructor(
-    private router: Router) {
+    private router: Router,
+    public categoryService: CategoryService
+  ) {
      }
 
   ngOnInit(): void {
@@ -20,6 +23,7 @@ export class MenuItemsComponent implements OnInit {
   }
 
   routMenuClick(id: string) {
+    //this.categoryService.clearCategory()
     scrollTop()
   }
 }

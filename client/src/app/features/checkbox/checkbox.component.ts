@@ -34,19 +34,16 @@ export class CheckboxComponent implements ControlValueAccessor, OnInit {
 
   constructor() {}
 
-  ngOnInit() {}
-
-  // Step 4: Define what should happen in this component, if something changes outside
+  ngOnInit() { }
+  
   checked: boolean = false;
   writeValue(checked: boolean) {
     this.checked = checked;
   }
 
   onModelChange(e: boolean) {
-    // Step 5a: bind the changes to the local value
     this.checked = e;
 
-    // Step 5b: Handle what should happen on the outside, if something changes on the inside
     this.onChange(e);
   }
 }

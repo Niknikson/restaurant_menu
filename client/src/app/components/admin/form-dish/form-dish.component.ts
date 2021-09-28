@@ -64,12 +64,12 @@ export class FormDishComponent implements OnInit {
        if (res.msg == "Successfully created.") {
          this.dishesService.showModal();
        }
-      
     }).add(() => this.toggleLoadingBtn(false));
     
   }
 
   onFileChange(event: any) {
+    event.preventDefault();
     const reader = new FileReader();
     if(event.target.files && event.target.files.length) {
       const [file] = event.target.files;
@@ -83,6 +83,11 @@ export class FormDishComponent implements OnInit {
         });
       };
     }
+  }
+
+  cancel(event: any) {
+    event.preventDefault();
+    this.dishesService.showModal();
   }
 
   toggleLoadingBtn(value: boolean) {

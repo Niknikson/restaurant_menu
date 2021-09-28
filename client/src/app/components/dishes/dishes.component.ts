@@ -11,6 +11,7 @@ import { DishesService } from 'src/app/service/dishes.service';
 })
 export class DishesComponent implements OnInit {
 
+  isLoading: boolean = false
   dishes!: Dish[]
   role!: any
 
@@ -22,14 +23,16 @@ export class DishesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.role  = this.router.url.split('/')[1]
+    this.role = this.router.url.split('/')[1]
     this.dishesService.dishes.subscribe(dishes => this.dishes = dishes)
     this.route.params.subscribe(params => {
+      this.isLoading = true
     this.dishesService.getDishesByCategory(params.id).subscribe(res => {
+      this.isLoading = false
     })
-    this.categoryService.getCategory(params.id).subscribe(res => {
+    this.categoryService.getCategory(params.id).toPromise()
     })
-    })
+
   }
    
   }

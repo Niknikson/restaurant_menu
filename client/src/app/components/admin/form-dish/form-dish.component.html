@@ -1,55 +1,55 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-<div class="dish__card">
-    <div class="img__container">
-        <img class="img" *ngIf="!imageSrc"
-            src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiD4Na10pu4sky7pL1GOXNNLL8e8mXmMGfp--46ITN1BQen0YHA2isD0U4R139PVvtts4&usqp=CAU'
-            alt="альтернативный текст" />
-        <img class="img" [src]="imageSrc" *ngIf="imageSrc">
+    <div class="dish__card">
+        <div class="img__container">
+            <img class="img" *ngIf="!imageSrc"
+                src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiD4Na10pu4sky7pL1GOXNNLL8e8mXmMGfp--46ITN1BQen0YHA2isD0U4R139PVvtts4&usqp=CAU'
+                alt="альтернативный текст" />
+            <img class="img" [src]="imageSrc" *ngIf="imageSrc">
+        </div>
+        <div class="text__container">
+            <div class="dish__info">
+                <div class="title">
+                    <app-input [label]="'Name'" formControlName="name"></app-input>
+                </div>
+                <div class="tag">
+                    <select class="select" formControlName="categoryId">
+                        <option value="" disabled selected>Select category</option>
+                        <option *ngFor="let category of categories" [ngValue]="category.id">
+                            {{category.name}}
+                        </option>
+                    </select>
+                    <app-checkbox class="available" formControlName="available" [label]="'Available'"></app-checkbox>
+                    <app-checkbox [label]="'Top'" formControlName="top"></app-checkbox>
+                </div>
+                <div class="description">
+                    <textarea class="textarea" formControlName="description"></textarea>
+                </div>
+                <div class="info">
+                    <div class="price">
+                        <app-input [label]="'Price'" formControlName="price"></app-input>
+                    </div>
+                    <div class="weight">
+                        <app-input [label]="'Weight'" formControlName="weight"></app-input>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="text__container">
-        <div class="dish__info">
-        <div class="title">
-            <app-input [label]="'Name'" formControlName="name"></app-input>
-        </div>
-        <div class="tag">
-            <select formControlName="categoryId">
-                <option *ngFor="let category of categories" [ngValue]="category.id">
-                    {{category.name}}
-                </option>
-            </select>
-            <app-checkbox class="available" formControlName="available" [label]="'Available'"></app-checkbox>
-            <app-checkbox [label]="'Top'" formControlName="top"></app-checkbox>
-        </div>
-        <div class="description">
-            <textarea class="textarea" formControlName="description"></textarea>
-        </div>
-            <div class="info">
-            <div class="price">
-                <app-input [label]="'Price'" formControlName="price"></app-input>
-            </div>
-            <div class="weight">
-                <app-input [label]="'Weight'" formControlName="weight"></app-input>
-            </div>
-            </div>
-        </div>
+    
+    <div class="btn__upload">
+            <label class="file__upload">
+                <input type="file" (change)="onFileChange($event)" />
+                Select file format png
+            </label>
     </div>
-</div>
-<div class="button">
-    <input class="input__file"  type="file" (change)="onFileChange($event)">
-</div>
-<div class="button">
-    <app-button 
-    [buttonSubmit]="true" 
-    [style]="'success'" 
-    [isDisabled]="disabled"
-    [loading]="loading"
-    >
-        Create
-    </app-button>
-    <app-button >
-        Cancel
-    </app-button>
-</div>
+
+    <div class="button">
+        <app-button [buttonSubmit]="true" [style]="'success'" [isDisabled]="disabled" [loading]="loading">
+            Create
+        </app-button>
+        <app-button (buttonClick)="cancel($event)">
+            Cancel
+        </app-button>
+    </div>
 
 </form>
-
