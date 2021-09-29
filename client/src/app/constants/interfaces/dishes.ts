@@ -1,14 +1,3 @@
-export interface Category {
-     id: string,
-     name: string,
-     available: boolean
-}
-
-export interface CategoryPost {
-  name: string;
-  available: boolean;
-}
-
 export interface Info {
   id: string,
   wifi: string,
@@ -38,3 +27,6 @@ export interface DishPost {
  available: boolean,
  description: string,
 }
+
+
+

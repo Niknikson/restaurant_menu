@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Category } from 'src/app/constants/interface';
+import { Category } from 'src/app/constants/interfaces/category';
 import { RESPONSE_MSG } from 'src/app/constants/responseMsg';
 import { exitingDishNameValidator } from 'src/app/helpers/validatorExitingDishName';
 import { CategoryService } from 'src/app/service/category.service';

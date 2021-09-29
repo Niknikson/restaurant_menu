@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Info } from 'src/app/constants/interface';
+import { Info } from 'src/app/constants/interfaces/dishes';
 import { RESPONSE_MSG } from 'src/app/constants/responseMsg';
 import { InfoService } from 'src/app/service/info.service';
 import { HeaderService } from '../../service/nav.service';

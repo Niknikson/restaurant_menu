@@ -26,15 +26,15 @@ export class AllModalComponent implements OnInit {
     this.dishesService.activeModal.subscribe(activeModal => this.activeDishesModal = activeModal)
   }
 
-  closeModalDish() {
+  closeModalDish(): void {
     this.dishesService.showModal()
   } 
   
-  closeModalInfo() {
+  closeModalInfo(): void {
     this.infoService.showModal()
   }
 
-  closeModalCategory() {
+  closeModalCategory(): void {
     this.categoryService.showModal()
   }  
 

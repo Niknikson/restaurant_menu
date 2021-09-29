@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Dish } from 'src/app/constants/interfaces/dishes';
 import { CategoryService } from 'src/app/service/category.service';
 import { DishesService } from 'src/app/service/dishes.service';
-import {Category, Dish} from '../../constants/interface'
+import {Category} from '../../constants/interfaces/category'
 
 @Component({
   selector: 'app-dish-card',

@@ -5,27 +5,26 @@
             <app-button [style]="'success'" (buttonClick)="showUpdateCategoryModal()">
                 Update
             </app-button>
-            <app-button [style]="'secondary'" (buttonClick)="toggleModalDelete()">
+            <app-button [style]="'secondary'" (buttonClick)="toggleDeleteModal()">
                 Delete
-                <!-- <i class="material-icons md-18">delete</i> -->
             </app-button>
         </div>
 
     </div>
     
     <app-modal [title]="''" [active]="activeDeleteModal"
-        (buttonClick)="toggleModalDelete()">
+        (buttonClick)="toggleDeleteModal()">
         <h4 class="question">Are you sure you want to delete category {{category.name}}</h4>
         <div class="modal__button">
             <app-button 
             [style]="'secondary'" 
-            (buttonClick)="deleteCategory()"
+            (buttonClick)="onClickDelete()"
             [isDisabled]="disabled"
             [loading]="loading"
             >
                 Delete
             </app-button>
-            <app-button  (buttonClick)="toggleModalDelete()">
+            <app-button  (buttonClick)="toggleDeleteModal()">
                 Cancel
             </app-button>
         </div>

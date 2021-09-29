@@ -1,15 +1,12 @@
-import { Category, CategoryPost } from '../constants/interface';
+import { Category, NewCategory, RespCategory} from '../constants/interfaces/category';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {Api} from '../constants/api'
 import { RESPONSE_MSG } from '../constants/responseMsg';
+import { ResMsg } from '../constants/interfaces/response';
 
-
-export interface Res {
- msg: string,
-}
 
 
 @Injectable({
@@ -43,8 +40,11 @@ export class CategoryService {
     this.createUpdateSource.next(indicator) 
   }
 
-  clearCategory() {
-    this.categorySource.value.id = ''
+  clearCategory(): void {
+        this.categorySource.next({
+         id: '',
+         name: '',
+         available: false})
   }
 
   getCategory(id: string): Observable<Category> {
@@ -65,19 +65,19 @@ export class CategoryService {
     );
   }
 
-  postCategory(data: CategoryPost): Observable<any> {
-    return this.http.post<any>(Api.categories, data).pipe(map((res) => {
+  postCategory(data: NewCategory): Observable<RespCategory> {
+    return this.http.post<RespCategory>(Api.categories, data).pipe(map((res) => {
       res.msg === RESPONSE_MSG.CREATED && this.categoriesSource.next([...this.categoriesSource.value, {...res.category}])
       return res
     }))
   }
 
-  patchCategory(data: CategoryPost, id: string): Observable<any> {
-    return this.http.patch<any>(`${Api.categories}${id}`, data).pipe(map((res) => {
+  patchCategory(data: NewCategory, id: string): Observable<ResMsg> {
+    return this.http.patch<ResMsg>(`${Api.categories}${id}`, data).pipe(map((res) => {
       if (res.msg === RESPONSE_MSG.UPDATED) {
         this.categorySource.next({ id, ...data })
         const newData = this.categoriesSource.value.map(category => {
-          if (category.id == id) {
+          if (category.id === id) {
             category = {...data, id}
           }
           return category
@@ -88,15 +88,12 @@ export class CategoryService {
     }))
   }
 
-  deleteCategory(id: string ): Observable<any> {
-    return this.http.delete<any>(`${Api.categories}${id}`).pipe(map((res)=>{
+  deleteCategory(id: string ): Observable<ResMsg> {
+    return this.http.delete<ResMsg>(`${Api.categories}${id}`).pipe(map((res)=>{
       if (res.msg === RESPONSE_MSG.DELETED) {
         let newData = this.categoriesSource.value.filter(el=> el.id !== id)
         this.categoriesSource.next(newData)
-        this.categorySource.next({
-         id: '',
-         name: '',
-         available: false})
+        this.clearCategory()
       }
       return res
     }))

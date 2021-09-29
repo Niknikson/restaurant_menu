@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { scrollTop } from 'src/app/helpers/helpers';
-import { Category } from '../../constants/interface';
+import { Category } from '../../constants/interfaces/category';
 
 @Component({
   selector: 'app-menu-items',

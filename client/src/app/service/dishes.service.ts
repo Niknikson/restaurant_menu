@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
-import { Dish, DishPost } from '../constants/interface';
+import { Dish, DishPost } from '../constants/interfaces/dishes';
 import {Api} from '../constants/api'
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
-import { Dish } from 'src/app/constants/interface';
+import { Dish } from 'src/app/constants/interfaces/dishes';
 import { CategoryService } from 'src/app/service/category.service';
 import { DishesService } from 'src/app/service/dishes.service';
 

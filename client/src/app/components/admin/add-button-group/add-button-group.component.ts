@@ -11,8 +11,8 @@ import { InfoService } from 'src/app/service/info.service';
 export class AddButtonGroupComponent implements OnInit {
 
   constructor( public dishesService: DishesService,
-    public categoryService: CategoryService,
-    public infoService: InfoService) { }
+    private categoryService: CategoryService,
+    private infoService: InfoService) { }
 
   ngOnInit(): void {
   }

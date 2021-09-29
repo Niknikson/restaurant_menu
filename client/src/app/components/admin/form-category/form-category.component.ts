@@ -1,6 +1,6 @@
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { Category } from 'src/app/constants/interface';
+import { Category } from 'src/app/constants/interfaces/category';
 import { CategoryService } from 'src/app/service/category.service';
 import { RESPONSE_MSG } from 'src/app/constants/responseMsg';
 
@@ -57,7 +57,7 @@ export class FormCategoryComponent implements OnInit {
      this.categoryService.postCategory(this.form.value)
       .subscribe(res => {
        res.msg == RESPONSE_MSG.CREATED && this.closeModalAndReset()
-    },(err)=>  {
+      }, (err) => {
       err.error.message === RESPONSE_MSG.VALIDATION_ERROR && this.setErrorMsgUniqueName()
       }).add(() => this.falseLoadingSubmitted() );
   }
