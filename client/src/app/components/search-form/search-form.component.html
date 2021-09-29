@@ -1,14 +1,9 @@
 <div class="form">
-    <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form" >
         <div class="fields">
             <div class="input">
-                <app-input [placeholder]="'Search dish by  name'" formControlName="name"></app-input>
+                <app-input [placeholder]="'Search dish by  name'" [ngModel]="searchInput" (ngModelChange)="onSearch($event)"  ></app-input>
             </div>
         </div>
-        <!-- <div class="button">
-            <app-button [buttonSubmit]="true" [isDisabled]="disabled" [loading]="loading">
-                Search
-            </app-button>
-        </div> -->
-    </form>
+    </div>
 </div>

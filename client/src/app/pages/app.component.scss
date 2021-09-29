@@ -3,7 +3,7 @@
 .app {
   display: grid;
   min-height: 100vh;
-  grid-template-rows: 0.5fr 10.5fr 1fr;
+  grid-template-rows: 80px 10.5fr 100px;
   grid-template-areas:
     "header header"
     "content content"

@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { DishesService } from 'src/app/service/dishes.service';
+import { Component,Input, OnInit } from '@angular/core';
 import { CategoryService } from 'src/app/service/category.service';
 import { scrollTop } from 'src/app/helpers/helpers';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 
 @Component({
@@ -18,9 +18,24 @@ export class MenuComponent implements OnInit {
   role!: string
 
   constructor(
+    private categoryService: CategoryService,
     private router: Router,
-    public categoryService: CategoryService
-  ) {}
+    private route: ActivatedRoute,
+  ) { }
+  
+
+  setParams(param: string, value:string){
+     this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        [param]: value
+      },
+      // queryParamsHandling: 'merge',
+      // skipLocationChange: true
+    });
+   }
+
+  
 
   ngOnInit() {
     this.role = this.router.url.split('/')[1]
@@ -28,9 +43,17 @@ export class MenuComponent implements OnInit {
     this.categoryService.getCategories().toPromise() 
   }
 
-  handlerClick() {
+  handlerClick(param: string, value: string) {
+    this.setParams(param,value)
     this.categoryService.clearCategory()
     scrollTop()
+//     this.router.navigate(["admin/menu"], {
+//   queryParams: {
+//     'categoryId': null,
+//     'youCanRemoveMultiple': null,
+//   },
+//   queryParamsHandling: 'merge'
+// })
   }
   
 

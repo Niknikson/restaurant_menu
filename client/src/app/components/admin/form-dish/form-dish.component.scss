@@ -1,12 +1,5 @@
 @import "../../../styles/colors.scss";
 
-// .form{
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     flex-direction: column;
-// }
-
 .dish__card {
     display: flex;
     flex-direction: row;
@@ -51,10 +44,9 @@
             .tag {
                 width: 80%;
                 display: flex;
-                //align-items: center;
                 justify-content: space-between;
                 .select {
-                    border-bottom: 1px solid$grey;
+                    border-bottom: 1px solid $grey;
                     text-transform: capitalize;
                     max-height: 21px;
                 }
@@ -137,9 +129,8 @@
         outline: 0;
         box-sizing: border-box;
         transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-            box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
         font-weight: 500;
-        //line-height: 1.75;
         border-radius: 4px;
         letter-spacing: 0.02857em;
         letter-spacing: 0.03857em;
@@ -166,13 +157,7 @@
     margin-top: 20px;
 }
 
-select {
-    border: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    -ms-appearance: none;
-}
+
 
 .errors__dish {
     margin-left: auto;

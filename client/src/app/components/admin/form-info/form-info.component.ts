@@ -53,26 +53,28 @@ export class FormInfoComponent implements OnInit {
     if (this.form.invalid) {
       return
     }
-    
     this.toggleLoadingBtn(true)
+    this.updateInfo()
+  }
 
+  updateInfo(): void {
     this.infoService.patchInfo({ ...this.form.value, id: this.id })
       .subscribe((res) => {res.msg  === RESPONSE_MSG.UPDATED &&
         this.infoService.showModal()
     }).add(() => this.falseLoadingSubmitted());
   }
 
-  cancel(event: any) {
+  cancel(event: any): void {
     event.preventDefault();
     this.infoService.showModal()
   }
 
-  falseLoadingSubmitted() {
+  falseLoadingSubmitted(): void {
     this.toggleLoadingBtn(false)
     this.submitted = false
   }
 
-  toggleLoadingBtn(value: boolean) {
+  toggleLoadingBtn(value: boolean): void {
   this.loading = value;
   this.disabled = value ;
   }

@@ -1,9 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
 @import './app/styles/colors.scss';
+
 *{
     margin: 0;
     padding: 0;
 }
+
 textarea {
     border: none;
     overflow: auto;
@@ -28,9 +29,14 @@ input[type="file"] {
 
 .errors{
     display: flex;
-    //align-items: center;
-    //justify-content: center;
     flex-direction: column;
     color: $secondary;
 }
 
+select {
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -ms-appearance: none;
+}

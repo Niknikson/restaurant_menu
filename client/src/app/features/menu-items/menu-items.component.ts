@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { scrollTop } from 'src/app/helpers/helpers';
 import { Category } from '../../constants/interfaces/category';
 
@@ -16,13 +16,27 @@ export class MenuItemsComponent implements OnInit {
   
   constructor(
     private router: Router,
-  ) {}
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
     this.role = this.router.url.split('/')[1]
   }
 
+   setParams( id: string){
+     this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        categoryId : id
+      },
+      // queryParamsHandling: 'merge',
+      // skipLocationChange: true
+    });
+   }
+
+
   routMenuClick(id: string) {
+    this.setParams(id)
     scrollTop()
   }
 }

@@ -7,18 +7,16 @@
   margin: 3px;
   font-size: small;
   padding: 3px;
-  
- 
 
   &:hover {
     text-decoration: none;
-    color: $main-blue-color;
+    color: $primary-hover;
     cursor: pointer;
   }
 
   &:focus {
     text-decoration: none;
-    color: $main-blue-color;
+    color: $primary-hover;
   }
 }
 

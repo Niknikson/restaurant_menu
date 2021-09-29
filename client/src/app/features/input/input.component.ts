@@ -43,8 +43,7 @@ writeValue(obj: any): void {
     this.onTouched = fn;
   }
 
-  setDisabledState?(isDisabled: boolean): void {
-  }
+  
 
   onChange: any = () => { };
 

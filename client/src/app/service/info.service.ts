@@ -1,9 +1,9 @@
 import { BehaviorSubject, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { Info } from '../constants/interfaces/dishes';
-import { Injectable } from '@angular/core';
 import {Api} from '../constants/api'
 import { map } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Info } from '../constants/interfaces/dishes';
 import { RESPONSE_MSG } from '../constants/responseMsg';
 import { ResMsg } from '../constants/interfaces/response';
 
@@ -35,7 +35,7 @@ export class InfoService {
 
   patchInfo(data: Info): Observable<ResMsg> {
     return this.http.patch<ResMsg>(Api.info, data).pipe(map((res) => {
-      res.msg  === RESPONSE_MSG.DELETED && this.infoSource.next(data)
+      res.msg  === RESPONSE_MSG.UPDATED && this.infoSource.next(data)
       return res
     }))
   }

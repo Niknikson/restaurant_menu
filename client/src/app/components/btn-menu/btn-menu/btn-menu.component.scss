@@ -8,7 +8,6 @@
   width: 100%;
   height: 100%;
   overflow: auto;
-  //background-color: rgba(0, 0, 0, 0.5);
   transform: translate(-160%);
   transition: all 0.7s;
 
@@ -19,7 +18,7 @@
 
   .modal-content {
     box-sizing: border-box;
-    padding-top: 20px; 
+    padding-top: 20px;
     width: 25%;
     height: 100%;
     max-width: 200px;
@@ -27,9 +26,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-   -webkit-box-shadow: 4px 0px 8px 0px rgba(34, 60, 80, 0.2);
--moz-box-shadow: 4px 0px 8px 0px rgba(34, 60, 80, 0.2);
-box-shadow: 4px 0px 8px 0px rgba(34, 60, 80, 0.2);
+    -webkit-box-shadow: 4px 0px 8px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 0px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 0px 8px 0px rgba(34, 60, 80, 0.2);
   }
 }
 

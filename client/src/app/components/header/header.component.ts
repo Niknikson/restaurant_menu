@@ -21,7 +21,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.infoService.info.subscribe(data => this.info = data)
     this.infoService.fetchInfo().subscribe(res => { })
-    //console.log(RESPONSE_MSG.CREATED)
   }
 
   handlerClickBtn() {

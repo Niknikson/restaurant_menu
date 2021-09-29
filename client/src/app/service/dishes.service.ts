@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
-import { Dish, DishPost } from '../constants/interfaces/dishes';
+import { Injectable} from '@angular/core';
+import { Dish } from '../constants/interfaces/dishes';
 import {Api} from '../constants/api'
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { RESPONSE_MSG } from '../constants/responseMsg';
+import { ResMsg } from './../constants/interfaces/response';
 
 @Injectable({
   providedIn: 'root',
@@ -32,6 +33,14 @@ export class DishesService{
   saveId(id: string) {
     this.id = id
   }
+  getDishesWithParams(params: any): Observable<Dish[]> {
+    return this.http.get<any>(`${Api.dish}`, { params }).pipe(
+      map((data: Dish[]) => {
+        this.dishesSource.next(data)
+        return data;
+      })
+    );
+  }
 
   getDishesByCategory(): Observable<Dish[]> {
     return this.http.get<Dish[]>(`${Api.dish}${this.id}`).pipe(
@@ -42,20 +51,16 @@ export class DishesService{
     );
   }
 
-  postDish(data: FormData,): Observable<any> {
-    return this.http.post<any>(Api.dish, data)
+  postDish(data: FormData,): Observable<ResMsg> {
+    return this.http.post<ResMsg>(Api.dish, data)
   }
 
-  patchDish(data: Dish, id: string): Observable<any> {
-    // const formData = new FormData()
-    // formData.append('file', file)
-    // formData.append('data', JSON.stringify(data))
-    return this.http.patch<any>(`${Api.dish}${id}`, data)
+  patchDish(data: Dish, id: string): Observable<ResMsg> {
+    return this.http.patch<ResMsg>(`${Api.dish}${id}`, data)
   }
 
-
-  deleteDish(id: string ): Observable<any> {
-    return this.http.delete<any>(`${Api.dish}${id}`).pipe(map((res)=>{
+  deleteDish(id: string ): Observable<ResMsg> {
+    return this.http.delete<ResMsg>(`${Api.dish}${id}`).pipe(map((res)=>{
       if (res.msg == RESPONSE_MSG.DELETED) {
         let newData = this.dishesSource.value.filter(el=> el.id !== id)
         this.dishesSource.next(newData)
@@ -63,7 +68,6 @@ export class DishesService{
       return res
     }))
   }
-  
 
 }
 

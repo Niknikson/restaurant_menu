@@ -16,15 +16,6 @@
     flex-wrap: wrap;
     flex-direction: column;
   }
-  .nav__items {
-    margin-top: 15px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
 }
 
 .nav__category {
@@ -36,11 +27,11 @@
   padding: 3px;
   &:hover {
     text-decoration: none;
-    color: $main-blue-color;
+    color: $primary-hover;
     cursor: pointer;
   }
   &:focus {
     text-decoration: none;
-    color: $main-blue-color;
+    color: $primary-hover;
   }
 }

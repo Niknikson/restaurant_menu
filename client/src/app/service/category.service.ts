@@ -1,9 +1,9 @@
 import { Category, NewCategory, RespCategory} from '../constants/interfaces/category';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {Api} from '../constants/api'
+import { BehaviorSubject, Observable } from 'rxjs';
 import { RESPONSE_MSG } from '../constants/responseMsg';
 import { ResMsg } from '../constants/interfaces/response';
 

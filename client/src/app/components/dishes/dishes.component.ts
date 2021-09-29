@@ -25,16 +25,23 @@ export class DishesComponent implements OnInit {
   ngOnInit(): void {
     this.role = this.router.url.split('/')[1]
     this.dishesService.dishes.subscribe(dishes => this.dishes = dishes)
+    this.route.queryParams
+      .subscribe(params => {
+        this.dishesService.getDishesWithParams(params).subscribe(res => console.log(res))
+        if (params.categoryId) {
+           this.categoryService.getCategory(params.categoryId).toPromise()
+        }
+      }  
+    );
+    // this.route.params.subscribe(params => {
+    //  console.log(params)
+    // this.isLoading = true
+    // this.dishesService.saveId(params.id)
+    // this.dishesService.getDishesByCategory().subscribe(res => {
+    // this.isLoading = false
+    // })
+    // })
 
-    this.route.params.subscribe(params => {
-    this.isLoading = true
-    this.dishesService.saveId(params.id)
-    this.dishesService.getDishesByCategory().subscribe(res => {
-    this.isLoading = false
-    })
-     if( !(params.id == 'top_dishes') && !(params.id == 'dishes_without_category')) 
-       this.categoryService.getCategory(params.id).toPromise()
-    })
   }
    
   }
