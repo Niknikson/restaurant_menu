@@ -71,11 +71,11 @@ export class FormDishComponent implements OnInit {
     formData.append('file', this.file)
     formData.append('data', JSON.stringify(this.form.value))
 
-    // this.dishesService.postDish(formData).subscribe(res => {
-    //   res.msg === "Successfully created." && this.dishesService.showModal()
-    // }, (err) => {
-    //    err.error.message === "Validation error" && this.setErrorMsgUniqueName()
-    // }).add(() => this.toggleLoadingBtn(false));
+    this.dishesService.postDish(formData).subscribe(res => {
+      res.msg === "Successfully created." && this.dishesService.showModal()
+    }, (err) => {
+       err.error.message === "Validation error" && this.setErrorMsgUniqueName()
+    }).add(() => this.toggleLoadingBtn(false));
     
   }
 

@@ -1,13 +1,14 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Info } from '../constants/interface';
-import {Api} from '../constants/api'
 import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Info } from '../constants/interface';
+import { Injectable } from '@angular/core';
+import {Api} from '../constants/api'
 import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
+  
 export class InfoService {
 
   private modalSource = new BehaviorSubject<boolean>(false)
@@ -32,11 +33,7 @@ export class InfoService {
 
   patchInfo(data: Info): Observable<any> {
     return this.http.patch<any>(Api.info, data).pipe(map((res) => {
-      if ( res.msg  == 'Successfully updated.') {
-        this.infoSource.next(data)
-      } else {
-       console.log(res.msg)
-      }
+      res.msg  == 'Successfully updated.' && this.infoSource.next(data)
       return res
     }))
   }
