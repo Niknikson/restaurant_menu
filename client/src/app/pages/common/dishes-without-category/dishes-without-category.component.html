@@ -1,6 +1,7 @@
 <div class="loading" *ngIf="isLoading">
     <h3>Loading...</h3>
 </div>
+<div>dishes_without_category</div>
 <div *ngIf="!isLoading">
         <app-dish-card *ngFor="let dish of dishes" [dish]="dish"></app-dish-card>
 </div>

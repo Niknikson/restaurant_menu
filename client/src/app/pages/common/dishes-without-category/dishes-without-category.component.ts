@@ -15,10 +15,10 @@ export class DishesWithoutCategoryComponent implements OnInit {
   constructor( private dishesService: DishesService,) { }
 
   ngOnInit(): void {
-    this.dishesService.dishes.subscribe(dishes => this.dishes = dishes)
-    this.dishesService.getDishesWithoutCategory().subscribe(res => {
-      this.isLoading = false
-    })
+    // this.dishesService.dishes.subscribe(dishes => this.dishes = dishes)
+    // this.dishesService.getDishesWithoutCategory().subscribe(res => {
+    //   this.isLoading = false
+    // })
   }
 
 }

@@ -10,6 +10,8 @@ import { map } from 'rxjs/operators';
 })
 export class DishesService{
 
+  private id!: string
+
   private modalSource = new BehaviorSubject<boolean>(false)
   activeModal = this.modalSource.asObservable()
 
@@ -26,9 +28,13 @@ export class DishesService{
     return this.http.get<Dish[]>(`${Api.dish}`)
   }
 
+  saveId(id: string) {
+    console.log(id)
+    this.id = id
+  }
 
-  getDishesByCategory(id: string = ''): Observable<Dish[]> {
-    return this.http.get<Dish[]>(`${Api.dish}${id}`).pipe(
+  getDishesByCategory(): Observable<Dish[]> {
+    return this.http.get<Dish[]>(`${Api.dish}${this.id}`).pipe(
       map((data: Dish[]) => {
         this.dishesSource.next(data)
         return data;
@@ -36,14 +42,14 @@ export class DishesService{
     );
   }
 
-  getDishesWithoutCategory(): Observable<Dish[]> {
-    return this.http.get<Dish[]>(`${Api.dishWithoutCategory}`).pipe(
-      map((data: Dish[]) => {
-        this.dishesSource.next(data)
-        return data;
-      })
-    );
-  }
+  // getDishesWithoutCategory(): Observable<Dish[]> {
+  //   return this.http.get<Dish[]>(`${Api.dishWithoutCategory}`).pipe(
+  //     map((data: Dish[]) => {
+  //       this.dishesSource.next(data)
+  //       return data;
+  //     })
+  //   );
+  // }
 
   postDish(data: FormData,): Observable<any> {
     return this.http.post<any>(Api.dish, data).pipe(map((res) => {
@@ -59,7 +65,6 @@ export class DishesService{
     // formData.append('file', file)
     // formData.append('data', JSON.stringify(data))
     return this.http.patch<any>(`${Api.dish}${id}`, data).pipe(map((res) => {
-      console.log(res)
       if (res.msg == "Successfully updated.") {
         const newData = this.dishesSource.value.map( dish => {
           if (dish.id === id) {

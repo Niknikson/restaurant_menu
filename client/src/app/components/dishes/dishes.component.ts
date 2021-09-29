@@ -23,15 +23,19 @@ export class DishesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    //console.log(this.router.url)
+    console.log(this.router.url)
+
     this.role = this.router.url.split('/')[1]
     this.dishesService.dishes.subscribe(dishes => this.dishes = dishes)
+
     this.route.params.subscribe(params => {
-      this.isLoading = true
-    this.dishesService.getDishesByCategory(params.id).subscribe(res => {
-      this.isLoading = false
+    this.isLoading = true
+    this.dishesService.saveId(params.id)
+    this.dishesService.getDishesByCategory().subscribe(res => {
+    this.isLoading = false
     })
-    this.categoryService.getCategory(params.id).toPromise()
+     if( !(params.id == 'top_dishes') && !(params.id == 'dishes_without_category')) 
+       this.categoryService.getCategory(params.id).toPromise()
     })
   }
    

@@ -83,7 +83,7 @@ export class DishCardComponent implements OnInit {
      this.dishesService.patchDish(this.form.value, this.dish.id).subscribe(res => {
       if (res.msg == "Successfully updated.") {
         this.updateDishForm = !this.updateDishForm
-        this.router.navigate([this.router.url]);
+        this.dishesService.getDishesByCategory().toPromise()
       }
     })
   }
@@ -101,5 +101,6 @@ export class DishCardComponent implements OnInit {
   this.loading = value;
   this.disabled = value ;
   }
+
 
 }
