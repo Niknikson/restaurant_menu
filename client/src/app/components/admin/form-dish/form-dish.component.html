@@ -51,6 +51,7 @@
     </div>
 
     <div class="errors__dish">
+        <div *ngIf="submitted && form.controls.name.errors?.nameExists" class="error"> Name already exists. </div>
         <div *ngIf="submitted && form.controls.name.errors?.required" class="error"> Name is required. </div>
         <div *ngIf="submitted && form.controls.categoryId.errors?.required" class="error"> Category is required. </div>
         <div *ngIf="submitted && form.controls.description.errors?.required" class="error"> Description is required. </div>

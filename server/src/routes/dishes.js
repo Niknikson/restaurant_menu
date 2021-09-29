@@ -10,7 +10,8 @@ const {
 
 const router = new Router();
 
-router.get("/", dishController.getDishes);
+router.get("/", dishController.getAllDishes);
+router.get("/top", dishController.getTopDishes);
 router.delete("/:id", dishController.deleteDish);
 router.get("/:id", dishController.getDishesByCategory);
 router.get("/without/category", dishController.getDishesWithoutCategory);

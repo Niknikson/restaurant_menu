@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Dish, DishPost } from '../constants/interface';
 import {Api} from '../constants/api'
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
-export class DishesService {
+export class DishesService{
 
   private modalSource = new BehaviorSubject<boolean>(false)
   activeModal = this.modalSource.asObservable()
@@ -16,14 +16,18 @@ export class DishesService {
   private dishesSource = new BehaviorSubject<Dish[]>([])
   dishes = this.dishesSource.asObservable()
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   showModal() {
     this.modalSource.next(!this.modalSource.value) 
   }
 
+  getAllDishes(): Observable<Dish[]> {
+    return this.http.get<Dish[]>(`${Api.dish}`)
+  }
+
+
   getDishesByCategory(id: string = ''): Observable<Dish[]> {
-     console.log(id)
     return this.http.get<Dish[]>(`${Api.dish}${id}`).pipe(
       map((data: Dish[]) => {
         this.dishesSource.next(data)

@@ -5,7 +5,17 @@ const STATUS_CODES = require("../constants/statusCodes");
 const { RES_MESSAGES } = require("../constants/responseMessages");
 
 class DishController {
-  async getDishes(req, res, next) {
+
+  async getAllDishes(req, res, next) {
+    try {
+      let dishes = await Dish.findAll();
+      res.status(STATUS_CODES.OK).json(dishes);
+    } catch (e) {
+      next(ApiError.notFound(e.message));
+    }
+  }
+
+  async getTopDishes(req, res, next) {
     try {
       let dishes = await Dish.findAll({ where: { top: true } });
       res.status(STATUS_CODES.OK).json(dishes);

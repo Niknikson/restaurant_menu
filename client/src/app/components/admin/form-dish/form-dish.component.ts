@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Category } from 'src/app/constants/interface';
+import { exitingDishNameValidator } from 'src/app/helpers/validatorExitingDishName';
 import { CategoryService } from 'src/app/service/category.service';
 import { DishesService } from '../../../service/dishes.service';
 
@@ -23,13 +24,14 @@ export class FormDishComponent implements OnInit {
   constructor(
     private dishesService: DishesService,
     private categoryService: CategoryService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private validator: exitingDishNameValidator,
   ) {
     this.form = this.formBuilder.group({
       name: formBuilder.control('', [
         Validators.required,
         Validators.maxLength(30),
-      ]),
+      ],this.validator.validate.bind(this.validator)),
       top: formBuilder.control(false),
       available: formBuilder.control(true),
       categoryId: formBuilder.control('', [
@@ -59,11 +61,11 @@ export class FormDishComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true
-
+  
     if (this.form.invalid) {
       return
     }
-    
+
     this.toggleLoadingBtn(true)
     const formData = new FormData()
     formData.append('file', this.file)
