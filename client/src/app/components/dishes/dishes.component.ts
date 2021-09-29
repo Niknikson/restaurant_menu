@@ -33,7 +33,6 @@ export class DishesComponent implements OnInit {
     })
     this.categoryService.getCategory(params.id).toPromise()
     })
-
   }
    
   }

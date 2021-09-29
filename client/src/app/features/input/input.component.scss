@@ -1,17 +1,8 @@
 @import '../../styles/colors.scss';
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
 
 
-// @mixin upLabel {
-//   top: -8px;
-//   font-size: 0.7rem;
-//   color: $black-color;
-// }
+
 
 .container {
   display: flex;
@@ -75,10 +66,7 @@ input::-webkit-inner-spin-button {
         outline: none;
       }
 
-      // &:focus ~ .formInput__label {
-      //   @include upLabel();
-      //   color: $primary;
-      // }
+     
     }
 
     input[type='password'] {
@@ -95,9 +83,6 @@ input::-webkit-inner-spin-button {
       top: -4px;
       transition: 300ms ease all;
 
-      // &.formInput__label_up {
-      //   @include upLabel();
-      // }
     }
   }
 }

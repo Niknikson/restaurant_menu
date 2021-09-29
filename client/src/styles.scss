@@ -16,6 +16,12 @@ textarea {
     resize: none; 
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 input[type="file"] {
     display: none;
 }
@@ -27,3 +33,4 @@ input[type="file"] {
     flex-direction: column;
     color: $secondary;
 }
+

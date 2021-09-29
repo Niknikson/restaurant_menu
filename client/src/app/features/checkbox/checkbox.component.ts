@@ -1,7 +1,6 @@
 import { Component, OnInit, forwardRef, Input } from "@angular/core";
 import {
   ControlValueAccessor,
-  FormControl,
   NG_VALUE_ACCESSOR
 } from "@angular/forms";
 
@@ -21,6 +20,7 @@ import {
 export class CheckboxComponent implements ControlValueAccessor, OnInit {
 
   @Input() label: string = ''
+  
   onChange: any = () => {};
   onTouch: any = () => {};
 

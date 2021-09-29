@@ -17,15 +17,15 @@ export class AddButtonGroupComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  showModalInfo(event: any): void {
+  showModalInfo(): void {
    this.infoService.showModal()
   }
 
-  showModalCategory(event: any): void {
+  showModalCategory(): void {
     this.categoryService.createUpdateCategory('create')
     this.categoryService.showModal()
   }
-  showModalDish(event: any): void {
+  showModalDish(): void {
     this.dishesService.showModal();
   }
 

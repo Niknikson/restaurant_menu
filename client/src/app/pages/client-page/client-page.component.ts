@@ -7,12 +7,9 @@ import { DishesService } from 'src/app/service/dishes.service';
   templateUrl: './client-page.component.html',
   styleUrls: ['./client-page.component.scss'],
 })
-export class ClientPageComponent implements OnInit {
+export class ClientPageComponent {
 
-  constructor() {}
-
-  ngOnInit(): void {
-  }
+  constructor() { }
   
 }
 
