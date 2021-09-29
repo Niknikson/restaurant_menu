@@ -23,8 +23,6 @@ export class DishesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.router.url)
-
     this.role = this.router.url.split('/')[1]
     this.dishesService.dishes.subscribe(dishes => this.dishes = dishes)
 

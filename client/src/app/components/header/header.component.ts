@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Info } from 'src/app/constants/interface';
+import { RESPONSE_MSG } from 'src/app/constants/responseMsg';
 import { InfoService } from 'src/app/service/info.service';
 import { HeaderService } from '../../service/nav.service';
 
@@ -19,7 +20,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.infoService.info.subscribe(data => this.info = data)
-    this.infoService.fetchInfo().subscribe(res => {})
+    this.infoService.fetchInfo().subscribe(res => { })
+    //console.log(RESPONSE_MSG.CREATED)
   }
 
   handlerClickBtn() {

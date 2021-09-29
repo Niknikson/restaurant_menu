@@ -102,5 +102,9 @@ export class DishCardComponent implements OnInit {
   this.disabled = value ;
   }
 
+  hideUpdateDishForm(event: { preventDefault: () => void; }) {
+    event.preventDefault()
+    this.updateDishForm = !this.updateDishForm
+  }
 
 }

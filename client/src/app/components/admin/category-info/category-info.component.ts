@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RESPONSE_MSG } from 'src/app/constants/responseMsg';
 import { CategoryService } from 'src/app/service/category.service';
 import { Category } from '../../../constants/interface';
 
@@ -33,7 +34,7 @@ export class CategoryInfoComponent implements OnInit {
   deleteCategory() {
     this.toggleLoadingBtn(true)
     this.categoryService.deleteCategory(this.category.id).subscribe(res => {
-      if (res.msg == 'Successfully deleted.') {
+      if (res.msg === RESPONSE_MSG.DELETED) {
         this.toggleModalDelete()
         this.router.navigate(['/admin/']);
       }

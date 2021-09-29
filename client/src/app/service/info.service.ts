@@ -4,6 +4,7 @@ import { Info } from '../constants/interface';
 import { Injectable } from '@angular/core';
 import {Api} from '../constants/api'
 import { map } from 'rxjs/operators';
+import { RESPONSE_MSG } from '../constants/responseMsg';
 
 @Injectable({
   providedIn: 'root',
@@ -33,7 +34,7 @@ export class InfoService {
 
   patchInfo(data: Info): Observable<any> {
     return this.http.patch<any>(Api.info, data).pipe(map((res) => {
-      res.msg  == 'Successfully updated.' && this.infoSource.next(data)
+      res.msg  === RESPONSE_MSG.DELETED && this.infoSource.next(data)
       return res
     }))
   }

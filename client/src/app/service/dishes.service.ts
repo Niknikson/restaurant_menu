@@ -4,6 +4,7 @@ import { Dish, DishPost } from '../constants/interface';
 import {Api} from '../constants/api'
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { RESPONSE_MSG } from '../constants/responseMsg';
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +30,6 @@ export class DishesService{
   }
 
   saveId(id: string) {
-    console.log(id)
     this.id = id
   }
 
@@ -42,46 +42,21 @@ export class DishesService{
     );
   }
 
-  // getDishesWithoutCategory(): Observable<Dish[]> {
-  //   return this.http.get<Dish[]>(`${Api.dishWithoutCategory}`).pipe(
-  //     map((data: Dish[]) => {
-  //       this.dishesSource.next(data)
-  //       return data;
-  //     })
-  //   );
-  // }
-
   postDish(data: FormData,): Observable<any> {
-    return this.http.post<any>(Api.dish, data).pipe(map((res) => {
-      if (res.msg == "Successfully created.") {
-        //this.dishesSource.next([...this.dishesSource.value, {...res.data}]) 
-      }
-      return res
-    }))
+    return this.http.post<any>(Api.dish, data)
   }
 
   patchDish(data: Dish, id: string): Observable<any> {
     // const formData = new FormData()
     // formData.append('file', file)
     // formData.append('data', JSON.stringify(data))
-    return this.http.patch<any>(`${Api.dish}${id}`, data).pipe(map((res) => {
-      if (res.msg == "Successfully updated.") {
-        const newData = this.dishesSource.value.map( dish => {
-          if (dish.id === id) {
-            dish = { ...data, id }
-          }
-          return dish
-        })
-        this.dishesSource.next(newData)
-      }
-      return res
-    }))
+    return this.http.patch<any>(`${Api.dish}${id}`, data)
   }
 
 
   deleteDish(id: string ): Observable<any> {
     return this.http.delete<any>(`${Api.dish}${id}`).pipe(map((res)=>{
-      if (res.msg == "Successfully deleted.") {
+      if (res.msg == RESPONSE_MSG.DELETED) {
         let newData = this.dishesSource.value.filter(el=> el.id !== id)
         this.dishesSource.next(newData)
       }
@@ -91,3 +66,4 @@ export class DishesService{
   
 
 }
+

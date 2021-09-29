@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Category } from 'src/app/constants/interface';
+import { RESPONSE_MSG } from 'src/app/constants/responseMsg';
 import { exitingDishNameValidator } from 'src/app/helpers/validatorExitingDishName';
 import { CategoryService } from 'src/app/service/category.service';
 import { DishesService } from '../../../service/dishes.service';
@@ -72,9 +73,12 @@ export class FormDishComponent implements OnInit {
     formData.append('data', JSON.stringify(this.form.value))
 
     this.dishesService.postDish(formData).subscribe(res => {
-      res.msg === "Successfully created." && this.dishesService.showModal()
+      if (res.msg === RESPONSE_MSG.CREATED) {
+        this.dishesService.showModal()
+        this.dishesService.getDishesByCategory().toPromise
+      }
     }, (err) => {
-       err.error.message === "Validation error" && this.setErrorMsgUniqueName()
+       err.error.message === RESPONSE_MSG.VALIDATION_ERROR && this.setErrorMsgUniqueName()
     }).add(() => this.toggleLoadingBtn(false));
     
   }

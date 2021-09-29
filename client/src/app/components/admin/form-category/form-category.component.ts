@@ -2,6 +2,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/constants/interface';
 import { CategoryService } from 'src/app/service/category.service';
+import { RESPONSE_MSG } from 'src/app/constants/responseMsg';
 
 @Component({
   selector: 'app-form-category',
@@ -48,20 +49,26 @@ export class FormCategoryComponent implements OnInit {
     }
     this.toggleLoadingBtn(true)
 
-    this.indicator === 'create' && this.categoryService.postCategory(this.form.value)
-      .subscribe(res => {
-       res.msg == "Successfully created." && this.closeModalAndReset()
-    },(err)=>  {
-      err.error.message === "Validation error" && this.setErrorMsgUniqueName()
-      }).add(() => this.falseLoadingSubmitted() );
-    
-    this.indicator === 'update' && this.categoryService.patchCategory(this.form.value, this.category.id)
-      .subscribe(res => {
-        res.msg == "Successfully updated." && this.closeModalAndReset()
-      }, (err) => {
-       err.error.message === "Validation error" && this.setErrorMsgUniqueName()
-    }).add(() => this.falseLoadingSubmitted());
+    this.indicator === 'create' && this.createCategory()
+    this.indicator === 'update' && this.updateCategory()
+  }
 
+  createCategory() {
+     this.categoryService.postCategory(this.form.value)
+      .subscribe(res => {
+       res.msg == RESPONSE_MSG.CREATED && this.closeModalAndReset()
+    },(err)=>  {
+      err.error.message === RESPONSE_MSG.VALIDATION_ERROR && this.setErrorMsgUniqueName()
+      }).add(() => this.falseLoadingSubmitted() );
+  }
+
+  updateCategory() {
+    this.categoryService.patchCategory(this.form.value, this.category.id)
+      .subscribe(res => {
+        res.msg == RESPONSE_MSG.UPDATED && this.closeModalAndReset()
+      }, (err) => {
+       err.error.message === RESPONSE_MSG.VALIDATION_ERROR && this.setErrorMsgUniqueName()
+    }).add(() => this.falseLoadingSubmitted());
   }
 
   cancel(event: any) {

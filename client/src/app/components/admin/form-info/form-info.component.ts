@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { RESPONSE_MSG } from 'src/app/constants/responseMsg';
 import { InfoService } from 'src/app/service/info.service';
 
 
@@ -56,7 +57,7 @@ export class FormInfoComponent implements OnInit {
     this.toggleLoadingBtn(true)
 
     this.infoService.patchInfo({ ...this.form.value, id: this.id })
-      .subscribe((res) => {res.msg  === 'Successfully updated.' &&
+      .subscribe((res) => {res.msg  === RESPONSE_MSG.UPDATED &&
         this.infoService.showModal()
     }).add(() => this.falseLoadingSubmitted());
   }

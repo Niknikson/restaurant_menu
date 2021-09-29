@@ -4,6 +4,12 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {Api} from '../constants/api'
+import { RESPONSE_MSG } from '../constants/responseMsg';
+
+
+export interface Res {
+ msg: string,
+}
 
 
 @Injectable({
@@ -61,16 +67,14 @@ export class CategoryService {
 
   postCategory(data: CategoryPost): Observable<any> {
     return this.http.post<any>(Api.categories, data).pipe(map((res) => {
-      if (res.msg == "Successfully created.") {
-        this.categoriesSource.next([...this.categoriesSource.value, {...res.category}])
-      }
+      res.msg === RESPONSE_MSG.CREATED && this.categoriesSource.next([...this.categoriesSource.value, {...res.category}])
       return res
     }))
   }
 
   patchCategory(data: CategoryPost, id: string): Observable<any> {
     return this.http.patch<any>(`${Api.categories}${id}`, data).pipe(map((res) => {
-      if (res.msg == "Successfully updated.") {
+      if (res.msg === RESPONSE_MSG.UPDATED) {
         this.categorySource.next({ id, ...data })
         const newData = this.categoriesSource.value.map(category => {
           if (category.id == id) {
@@ -86,7 +90,7 @@ export class CategoryService {
 
   deleteCategory(id: string ): Observable<any> {
     return this.http.delete<any>(`${Api.categories}${id}`).pipe(map((res)=>{
-      if (res.msg == "Successfully deleted.") {
+      if (res.msg === RESPONSE_MSG.DELETED) {
         let newData = this.categoriesSource.value.filter(el=> el.id !== id)
         this.categoriesSource.next(newData)
         this.categorySource.next({

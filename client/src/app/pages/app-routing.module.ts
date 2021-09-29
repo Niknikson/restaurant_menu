@@ -8,15 +8,16 @@ import { DishesWithoutCategoryComponent } from './common/dishes-without-category
 const routes: Routes = [
   {
     path: 'menu', component: ClientPageComponent,
-  children: [
+    children: [
+      { path: '', redirectTo: 'top_dishes', pathMatch: 'full',},
       {path: ':id', component: DishesComponent}
     ]
   },
   {
     path: 'admin', component: AdminPageComponent,
     children: [
+      { path: '', redirectTo: 'top_dishes', pathMatch: 'full',},
       { path: ':id', component: DishesComponent },
-      { path: 'dishes/without/category', component: DishesWithoutCategoryComponent}
     ]
   },
 ];
