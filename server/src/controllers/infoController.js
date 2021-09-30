@@ -4,15 +4,12 @@ const { RES_MESSAGES } = require("../constants/responseMessages");
 const STATUS_CODES = require("../constants/statusCodes");
 
 class InfoController {
+  
   async getInfo(req, res, next) {
     try {
-
       let info = await Info.findAll();
-      
       if (info.length == 0) info =  await Info.create()
-
       res.status(STATUS_CODES.OK).json(info[0]);
-
     } catch (e) {
       next(ApiError.notFound(e.message));
     }

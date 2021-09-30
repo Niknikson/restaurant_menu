@@ -9,48 +9,13 @@ class DishController {
 
   async getAllDishes(req, res, next) {
     try {
-      let dishes
-      if (req.query.search) {
-        dishes = await Dish.findAll({ where: { name: { [Op.iLike]: '%' + req.query.search + '%' } } });
-      } else if (req.query.dish) {
-        dishes = await Dish.findAll({ where: { categoryId: null } });
-      } else {
-        dishes = await Dish.findAll({ where: { ...req.query } });
-      }
-
+      let params = getCorrectParams(req.query)
+      const dishes = await Dish.findAll({ ...params });
       res.status(STATUS_CODES.OK).json(dishes);
     } catch (e) {
       next(ApiError.notFound(e.message));
     }
   }
-
-  // async getTopDishes(req, res, next) {
-  //   try {
-  //     let dishes = await Dish.findAll({ where: { top: true } });
-  //     res.status(STATUS_CODES.OK).json(dishes);
-  //   } catch (e) {
-  //     next(ApiError.notFound(e.message));
-  //   }
-  // }
-
-  //   async getDishesWithoutCategory(req, res, next) {
-  //   try {
-  //     let dishes = await Dish.findAll({ where: { categoryId: null } });
-  //     res.status(STATUS_CODES.OK).json(dishes);
-  //   } catch (e) {
-  //     next(ApiError.notFound(e.message));
-  //   }
-  // }
-
-  // async getDishesByCategory(req, res, next) {
-  //   let { id } = req.params;
-  //   try {
-  //     let dish = await Dish.findAll({ where: { categoryId: id } });
-  //     res.status(STATUS_CODES.OK).json(dish);
-  //   } catch (e) {
-  //     next(ApiError.notFound(e.message));
-  //   }
-  // }
 
   async createDish(req, res, next) {
     const { description, categoryId, available, weight, price, name, top } = JSON.parse(req.body.data)

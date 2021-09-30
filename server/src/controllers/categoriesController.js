@@ -34,7 +34,6 @@ class CategoriesController {
       const category = await Categories.create({ name, available });
       res.status(STATUS_CODES.ACCEPTED).send({ category, msg: RES_MESSAGES.CREATE});
     } catch (e) {
-      //res.status(400).json(e.errors)
       next(ApiError.badRequest(e.message));
     }
   }
