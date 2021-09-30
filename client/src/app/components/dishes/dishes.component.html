@@ -1,4 +1,4 @@
-<div class="loading" *ngIf="isLoading">
+<!-- <div class="loading" *ngIf="isLoading">
     <h3>Loading...</h3>
 </div>
 <div *ngIf="!isLoading">
@@ -9,5 +9,21 @@
         <ng-container *ngFor="let dish of dishes">
             <app-dish-card *ngIf="dish.available" [dish]="dish"></app-dish-card>
         </ng-container>
+    </div>
+</div> -->
+
+<div class="loading" *ngIf="isLoading">
+    <h3>Loading...</h3>
+</div>
+<div *ngIf="!isLoading">
+    <div *ngIf="all">
+        <div *ngFor="let category of categories">
+            <div *ngIf="category.available"> {{category.name}} </div>
+            <app-dish-card *ngFor="let dish of dishes"   [dish]="dish" [category]="category"
+            >
+            </app-dish-card>
+        </div>
+        
+        
     </div>
 </div>

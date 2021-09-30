@@ -3,7 +3,7 @@
         <div class="img__container">
             <img class="img" *ngIf="!imageSrc"
                 src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiD4Na10pu4sky7pL1GOXNNLL8e8mXmMGfp--46ITN1BQen0YHA2isD0U4R139PVvtts4&usqp=CAU'
-                alt="альтернативный текст" />
+                />
             <img class="img" [src]="imageSrc" *ngIf="imageSrc">
         </div>
         <div class="text__container">
@@ -13,7 +13,7 @@
                 </div>
                 <div class="tag">
                     <select class="select" formControlName="categoryId">
-                        <option value="" disabled selected>Select category</option>
+                        <option value="" disabled selected>category</option>
                         <option *ngFor="let category of categories" [ngValue]="category.id">
                             {{category.name}}
                         </option>

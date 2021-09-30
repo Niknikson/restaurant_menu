@@ -14,6 +14,7 @@ import {Category} from '../../constants/interfaces/category'
 export class DishCardComponent implements OnInit {
 
   @Input() dish!: Dish;
+  @Input() category!: Category;
 
   form: FormGroup
   roleAdmin!: any

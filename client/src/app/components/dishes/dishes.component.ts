@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
+import { Category } from 'src/app/constants/interfaces/category';
 import { Dish } from 'src/app/constants/interfaces/dishes';
 import { CategoryService } from 'src/app/service/category.service';
 import { DishesService } from 'src/app/service/dishes.service';
@@ -10,6 +11,10 @@ import { DishesService } from 'src/app/service/dishes.service';
   styleUrls: ['./dishes.component.scss']
 })
 export class DishesComponent implements OnInit {
+//
+  categories!: Category[]
+  all: boolean = true
+  //
 
   isLoading: boolean = false
   dishes!: Dish[]
@@ -23,6 +28,9 @@ export class DishesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.categoryService.categories.subscribe(data => this.categories = data)
+
+
     this.role = this.router.url.split('/')[1]
     this.dishesService.dishes.subscribe(dishes => this.dishes = dishes)
     this.route.queryParams

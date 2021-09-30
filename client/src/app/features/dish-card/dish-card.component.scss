@@ -75,6 +75,8 @@
                 justify-content: space-between;
             }
             .select {
+                background-color: $withe;
+                margin-right: 15px;
                 border: none;
                 border-bottom: 1px solid$grey;
                 text-transform: capitalize;
@@ -155,9 +157,7 @@
     }
 }
 
-.question {
-    margin: 30px 0 20px 0;
-}
+
 .modal__button {
     display: flex;
     align-items: center;

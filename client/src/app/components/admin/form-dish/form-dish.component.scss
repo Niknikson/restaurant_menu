@@ -46,6 +46,8 @@
                 display: flex;
                 justify-content: space-between;
                 .select {
+                    margin-right:15px;
+                    background-color: $withe;
                     border-bottom: 1px solid $grey;
                     text-transform: capitalize;
                     max-height: 21px;
@@ -155,6 +157,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 20px;
+    padding-bottom: 30px;
 }
 
 
