@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Category } from 'src/app/constants/interfaces/category';
 import { RESPONSE_MSG } from 'src/app/constants/responseMsg';
 import { exitingDishNameValidator } from 'src/app/helpers/validatorExitingDishName';
 import { CategoryService } from 'src/app/service/category.service';
 import { DishesService } from '../../../service/dishes.service';
+import { Dish } from 'src/app/constants/interfaces/dishes';
 
 @Component({
   selector: 'app-form-dish',
@@ -12,6 +13,8 @@ import { DishesService } from '../../../service/dishes.service';
   styleUrls: ['./form-dish.component.scss'],
 })
 export class FormDishComponent implements OnInit {
+
+  @Input() dish!: Dish
 
   file: any
   imageSrc!: string
@@ -57,6 +60,7 @@ export class FormDishComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.dish)
     this.categoryService.categories.subscribe(data => this.categories = data)
   }
 
@@ -75,7 +79,7 @@ export class FormDishComponent implements OnInit {
     this.dishesService.postDish(formData).subscribe(res => {
       if (res.msg === RESPONSE_MSG.CREATED) {
         this.dishesService.showModal()
-        this.dishesService.getDishesByCategory().toPromise
+        this.dishesService.getDishesWithParams().toPromise
       }
     }, (err) => {
        err.error.message === RESPONSE_MSG.VALIDATION_ERROR && this.setErrorMsgUniqueName()

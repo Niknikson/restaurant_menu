@@ -37,7 +37,7 @@ export class FormCategoryComponent implements OnInit {
     this.categoryService.createUpdateIndicator.subscribe(indicator => {
       const {name, available } = this.category
       this.indicator = indicator
-      this.indicator == 'update' ?  this.setCategoryValueToForm(name,available) : this.resetValue()
+      this.indicator == 'update' && this.setCategoryValueToForm(name,available) //: this.resetValue()
     })
   }
 

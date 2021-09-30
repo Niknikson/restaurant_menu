@@ -33,6 +33,7 @@
 <!-- Update form -->
 
 <div *ngIf="updateDishForm">
+  <!-- <app-form-dish [dish]="dish" ></app-form-dish> -->
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="dish__card">
       <div class="img__container">
@@ -73,7 +74,6 @@
           </app-button>
         </div>
       </div>
-
     </div>
   </form>
 </div>

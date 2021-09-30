@@ -12,7 +12,7 @@ import { ResMsg } from './../constants/interfaces/response';
 })
 export class DishesService{
 
-  private id!: string
+  private currentParams!: any
 
   private modalSource = new BehaviorSubject<boolean>(false)
   activeModal = this.modalSource.asObservable()
@@ -30,20 +30,14 @@ export class DishesService{
     return this.http.get<Dish[]>(`${Api.dish}`)
   }
 
-  saveId(id: string) {
-    this.id = id
+  saveParams(params: any) {
+    console.log(params)
+    this.currentParams = params
   }
-  getDishesWithParams(params: any): Observable<Dish[]> {
+  
+  getDishesWithParams(): Observable<Dish[]> {
+    let params = this.currentParams
     return this.http.get<any>(`${Api.dish}`, { params }).pipe(
-      map((data: Dish[]) => {
-        this.dishesSource.next(data)
-        return data;
-      })
-    );
-  }
-
-  getDishesByCategory(): Observable<Dish[]> {
-    return this.http.get<Dish[]>(`${Api.dish}${this.id}`).pipe(
       map((data: Dish[]) => {
         this.dishesSource.next(data)
         return data;

@@ -27,7 +27,8 @@ export class DishesComponent implements OnInit {
     this.dishesService.dishes.subscribe(dishes => this.dishes = dishes)
     this.route.queryParams
       .subscribe(params => {
-        this.dishesService.getDishesWithParams(params).subscribe(res => console.log(res))
+        this.dishesService.saveParams(params)
+        this.dishesService.getDishesWithParams().subscribe(res => console.log(res))
         if (params.categoryId) {
            this.categoryService.getCategory(params.categoryId).toPromise()
         }

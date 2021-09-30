@@ -84,7 +84,7 @@ export class DishCardComponent implements OnInit {
      this.dishesService.patchDish(this.form.value, this.dish.id).subscribe(res => {
       if (res.msg == "Successfully updated.") {
         this.updateDishForm = !this.updateDishForm
-        this.dishesService.getDishesByCategory().toPromise()
+        this.dishesService.getDishesWithParams().toPromise()
       }
     })
   }

@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.infoService.info.subscribe(data => this.info = data)
-    this.infoService.fetchInfo().subscribe(res => { })
+    this.infoService.fetchInfo().toPromise()
   }
 
   handlerClickBtn() {

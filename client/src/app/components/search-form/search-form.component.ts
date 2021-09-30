@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DishesService } from 'src/app/service/dishes.service';
+
 
 @Component({
   selector: 'app-search-form',
@@ -14,7 +13,6 @@ export class SearchFormComponent implements OnInit {
   timeoutPromise!: ReturnType<typeof setTimeout>;
 
   constructor(
-    private dishService: DishesService,
     private router: Router,
     private route: ActivatedRoute,
   ) {}
@@ -25,7 +23,7 @@ export class SearchFormComponent implements OnInit {
  onSearch(value: string) {
   clearTimeout(this.timeoutPromise);
   this.searchInput = value;
-  this.timeoutPromise = setTimeout(()=>this.setParams(value),600);
+   if (value) this.timeoutPromise = setTimeout(()=>this.setParams(value),900);
   console.log(value)
 }
 
@@ -37,8 +35,12 @@ export class SearchFormComponent implements OnInit {
       },
       // queryParamsHandling: 'merge',
       // skipLocationChange: true
-    });
+     });
+   //this.clearSearchValue()
    }
 
+  clearSearchValue(): void {
+    this.searchInput = '';
+  }
 
 }

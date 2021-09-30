@@ -1,4 +1,4 @@
-import { Component,Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CategoryService } from 'src/app/service/category.service';
 import { scrollTop } from 'src/app/helpers/helpers';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -22,10 +22,10 @@ export class MenuComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
   ) { }
-  
 
-  setParams(param: string, value:string){
-     this.router.navigate([], {
+
+  setParams(param: string, value: string) {
+    this.router.navigate([], {
       relativeTo: this.route,
       queryParams: {
         [param]: value
@@ -33,28 +33,34 @@ export class MenuComponent implements OnInit {
       // queryParamsHandling: 'merge',
       // skipLocationChange: true
     });
-   }
+  }
 
-  
+
 
   ngOnInit() {
     this.role = this.router.url.split('/')[1]
-    this.categoryService.categories.subscribe(data=> this.data = data) 
-    this.categoryService.getCategories().toPromise() 
+    this.categoryService.categories.subscribe(data => this.data = data)
+    this.categoryService.getCategories().toPromise()
   }
 
   handlerClick(param: string, value: string) {
-    this.setParams(param,value)
+    this.setParams(param, value)
     this.categoryService.clearCategory()
     scrollTop()
-//     this.router.navigate(["admin/menu"], {
-//   queryParams: {
-//     'categoryId': null,
-//     'youCanRemoveMultiple': null,
-//   },
-//   queryParamsHandling: 'merge'
-// })
+
   }
-  
+
+  getAllDishes() {
+    let path = this.role === 'admin' ? "admin/menu" : "/menu"
+    this.router.navigate([path], {
+      queryParams: {
+        'categoryId': null,
+        'top': null,
+        'dish': null,
+      },
+      queryParamsHandling: 'merge'
+    })
+  }
+
 
 }
