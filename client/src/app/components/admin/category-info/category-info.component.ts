@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RESPONSE_MSG } from 'src/app/constants/responseMsg';
 import { CategoryService } from 'src/app/service/category.service';
+import { DishesService } from 'src/app/service/dishes.service';
 import { Category } from '../../../constants/interfaces/category';
 
 @Component({
@@ -18,6 +19,7 @@ export class CategoryInfoComponent implements OnInit {
   activeDeleteModal: boolean = false
 
   constructor(
+    private dishesService: DishesService,
     private categoryService: CategoryService,
     private route: ActivatedRoute,
     private router: Router,
@@ -44,7 +46,8 @@ export class CategoryInfoComponent implements OnInit {
     this.categoryService.deleteCategory(this.category.id).subscribe(res => {
       if (res.msg === RESPONSE_MSG.DELETED) {
         this.toggleDeleteModal()
-        this.router.navigate(['/admin/']);
+        this.router.navigate(['/admin/menu/']);
+        this.dishesService.toggleAllDish(true)
       }
     }).add(() => this.toggleLoadingBtn(false));
   }

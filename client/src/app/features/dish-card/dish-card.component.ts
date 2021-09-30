@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Dish } from 'src/app/constants/interfaces/dishes';
+import { RESPONSE_MSG } from 'src/app/constants/responseMsg';
 import { CategoryService } from 'src/app/service/category.service';
 import { DishesService } from 'src/app/service/dishes.service';
 import {Category} from '../../constants/interfaces/category'
@@ -77,29 +78,26 @@ export class DishCardComponent implements OnInit {
     })
   }
 
-   toggleModalDelete() {
+  toggleModalDelete(): void {
     this.activeDeleteModal = !this.activeDeleteModal
   }
 
-  onSubmit() {
+  onSubmit(): void {
      this.dishesService.patchDish(this.form.value, this.dish.id).subscribe(res => {
-      if (res.msg == "Successfully updated.") {
+      if (res.msg === RESPONSE_MSG.UPDATED) {
         this.updateDishForm = !this.updateDishForm
         this.dishesService.getDishesWithParams().toPromise()
       }
     })
   }
 
-  deleteDish(id: string) {
+  deleteDish(id: string): void {
     this.dishesService.deleteDish(id).subscribe(res => {
-      if (res.msg == 'Successfully deleted.') {
-        this.toggleModalDelete()
-        this.router.navigate([this.router.url]);
-      }
+      res.msg === RESPONSE_MSG.DELETED && this.toggleModalDelete()
     })
   }
 
-  toggleLoadingBtn(value: boolean) {
+  toggleLoadingBtn(value: boolean): void {
   this.loading = value;
   this.disabled = value ;
   }

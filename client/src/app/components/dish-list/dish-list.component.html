@@ -1,0 +1,6 @@
+<div *ngIf="category && dish.categoryId == category.id">
+    <app-dish-card [dish]=dish ></app-dish-card>
+</div>
+<div *ngIf="!category">
+    <app-dish-card [dish]=dish></app-dish-card>
+</div>

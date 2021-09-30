@@ -35,7 +35,6 @@ export class DishesService{
 
   toggleAllDish(value: boolean) {
     this.allDishSource.next(value)
-    console.log(this.allDishSource.value)
   }
 
   getAllDishes(): Observable<Dish[]> {

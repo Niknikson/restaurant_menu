@@ -26,6 +26,7 @@ import { AddButtonGroupComponent } from '../components/admin/add-button-group/ad
 import { DishesComponent } from '../components/dishes/dishes.component';
 import { SearchFormComponent } from '../components/search-form/search-form.component';
 import { AllModalComponent } from '../components/admin/all-modal/all-modal.component';
+import { DishListComponent } from '../components/dish-list/dish-list.component';
 
 
 
@@ -52,6 +53,7 @@ import { AllModalComponent } from '../components/admin/all-modal/all-modal.compo
     DishesComponent,
     SearchFormComponent,
     AllModalComponent,
+    DishListComponent,
   ],
   imports: [
     BrowserModule,

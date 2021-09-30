@@ -31,10 +31,7 @@ export class MenuComponent implements OnInit {
       relativeTo: this.route,
       queryParams: {
         [param]: value
-      },
-      // queryParamsHandling: 'merge',
-      // skipLocationChange: true
-    });
+      },});
   }
 
 

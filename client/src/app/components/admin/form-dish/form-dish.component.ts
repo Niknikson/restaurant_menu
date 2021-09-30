@@ -63,7 +63,7 @@ export class FormDishComponent implements OnInit {
     this.categoryService.categories.subscribe(data => this.categories = data)
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.submitted = true
     if (this.form.invalid) return
   
@@ -71,19 +71,20 @@ export class FormDishComponent implements OnInit {
     this.postDish()
   }
 
-  postDish() {
+  postDish(): void {
     let formData = this.formData()
     this.dishesService.postDish(formData).subscribe(res => {
       if (res.msg === RESPONSE_MSG.CREATED) {
-        this.dishesService.showModal()
-        this.dishesService.getDishesWithParams().toPromise
+        console.log('post dish')
+        this.dishesService.showModal()  
+        this.dishesService.getDishesWithParams().toPromise()
       }
     }, (err) => {
       err.error.message === RESPONSE_MSG.VALIDATION_ERROR && this.setErrorMsgUniqueName()
     }).add(() => this.toggleLoadingBtn(false));
   }
 
-  onFileChange(event: any) {
+  onFileChange(event: any): void {
     event.preventDefault();
     const reader = new FileReader();
     if(event.target.files && event.target.files.length) {
@@ -106,19 +107,25 @@ export class FormDishComponent implements OnInit {
     return formData
   }
 
-  cancel(event: any) {
+  cancel(event: { preventDefault: () => void; }) {
     event.preventDefault();
     this.dishesService.showModal();
-    this.submitted = false
+    this.clearForm()
   }
 
-  toggleLoadingBtn(value: boolean) {
+  toggleLoadingBtn(value: boolean): void {
   this.loading = value;
   this.disabled = value ;
   }
 
-  setErrorMsgUniqueName(){
+  setErrorMsgUniqueName(): void{
    this.errorMsg = 'Name already exists'
+  }
+
+  clearForm(): void {
+    this.submitted = false
+    this.form.reset()
+    this.imageSrc = ''
   }
   
 }

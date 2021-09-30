@@ -23,15 +23,33 @@
   text-decoration: none;
   color: $black;
   margin: 3px;
-  font-size: small;
-  padding: 3px;
+  font-size: 0.8rem;
+  padding: 7px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-family: $font-family-appel;
+  margin: 5px;
+
   &:hover {
     text-decoration: none;
     color: $primary-hover;
     cursor: pointer;
   }
+
   &:focus {
     text-decoration: none;
     color: $primary-hover;
+    margin: 3px;
+    font-size: 0.8rem;
+    padding: 7px;
+    border-radius: 20px;
+    font-weight: bold;
+    border: 1px solid $primary-hover;
+    margin: 5px;
   }
+}
+
+.available {
+  color: $grey;
+  text-decoration: line-through;
 }
