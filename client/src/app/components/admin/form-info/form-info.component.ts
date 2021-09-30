@@ -41,11 +41,8 @@ export class FormInfoComponent implements OnInit {
     this.infoService.info.subscribe(data => {
       const { address, phone, wifi, id} = data
        this.id = id
-       this.form.patchValue({
-       address,
-       phone,
-       wifi
-   })})
+      this.setValueToForm(address, phone, wifi)
+    })
   }
 
   onSubmit() {
@@ -64,7 +61,7 @@ export class FormInfoComponent implements OnInit {
     }).add(() => this.falseLoadingSubmitted());
   }
 
-  cancel(event: any): void {
+  cancel(event: { preventDefault: () => void; }): void {
     event.preventDefault();
     this.infoService.showModal()
   }
@@ -77,6 +74,14 @@ export class FormInfoComponent implements OnInit {
   toggleLoadingBtn(value: boolean): void {
   this.loading = value;
   this.disabled = value ;
+  }
+
+  setValueToForm(address: string,phone: string,wifi: string) {
+    this.form.patchValue({
+      address,
+      phone,
+      wifi
+    })
   }
 
 }

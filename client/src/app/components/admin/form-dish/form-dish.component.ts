@@ -17,10 +17,10 @@ export class FormDishComponent implements OnInit {
   @Input() dish!: Dish
 
   file: any
-  imageSrc!: string
-  categories!: Category[]
   form: FormGroup
   errorMsg!: string 
+  imageSrc!: string
+  categories!: Category[]
   loading: boolean = false;
   disabled: boolean = false;
   submitted: boolean = false;  
@@ -43,7 +43,7 @@ export class FormDishComponent implements OnInit {
       ]),
       description: formBuilder.control('', [
         Validators.required,
-        Validators.maxLength(100),
+        Validators.maxLength(150),
       ]),
       price: formBuilder.control('', [
         Validators.required,
@@ -60,31 +60,27 @@ export class FormDishComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.dish)
     this.categoryService.categories.subscribe(data => this.categories = data)
   }
 
   onSubmit() {
     this.submitted = true
+    if (this.form.invalid) return
   
-    if (this.form.invalid) {
-      return
-    }
-
     this.toggleLoadingBtn(true)
-    const formData = new FormData()
-    formData.append('file', this.file)
-    formData.append('data', JSON.stringify(this.form.value))
+    this.postDish()
+  }
 
+  postDish() {
+    let formData = this.formData()
     this.dishesService.postDish(formData).subscribe(res => {
       if (res.msg === RESPONSE_MSG.CREATED) {
         this.dishesService.showModal()
         this.dishesService.getDishesWithParams().toPromise
       }
     }, (err) => {
-       err.error.message === RESPONSE_MSG.VALIDATION_ERROR && this.setErrorMsgUniqueName()
+      err.error.message === RESPONSE_MSG.VALIDATION_ERROR && this.setErrorMsgUniqueName()
     }).add(() => this.toggleLoadingBtn(false));
-    
   }
 
   onFileChange(event: any) {
@@ -103,9 +99,17 @@ export class FormDishComponent implements OnInit {
     }
   }
 
+  formData() {
+    const formData = new FormData()
+    formData.append('file', this.file)
+    formData.append('data', JSON.stringify(this.form.value))
+    return formData
+  }
+
   cancel(event: any) {
     event.preventDefault();
     this.dishesService.showModal();
+    this.submitted = false
   }
 
   toggleLoadingBtn(value: boolean) {

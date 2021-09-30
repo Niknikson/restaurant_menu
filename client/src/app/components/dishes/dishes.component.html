@@ -16,11 +16,10 @@
     <h3>Loading...</h3>
 </div>
 <div *ngIf="!isLoading">
-
     <div *ngIf="role == 'admin'">
     <div *ngIf="allDish">
         <div *ngFor="let category of categories">
-            <div>Category {{category.name}} </div>
+            <div class="title">{{category.name}} </div>
             <app-dish-card *ngFor="let dish of dishes" [dish]="dish" [category]="category">
             </app-dish-card>
         </div>
@@ -30,11 +29,11 @@
         </app-dish-card>
     </div>
     </div>
-
     <div *ngIf="role == 'menu'">
         <div *ngIf="allDish">
             <div *ngFor="let category of categories">
-                <div *ngIf="category.available">Category {{category.name}} 
+                <div *ngIf="category.available">
+                    <div class="title">Category {{category.name}} </div>
                     <ng-container *ngFor="let dish of dishes">
                         <app-dish-card *ngIf="dish.available" [dish]="dish" [category]="category"></app-dish-card>
                     </ng-container>
@@ -47,5 +46,4 @@
             </ng-container>
         </div>
     </div>
-
 </div>

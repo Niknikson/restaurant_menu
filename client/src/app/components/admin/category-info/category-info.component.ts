@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RESPONSE_MSG } from 'src/app/constants/responseMsg';
 import { CategoryService } from 'src/app/service/category.service';
 import { Category } from '../../../constants/interfaces/category';
@@ -19,11 +19,15 @@ export class CategoryInfoComponent implements OnInit {
 
   constructor(
     private categoryService: CategoryService,
+    private route: ActivatedRoute,
     private router: Router,
   ) { }
 
   ngOnInit(): void {
-    this.categoryService.category.subscribe(data =>this.category = data)  
+    this.categoryService.category.subscribe(data => this.category = data)
+    this.route.queryParams.subscribe(params => {
+    params.categoryId && this.categoryService.getCategory(params.categoryId).toPromise()
+    });
   }
 
    showUpdateCategoryModal(): void {

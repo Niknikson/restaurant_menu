@@ -52,16 +52,23 @@ export class MenuComponent implements OnInit {
     this.dishesService.toggleAllDish(false)
   }
 
-  getAllDishes() {
+  clearParams() {
     let path = this.role === 'admin' ? "admin/menu" : "/menu"
     this.router.navigate([path], {
       queryParams: {
         'categoryId': null,
         'top': null,
         'dish': null,
+        'search': null,
       },
       queryParamsHandling: 'merge'
     })
+    
+  }
+
+  getAllDishes() {
+    this.clearParams()
+    this.categoryService.clearCategory()
     this.dishesService.toggleAllDish(true)
   }
 

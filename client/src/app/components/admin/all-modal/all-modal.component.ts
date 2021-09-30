@@ -22,8 +22,8 @@ export class AllModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.categoryService.activeModal.subscribe(activeModal => this.activeCategoryModal = activeModal)
-    this.infoService.activeModal.subscribe(activeModal => this.activeInfoModal = activeModal)
     this.dishesService.activeModal.subscribe(activeModal => this.activeDishesModal = activeModal)
+    this.infoService.activeModal.subscribe(activeModal => this.activeInfoModal = activeModal)
   }
 
   closeModalDish(): void {

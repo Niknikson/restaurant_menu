@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/constants/interfaces/category';
 import { CategoryService } from 'src/app/service/category.service';
 import { RESPONSE_MSG } from 'src/app/constants/responseMsg';
+import { CREATE, UPDATE } from './../../../constants/constants';
 
 @Component({
   selector: 'app-form-category',
@@ -37,20 +38,20 @@ export class FormCategoryComponent implements OnInit {
     this.categoryService.createUpdateIndicator.subscribe(indicator => {
       const {name, available } = this.category
       this.indicator = indicator
-      this.indicator == 'update' && this.setCategoryValueToForm(name,available) //: this.resetValue()
+      this.indicator === UPDATE && this.setCategoryValueToForm(name, available)
+      this.indicator === CREATE && this.resetValue()
+      
     })
   }
 
   onSubmit() {
-    this.errorMsg = ''
+    this.setErrorMsgUniqueName('')
     this.submitted = true
-    if (this.form.invalid) {
-      return
-    }
-    this.toggleLoadingBtn(true)
+    if (this.form.invalid) return
 
-    this.indicator === 'create' && this.createCategory()
-    this.indicator === 'update' && this.updateCategory()
+    this.toggleLoadingBtn(true)
+    this.indicator === CREATE && this.createCategory()
+    this.indicator === UPDATE && this.updateCategory()
   }
 
   createCategory() {
@@ -58,7 +59,7 @@ export class FormCategoryComponent implements OnInit {
       .subscribe(res => {
        res.msg == RESPONSE_MSG.CREATED && this.closeModalAndReset()
       }, (err) => {
-      err.error.message === RESPONSE_MSG.VALIDATION_ERROR && this.setErrorMsgUniqueName()
+        err.error.message === RESPONSE_MSG.VALIDATION_ERROR && this.setErrorMsgUniqueName(RESPONSE_MSG.UNIQUE_NAME)
       }).add(() => this.falseLoadingSubmitted() );
   }
 
@@ -67,24 +68,24 @@ export class FormCategoryComponent implements OnInit {
       .subscribe(res => {
         res.msg == RESPONSE_MSG.UPDATED && this.closeModalAndReset()
       }, (err) => {
-       err.error.message === RESPONSE_MSG.VALIDATION_ERROR && this.setErrorMsgUniqueName()
+        err.error.message === RESPONSE_MSG.VALIDATION_ERROR && this.setErrorMsgUniqueName(RESPONSE_MSG.UNIQUE_NAME)
     }).add(() => this.falseLoadingSubmitted());
   }
 
   cancel(event: any) {
     event.preventDefault()
-    this.errorMsg = ''
     this.resetValue()
-    this.submitted = false
     this.categoryService.showModal()
   }
 
   resetValue() {
-    this.form.patchValue({name: '', available: true});
+    this.form.patchValue({ name: '', available: true });
+    this.setErrorMsgUniqueName('')
+    this.submitted = false
   }
 
-  setErrorMsgUniqueName(){
-   this.errorMsg = 'Name already exists'
+  setErrorMsgUniqueName(errorMsg: string){
+    this.errorMsg = errorMsg
   }
 
   falseLoadingSubmitted() {

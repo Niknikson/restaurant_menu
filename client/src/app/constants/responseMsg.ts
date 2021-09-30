@@ -3,4 +3,5 @@ export const RESPONSE_MSG = {
   UPDATED: "Successfully updated.",
   DELETED: "Successfully deleted.",
   VALIDATION_ERROR: "Validation error",
+  UNIQUE_NAME: 'Name already exists',
 };

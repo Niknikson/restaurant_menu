@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DishesService } from 'src/app/service/dishes.service';
 
 
 @Component({
@@ -15,32 +16,26 @@ export class SearchFormComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-  ) {}
+    private dishesService: DishesService,
+  ) { }
 
   ngOnInit(): void {
-    }
+  }
 
- onSearch(value: string) {
-  clearTimeout(this.timeoutPromise);
-  this.searchInput = value;
-   if (value) this.timeoutPromise = setTimeout(()=>this.setParams(value),900);
-  console.log(value)
-}
+  onSearch(value: string) {
+    clearTimeout(this.timeoutPromise);
+    this.searchInput = value;
+    if (value) this.timeoutPromise = setTimeout(() => this.setParams(value), 900);
+  }
 
- setParams(value:string){
-     this.router.navigate([], {
+  setParams(value: string) {
+    this.router.navigate([], {
       relativeTo: this.route,
       queryParams: {
-        search : value
-      },
-      // queryParamsHandling: 'merge',
-      // skipLocationChange: true
-     });
-   //this.clearSearchValue()
-   }
-
-  clearSearchValue(): void {
-    this.searchInput = '';
+        search: value
+      }
+    });
+    this.dishesService.toggleAllDish(false)
   }
 
 }

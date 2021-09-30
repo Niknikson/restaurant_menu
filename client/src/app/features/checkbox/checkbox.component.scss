@@ -148,19 +148,8 @@ ul {
   }
 }
 
-html {
-  box-sizing: border-box;
-}
 
-* {
-  box-sizing: inherit;
-  &:before,
-  &:after {
-    box-sizing: inherit;
-  }
-}
 
-// Center & dribbble
 body {
   min-height: 100vh;
   font-family: 'Inter', Arial, sans-serif;

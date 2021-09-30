@@ -25,60 +25,60 @@
 }
 
 .primary {
-  color: $withe-color;
-  background: $main-color;
-  border: 1px solid $main-color;
+  color: $withe;
+  background: $main-blue;
+  border: 1px solid $main-blue;
   transition: color 0.3s ease, background 0.3s ease;
 
   &:hover {
-    color: $withe-color;
+    color: $withe;
     background: $primary-hover;
   }
 
   &:disabled {
-    color: $grey-dark-color;
-    background: $withe-color;
-    border-color: $grey-light-color;
+    color: $grey;
+    background: $withe;
+    border-color: $grey-light;
     cursor: default;
   }
 }
 
 .secondary {
-  color: $withe-color;
-  background: $secondary-color;
-  border: 1px solid $secondary-color;
+  color: $withe;
+  background: $secondary;
+  border: 1px solid $secondary;
   transition: color 0.3s ease, background 0.3s ease;
 
   &:hover {
-    color: $withe-color;
+    color: $withe;
     background: $secondary-hover;
-    border: 1px solid $secondary-hover;
+    border: 1px solid $secondary;
   }
 
   &:disabled {
-    color: $grey-dark-color;
-    background: $withe-color;
-    border-color: $grey-light-color;
+    color: $grey;
+    background: $withe;
+    border-color: $grey-light;
     cursor: default;
   }
   
 }
 
 .success {
-  color: $withe-color;
-  background: $success-color;
-  border: 1px solid $success-color;
+  color: $withe;
+  background: $success;
+  border: 1px solid $success;
   transition: color 0.3s ease, background 0.3s ease;
 
   &:hover {
-    color: $withe-color;
+    color: $withe;
     background: $success-hover;
   }
 
    &:disabled {
-    color: $grey-dark-color;
-    background: $withe-color;
-    border-color: $grey-light-color;
+    color: $grey;
+    background: $withe;
+    border-color: $grey-light;
     cursor: default;
   }
  
