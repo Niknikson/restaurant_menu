@@ -17,6 +17,7 @@ export class InputComponent implements ControlValueAccessor{
 
   @Input() label: string = ''
   @Input() placeholder: string = ''
+  @Input() icon!: boolean 
   
 private _value: any;
 
@@ -34,7 +35,6 @@ writeValue(obj: any): void {
   this._value = obj;
 }
 
-  
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
@@ -43,12 +43,9 @@ writeValue(obj: any): void {
     this.onTouched = fn;
   }
 
-  
-
   onChange: any = () => { };
 
   onTouched: any = () => { };
-
 
 }
 

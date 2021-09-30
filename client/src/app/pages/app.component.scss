@@ -1,4 +1,4 @@
-@import '../styles/colors.scss';
+@import "../styles/colors.scss";
 
 .app {
   display: grid;
@@ -8,26 +8,24 @@
     "header header"
     "content content"
     "footer footer";
-}
+  .header {
+    grid-area: header;
+  }
 
-.header {
-  grid-area: header;
-}
-.content {
-  grid-area: content;
-  max-width: 1600px;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  justify-content: center;
-}
+  .content {
+    grid-area: content;
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+  }
 
-.footer {
-  grid-area: footer;
-  background-color: $withe;
-  -webkit-box-shadow: 0px -2px 37px -28px rgba(34, 60, 80, 0.46);
--moz-box-shadow: 0px -2px 37px -28px rgba(34, 60, 80, 0.46);
-box-shadow: 0px -2px 37px -28px rgba(34, 60, 80, 0.46);
+  .footer {
+    grid-area: footer;
+    background-color: $withe;
+    -webkit-box-shadow: 0px -2px 37px -28px rgba(34, 60, 80, 0.46);
+    -moz-box-shadow: 0px -2px 37px -28px rgba(34, 60, 80, 0.46);
+    box-shadow: 0px -2px 37px -28px rgba(34, 60, 80, 0.46);
+  }
 }
-
-

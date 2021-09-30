@@ -36,17 +36,6 @@ export class CategoryService {
     this.modalSource.next(!this.modalSource.value) 
   }
 
-  createUpdateCategory(indicator: string) {
-    this.createUpdateSource.next(indicator) 
-  }
-
-  clearCategory(): void {
-        this.categorySource.next({
-         id: '',
-         name: '',
-         available: false})
-  }
-
   getCategory(id: string): Observable<Category> {
     return this.http.get<Category>(`${Api.categories}${id}`).pipe(
       map((data: Category) => {
@@ -97,6 +86,18 @@ export class CategoryService {
       }
       return res
     }))
+  }
+
+  clearCategory(): void {
+    this.categorySource.next({
+      id: '',
+      name: '',
+      available: false
+    })
+  }
+
+  createUpdateCategory(indicator: string) {
+    this.createUpdateSource.next(indicator)
   }
  
 }

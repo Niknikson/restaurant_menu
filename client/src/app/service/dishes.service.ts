@@ -7,12 +7,16 @@ import { map } from 'rxjs/operators';
 import { RESPONSE_MSG } from '../constants/responseMsg';
 import { ResMsg } from './../constants/interfaces/response';
 
+interface Params {
+  [key: string]: any;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class DishesService{
 
-  private currentParams!: any
+  private currentParams!: Params
 
   private allDishSource = new BehaviorSubject<boolean>(true)
   allDish = this.allDishSource.asObservable()
@@ -37,14 +41,10 @@ export class DishesService{
   getAllDishes(): Observable<Dish[]> {
     return this.http.get<Dish[]>(`${Api.dish}`)
   }
-
-  saveParams(params: any) {
-    this.currentParams = params
-  }
   
   getDishesWithParams(): Observable<Dish[]> {
     let params = this.currentParams
-    return this.http.get<any>(`${Api.dish}`, { params }).pipe(
+    return this.http.get<Dish[]>(`${Api.dish}`, { params }).pipe(
       map((data: Dish[]) => {
         this.dishesSource.next(data)
         return data;
@@ -68,6 +68,10 @@ export class DishesService{
       }
       return res
     }))
+  }
+
+  saveParams(params: Params) {
+    this.currentParams = params
   }
 
 }

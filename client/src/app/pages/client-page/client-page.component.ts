@@ -8,8 +8,6 @@ import { DishesService } from 'src/app/service/dishes.service';
   styleUrls: ['./client-page.component.scss'],
 })
 export class ClientPageComponent {
-
-  constructor() { }
   
 }
 

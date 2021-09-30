@@ -1,3 +1,5 @@
+@import '../../styles/colors.scss';
+
 @supports(-webkit-appearance: none) or (-moz-appearance: none) {
   input[type='checkbox'],
   input[type='radio'] {
@@ -6,9 +8,6 @@
     --focus: 2px rgba(39, 94, 254, .3);
     --border: #BBC1E1;
     --border-hover: #1769aa;
-    --background: #fff;
-    --disabled: #F6F8FF;
-    --disabled-inner: #E1E6F9;
     -webkit-appearance: none;
     -moz-appearance: none;
     height: 21px;
@@ -118,47 +117,5 @@
       }
     }
   }
-  input[type='radio'] {
-    border-radius: 50%;
-    &:after {
-      width: 19px;
-      height: 19px;
-      border-radius: 50%;
-      background: var(--active-inner);
-      opacity: 0;
-      transform: scale(var(--s, .7));
-    }
-    &:checked {
-      --s: .5;
-    }
-  }
 }
 
-// Demo
-
-ul {
-  margin: 12px;
-  padding: 0;
-  list-style: none;
-  width: 100%;
-  max-width: 320px;
-  li {
-    margin: 16px 0;
-    position: relative;
-  }
-}
-
-
-
-body {
-  min-height: 100vh;
-  font-family: 'Inter', Arial, sans-serif;
-  color: #8A91B4;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #F6F8FF;
-  @media(max-width: 800px) {
-    flex-direction: column;
-  }
-}

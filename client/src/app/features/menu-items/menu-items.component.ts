@@ -25,21 +25,18 @@ export class MenuItemsComponent implements OnInit {
     this.role = this.router.url.split('/')[1]
   }
 
-   setParams( id: string){
-     this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: {
-        categoryId : id
-      },
-      // queryParamsHandling: 'merge',
-      // skipLocationChange: true
-    });
-   }
-
-
-  routMenuClick(id: string) {
+  routMenuClick(id: string): void {
     this.setParams(id)
     scrollTop()
     this.dishesService.toggleAllDish(false)
   }
+
+  setParams(id: string): void{
+     this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        categoryId : id}
+    });
+   }
+
 }

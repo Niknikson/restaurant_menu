@@ -1,12 +1,12 @@
 <div class="nav__menu">
     <h1 class="menu__title"> {{title}} </h1>
     <div class="nav__items" [style.flex-direction]="menuDirection">
-            <div class="nav__category" [routerLink]="['/']" (click)="getAllDishes()">All</div>
-            <div class="nav__category" [routerLink]="['/']" (click)="handlerClick('top','true')">TOP</div>
+            <div class="nav__category"  (click)="getAllDishes()">All</div>
+            <div class="nav__category"  (click)="handlerClick('top','true')">TOP</div>
         <app-menu-items *ngFor="let category of data" [category]="category">
         </app-menu-items>
         <div *ngIf="role == 'admin'">
-            <div class="nav__category" [routerLink]="['/']" (click)="handlerClick('dish', 'withoutCategory')">Dishes
+            <div class="nav__category"  (click)="handlerClick('dish', 'withoutCategory')">Dishes
                 without category </div>
         </div>
     </div>
