@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { scrollTop } from 'src/app/helpers/helpers';
+import { DishesService } from 'src/app/service/dishes.service';
 import { Category } from '../../constants/interfaces/category';
 
 @Component({
@@ -17,6 +18,7 @@ export class MenuItemsComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private dishesService: DishesService,
   ) { }
 
   ngOnInit(): void {
@@ -38,5 +40,6 @@ export class MenuItemsComponent implements OnInit {
   routMenuClick(id: string) {
     this.setParams(id)
     scrollTop()
+    this.dishesService.toggleAllDish(false)
   }
 }

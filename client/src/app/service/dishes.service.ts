@@ -14,6 +14,9 @@ export class DishesService{
 
   private currentParams!: any
 
+  private allDishSource = new BehaviorSubject<boolean>(false)
+  allDish = this.allDishSource.asObservable()
+
   private modalSource = new BehaviorSubject<boolean>(false)
   activeModal = this.modalSource.asObservable()
 
@@ -24,6 +27,11 @@ export class DishesService{
 
   showModal() {
     this.modalSource.next(!this.modalSource.value) 
+  }
+
+  toggleAllDish(value: boolean) {
+    this.allDishSource.next(value)
+    console.log(this.allDish)
   }
 
   getAllDishes(): Observable<Dish[]> {

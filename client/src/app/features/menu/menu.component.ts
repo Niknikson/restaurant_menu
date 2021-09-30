@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CategoryService } from 'src/app/service/category.service';
 import { scrollTop } from 'src/app/helpers/helpers';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DishesService } from 'src/app/service/dishes.service';
 
 
 
@@ -18,6 +19,7 @@ export class MenuComponent implements OnInit {
   role!: string
 
   constructor(
+    private dishesService: DishesService,
     private categoryService: CategoryService,
     private router: Router,
     private route: ActivatedRoute,
@@ -47,7 +49,7 @@ export class MenuComponent implements OnInit {
     this.setParams(param, value)
     this.categoryService.clearCategory()
     scrollTop()
-
+    this.dishesService.toggleAllDish(false)
   }
 
   getAllDishes() {
@@ -60,6 +62,7 @@ export class MenuComponent implements OnInit {
       },
       queryParamsHandling: 'merge'
     })
+    this.dishesService.toggleAllDish(true)
   }
 
 

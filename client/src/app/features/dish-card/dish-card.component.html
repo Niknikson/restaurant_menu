@@ -1,35 +1,80 @@
-
-
-<div *ngIf="!updateDishForm">
-  <div class="dish__card">
-    <div class="img__container">
-      <img class="img" [ngClass]=" !dish.available ? 'available__img' : '' " src={{dish.img}} alt="альтернативный текст" />
-    </div>
-    <div class="text__container">
-      <div class="dish__info">
-        <div class="title" [ngClass]=" !dish.available ? 'available' : '' "> {{dish.name}} </div>
-        <div class="tag">{{ dish.top ? 'top' : '' }}</div>
-        <div class="description">
-          {{dish.description}} 
-        </div>
-        <div class="info">
-          <div class="price">{{dish.price}}$</div>
-          <div class="weight">{{dish.weight}} </div>
-        </div>
+<div *ngIf="category && dish.categoryId == category.id">
+  <div *ngIf="!updateDishForm">
+    <div class="dish__card">
+      <div class="img__container">
+        <img class="img" [ngClass]=" !dish.available ? 'available__img' : '' " src={{dish.img}}
+          alt="альтернативный текст" />
       </div>
-      <div *ngIf="roleAdmin == 'admin'">
-        <div class="btn__group">
-          <app-button [style]="'primary'" (click)="showUpdateDishForm()">
-            Update
-          </app-button>
-          <app-button [style]="'secondary'" (click)="toggleModalDelete()">
-            Delete
-          </app-button>
+      <div class="text__container">
+        <div class="dish__info">
+          <div class="title" [ngClass]=" !dish.available ? 'available' : '' "> {{dish.name}} </div>
+          <div class="tag">{{ dish.top ? 'top' : '' }}</div>
+          <div class="description">
+            {{dish.description}}
+          </div>
+          <div class="info">
+            <div class="price">{{dish.price}}$</div>
+            <div class="weight">{{dish.weight}} </div>
+          </div>
+        </div>
+        <div *ngIf="roleAdmin == 'admin'">
+          <div class="btn__group">
+            <app-button [style]="'primary'" (click)="showUpdateDishForm()">
+              Update
+            </app-button>
+            <app-button [style]="'secondary'" (click)="toggleModalDelete()">
+              Delete
+            </app-button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<div *ngIf="!category">
+  <div *ngIf="!updateDishForm">
+    <div class="dish__card">
+      <div class="img__container">
+        <img class="img" [ngClass]=" !dish.available ? 'available__img' : '' " src={{dish.img}}
+          alt="альтернативный текст" />
+      </div>
+      <div class="text__container">
+        <div class="dish__info">
+          <div class="title" [ngClass]=" !dish.available ? 'available' : '' "> {{dish.name}} </div>
+          <div class="tag">{{ dish.top ? 'top' : '' }}</div>
+          <div class="description">
+            {{dish.description}}
+          </div>
+          <div class="info">
+            <div class="price">{{dish.price}}$</div>
+            <div class="weight">{{dish.weight}} </div>
+          </div>
+        </div>
+        <div *ngIf="roleAdmin == 'admin'">
+          <div class="btn__group">
+            <app-button [style]="'primary'" (click)="showUpdateDishForm()">
+              Update
+            </app-button>
+            <app-button [style]="'secondary'" (click)="toggleModalDelete()">
+              Delete
+            </app-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
 
 
 <!-- Update form -->

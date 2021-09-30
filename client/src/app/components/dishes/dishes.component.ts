@@ -13,7 +13,7 @@ import { DishesService } from 'src/app/service/dishes.service';
 export class DishesComponent implements OnInit {
 //
   categories!: Category[]
-  all: boolean = true
+  allDish: boolean = true
   //
 
   isLoading: boolean = false
@@ -29,10 +29,12 @@ export class DishesComponent implements OnInit {
 
   ngOnInit(): void {
     this.categoryService.categories.subscribe(data => this.categories = data)
+    this.dishesService.dishes.subscribe(dishes => this.dishes = dishes)
+    this.dishesService.allDish.subscribe(allDish => this.allDish = allDish)
+
 
 
     this.role = this.router.url.split('/')[1]
-    this.dishesService.dishes.subscribe(dishes => this.dishes = dishes)
     this.route.queryParams
       .subscribe(params => {
         this.dishesService.saveParams(params)
