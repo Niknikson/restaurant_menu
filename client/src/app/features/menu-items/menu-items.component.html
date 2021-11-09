@@ -1,6 +1,6 @@
 <div *ngIf="role == 'menu'">
     <div *ngIf="category.available">
-        <div [routerLink]="['/menu/', category.id]" 
+        <div [routerLink]="['']" 
         class="nav__category" 
         (click)="routMenuClick(category.id)">
             {{ category.name }}

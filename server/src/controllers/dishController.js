@@ -41,11 +41,10 @@ class DishController {
   }
 
   async updateDish(req, res, next) {
-    const { description, categoryId, weight, price, top, name, img, available } = req.body;
     const { id } = req.params;
     try {
       await Dish.update(
-        { description, categoryId, weight, price, name, img, top, available },
+        { ...req.body},
         { where: { id } }
       );
       res.status(STATUS_CODES.ACCEPTED).send({msg: RES_MESSAGES.UPDATE });

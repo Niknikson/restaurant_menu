@@ -33,6 +33,7 @@ export class DishesComponent implements OnInit {
 
     this.route.queryParams
       .subscribe(params => {
+        console.log(params)
         this.isLoading = true
         this.dishesService.saveParams(params)
         this.getDishWithParams()
@@ -42,7 +43,10 @@ export class DishesComponent implements OnInit {
   }
 
   getDishWithParams() {
-    this.dishesService.getDishesWithParams().subscribe(res => this.isLoading = false)
+    this.dishesService.getDishesWithParams().subscribe(res => {
+      console.log(res)
+      this.isLoading = false
+    })
   }
 
   isEmptyObj(obj: any) {

@@ -9,8 +9,8 @@ const routes: Routes = [
   {
     path: '', component: ClientPageComponent,
     children: [
-      { path: '', redirectTo: 'menu', pathMatch: 'full',},
-      {path: 'menu', component: DishesComponent}
+      { path: '', redirectTo: 'menu/ dishes', pathMatch: 'full',},
+      {path: 'menu/dishes', component: DishesComponent}
     ]
   },
   {

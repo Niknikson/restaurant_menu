@@ -38,6 +38,7 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     this.role = this.router.url.split('/')[1]
+    console.log(this.role)
     this.categoryService.categories.subscribe(data => this.data = data)
     this.categoryService.getCategories().toPromise()
   }
@@ -50,7 +51,7 @@ export class MenuComponent implements OnInit {
   }
 
   clearParams() {
-    let path = this.role === 'admin' ? "admin/menu" : "/menu"
+    let path = this.role === 'admin' ? "admin/menu" : "menu/dishes"
     this.router.navigate([path], {
       queryParams: {
         'categoryId': null,

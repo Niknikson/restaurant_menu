@@ -14,7 +14,7 @@ import { Dish } from 'src/app/constants/interfaces/dishes';
 })
 export class FormDishComponent implements OnInit {
 
-  @Input() dish!: Dish
+  
 
   file: any
   form: FormGroup
@@ -31,6 +31,7 @@ export class FormDishComponent implements OnInit {
     private formBuilder: FormBuilder,
     private validator: exitingDishNameValidator,
   ) {
+
     this.form = this.formBuilder.group({
       name: formBuilder.control('', [
         Validators.required,
@@ -66,7 +67,6 @@ export class FormDishComponent implements OnInit {
   onSubmit(): void {
     this.submitted = true
     if (this.form.invalid) return
-  
     this.toggleLoadingBtn(true)
     this.postDish()
   }
@@ -75,7 +75,6 @@ export class FormDishComponent implements OnInit {
     let formData = this.formData()
     this.dishesService.postDish(formData).subscribe(res => {
       if (res.msg === RESPONSE_MSG.CREATED) {
-        console.log('post dish')
         this.dishesService.showModal()  
         this.dishesService.getDishesWithParams().toPromise()
       }
@@ -124,8 +123,17 @@ export class FormDishComponent implements OnInit {
 
   clearForm(): void {
     this.submitted = false
-    this.form.reset()
     this.imageSrc = ''
+    this.form.patchValue({
+      name: '',
+      top: false,
+      available: true,
+      categoryId: '',
+      description: '',
+      price: '',
+      weight: '',
+      img: '',
+    });
   }
   
 }

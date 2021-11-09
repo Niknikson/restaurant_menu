@@ -10,7 +10,7 @@ import { InfoService } from 'src/app/service/info.service';
 })
 export class AddButtonGroupComponent implements OnInit {
 
-  constructor( public dishesService: DishesService,
+  constructor( private dishesService: DishesService,
     private categoryService: CategoryService,
     private infoService: InfoService) { }
 
