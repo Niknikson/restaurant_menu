@@ -1,63 +1,31 @@
+@import "../styles/colors.scss";
+
 .app {
   display: grid;
   min-height: 100vh;
-  grid-template-rows: 0.5fr 10.5fr 1fr;
+  grid-template-rows: 80px 10.5fr 100px;
   grid-template-areas:
     "header header"
     "content content"
     "footer footer";
-}
+  .header {
+    grid-area: header;
+  }
 
-.heade {
-  grid-area: header;
-}
-.content {
-  grid-area: content;
-  max-width: 1600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.footer {
-  grid-area: footer;
-  background-color: #333;
-}
-
-
-
-//menu button
-
-.menu{
-    position: fixed;
-    height: 100vh;
-    min-height: 100%;
-    margin-top: 60px;
-    left: 0;
-    display: none;
-    // transform: translate(-160%);
-    // transition: all 0.2s;
-    z-index: 1000;
-}
-
-.menu.active{
-transform: translate(0);
-display: block;
-}
-
-.blur{
-    width: 100vw;
-    height: 100vh;
-    left: 40%;
-    backdrop-filter: blur(2px);
-    position: fixed;
-}
-
-.menu__content{
-    width: 40%;
-    height: 100%;
-    //background-color:  rgba(0,0,0,0.5);;
-    background-color:  black;
+  .content {
+    grid-area: content;
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: all 0.4s;
+    justify-content: center;
+  }
+
+  .footer {
+    grid-area: footer;
+    background-color: $withe;
+    -webkit-box-shadow: 0px -2px 37px -28px rgba(34, 60, 80, 0.46);
+    -moz-box-shadow: 0px -2px 37px -28px rgba(34, 60, 80, 0.46);
+    box-shadow: 0px -2px 37px -28px rgba(34, 60, 80, 0.46);
+  }
 }

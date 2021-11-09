@@ -1,0 +1,11 @@
+
+  <div class="modal" [ngClass]=" headerService.btnMenu ? 'active' : '' " (click)="closeNavMenu()" >
+    <div class="modal-content"
+    (click)="onEvent($event)">
+      <app-menu 
+      [title]="'Menu'"
+      [menuDirection]="'colum'"
+      ></app-menu> 
+    </div>
+  </div>
+

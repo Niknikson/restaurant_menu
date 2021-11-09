@@ -1,0 +1,76 @@
+<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="dish__card">
+        <div class="img__container">
+            <img class="img" *ngIf="!imageSrc"
+                src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiD4Na10pu4sky7pL1GOXNNLL8e8mXmMGfp--46ITN1BQen0YHA2isD0U4R139PVvtts4&usqp=CAU'
+                />
+            <img class="img" [src]="imageSrc" *ngIf="imageSrc">
+        </div>
+        <div class="text__container">
+            <div class="dish__info">
+                <div class="title">
+                    <app-input [label]="'Name'" formControlName="name"></app-input>
+                </div>
+                <div class="tag">
+                    <select class="select" formControlName="categoryId">
+                        <option value="" disabled selected>category</option>
+                        <option *ngFor="let category of categories" [ngValue]="category.id">
+                            {{category.name}}
+                        </option>
+                    </select>
+                    <app-checkbox class="available" formControlName="available" [label]="'Available'"></app-checkbox>
+                    <app-checkbox [label]="'Top'" formControlName="top"></app-checkbox>
+                </div>
+                <div class="description">
+                    <textarea class="textarea" formControlName="description"></textarea>
+                </div>
+                <div class="info">
+                    <div class="price">
+                        <app-input [label]="'Price'" formControlName="price"></app-input>
+                    </div>
+                    <div class="weight">
+                        <app-input [label]="'Weight'" formControlName="weight"></app-input>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="btn__upload">
+            <label class="file__upload">
+                <input type="file" (change)="onFileChange($event)" />
+                Select file format png
+            </label>
+    </div>
+    <div class="button">
+        <app-button [buttonSubmit]="true" [style]="'success'" [isDisabled]="disabled" [loading]="loading">
+            Create
+        </app-button>
+        <app-button (buttonClick)="cancel($event)">
+            Cancel
+        </app-button>
+    </div>
+
+    <div class="errors__dish">
+        <div *ngIf="submitted && form.controls.name.errors?.nameExists" class="error"> Name already exists. </div>
+        <div *ngIf="submitted && form.controls.name.errors?.required" class="error"> Name is required. </div>
+        <div *ngIf="submitted && form.controls.categoryId.errors?.required" class="error"> Category is required. </div>
+        <div *ngIf="submitted && form.controls.description.errors?.required" class="error"> Description is required. </div>
+        <div *ngIf="submitted && form.controls.price.errors?.required" class="error"> Price is required. </div>
+        <div *ngIf="submitted && form.controls.weight.errors?.required" class="error"> Weight is required. </div>
+        <div *ngIf="submitted && form.controls.img.errors?.required" class="error"> Img is required. </div>
+        <div *ngIf=" submitted && form.controls.name.errors?.maxlength" class="error">Name can be max 30 <br> characters
+            long.
+        </div>
+        <div *ngIf=" submitted && form.controls.description.errors?.maxlength" class="error">Description can be max 100 characters
+            long.
+        </div>
+        <div *ngIf=" submitted && form.controls.price.errors?.maxlength" class="error">Price can be max 10 characters
+            long.
+        </div>
+        <div *ngIf=" submitted && form.controls.weight.errors?.maxlength" class="error">Weight can be max 10 characters
+            long.
+        </div>
+        <div *ngIf="errorMsg"> {{errorMsg}} </div>
+    </div>
+
+</form>

@@ -3,24 +3,22 @@
     <div class="button__logo">
         <div class="logo">
         <img
-          class="restoran__logo"
+          class="restaurant__logo"
           src="https://www.logoground.com/uploads6/dv6y2018113252018-11-104546728Restaurant.jpg"
           alt="logo"
         />
       </div>
-      <div class="burger__btn">
+      <div class="burger__btn" (click)="handlerClickBtn()">
         <span></span>
       </div>
-     
     </div>
-    <div class="wifi__password">wifi : bon-apetit</div>
-    <div class="contact">
-      <p>095684086848</p>
-      <img
-        class="phone__logo"
-        src="https://img.pngio.com/smartphone-vector-art-icon-web-icons-png-transparent-cell-phone-mobile-phone-icon-png-840_1486.png"
-        alt="phone"
-      />
+    <div class="search"><app-search-form></app-search-form></div>
+<div>
+ <div class="wifi" *ngIf="info.wifi">
+        <div>wifi:</div>
+        <div>{{info.wifi}}</div>
     </div>
+</div>
+   
   </div>
 </div>

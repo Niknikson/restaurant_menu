@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { DishesService } from 'src/app/service/dishes.servise';
-import { Category } from './../menu/menu.component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { scrollTop } from 'src/app/helpers/helpers';
+import { DishesService } from 'src/app/service/dishes.service';
+import { Category } from '../../constants/interfaces/category';
 
 @Component({
   selector: 'app-menu-items',
@@ -8,15 +10,33 @@ import { Category } from './../menu/menu.component';
   styleUrls: ['./menu-items.component.scss'],
 })
 export class MenuItemsComponent implements OnInit {
-   @Input() category!: Category;
-  // @Output() getyCategoryId = new EventEmitter<number>();
 
-  constructor(private dishesService: DishesService) {}
+  @Input() category!: Category;
 
-  ngOnInit(): void {}
+  role!: any
+  
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private dishesService: DishesService,
+  ) { }
 
-  handlerClick(id: string) {
-    //this.getyCategoryId.emit(id);
-    this.dishesService.setDishId(id)
+  ngOnInit(): void {
+    this.role = this.router.url.split('/')[1]
   }
+
+  routMenuClick(id: string): void {
+    this.setParams(id)
+    scrollTop()
+    this.dishesService.toggleAllDish(false)
+  }
+
+  setParams(id: string): void{
+     this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        categoryId : id}
+    });
+   }
+
 }

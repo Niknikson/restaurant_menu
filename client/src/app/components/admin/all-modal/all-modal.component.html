@@ -1,0 +1,11 @@
+<app-modal [title]="'Info'" [active]="activeInfoModal" (buttonClick)="closeModalInfo()">
+    <app-form-info></app-form-info>
+</app-modal>
+
+<app-modal [title]="'Category'" [active]="activeCategoryModal" (buttonClick)="closeModalCategory()">
+    <app-form-category></app-form-category>
+</app-modal>
+
+<app-modal [title]="'Dish'" [active]="activeDishesModal" (buttonClick)="closeModalDish()">
+    <app-form-dish></app-form-dish>
+</app-modal>

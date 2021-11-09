@@ -1,0 +1,49 @@
+<!-- <div class="loading" *ngIf="isLoading">
+    <h3>Loading...</h3>
+</div>
+<div *ngIf="!isLoading">
+    <div *ngIf="role == 'admin'">
+        <app-dish-card *ngFor="let dish of dishes" [dish]="dish"></app-dish-card>
+    </div>
+    <div *ngIf="role == 'menu'">
+        <ng-container *ngFor="let dish of dishes">
+            <app-dish-card *ngIf="dish.available" [dish]="dish"></app-dish-card>
+        </ng-container>
+    </div>
+</div> -->
+
+<div class="loading" *ngIf="isLoading">
+    <h3>Loading...</h3>
+</div>
+<div *ngIf="!isLoading">
+    <div *ngIf="role == 'admin'">
+    <div *ngIf="allDish">
+        <div *ngFor="let category of categories">
+            <div class="title">{{category.name}} </div>
+            <app-dish-card *ngFor="let dish of dishes" [dish]="dish" [category]="category">
+            </app-dish-card>
+        </div>
+    </div>
+    <div *ngIf="!allDish">
+        <app-dish-card *ngFor="let dish of dishes" [dish]="dish">
+        </app-dish-card>
+    </div>
+    </div>
+    <div *ngIf="role == 'menu'">
+        <div *ngIf="allDish">
+            <div *ngFor="let category of categories">
+                <div *ngIf="category.available">
+                    <div class="title">Category {{category.name}} </div>
+                    <ng-container *ngFor="let dish of dishes">
+                        <app-dish-card *ngIf="dish.available" [dish]="dish" [category]="category"></app-dish-card>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!allDish">
+            <ng-container *ngFor="let dish of dishes">
+                <app-dish-card *ngIf="dish.available" [dish]="dish"></app-dish-card>
+            </ng-container>
+        </div>
+    </div>
+</div>

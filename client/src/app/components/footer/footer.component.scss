@@ -1,0 +1,40 @@
+@import "../../styles/colors.scss";
+.content {
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 30px;
+  color: $grey-dark;
+  font-size: x-small;
+  flex-wrap: wrap;
+
+  .contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .address {
+      margin-top: 10px;
+      font-size: medium;
+    }
+  }
+
+  .applications {
+    display: flex;
+    flex-direction: column;
+
+    .logo {
+      padding: 2px;
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+.restaurant__logo {
+  height: 80px;
+}

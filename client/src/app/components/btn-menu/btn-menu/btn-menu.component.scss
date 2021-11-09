@@ -1,0 +1,40 @@
+@import "../../../styles/colors.scss";
+
+.modal {
+  position: fixed;
+  z-index: 100;
+  margin-top: 60px;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  transform: translate(-160%);
+  transition: all 0.7s;
+
+  &.active {
+    transform: translate(0);
+    transition: all 0.7s;
+  }
+
+  .modal-content {
+    box-sizing: border-box;
+    padding-top: 20px;
+    width: 25%;
+    height: 100%;
+    max-width: 200px;
+    background-color: $withe;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    -webkit-box-shadow: 4px 0px 8px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 0px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 0px 8px 0px rgba(34, 60, 80, 0.2);
+  }
+}
+
+@media (max-width: 600px) {
+  .modal-content {
+    width: 100%;
+    min-width: 100%;
+  }
+}

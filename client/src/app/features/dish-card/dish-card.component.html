@@ -1,20 +1,141 @@
-<div *ngFor="let dish of dishesService.dishes">
-  <div class="dish__card">
-    <img class="dish__img" src="https://montecristomagazine.com/wp-content/uploads/2021/01/2021FoodPredictions-1.jpg" alt="альтернативный текст" />
-    <div class="text__conteiner">
-      <div class="text">
-      <div class="dish__title"> {{dish.name}} </div>
-      <div class="tag">{{ dish.top ? 'top' : '' }}</div>
-      <div class="dish__info">
-       {{dish.dascription}}
+<div *ngIf="category && dish.categoryId == category.id">
+  <div *ngIf="!updateDishForm">
+    <div class="dish__card">
+      <div class="img__container">
+        <img class="img" [ngClass]=" !dish.available ? 'available__img' : '' " src={{dish.img}}
+          alt="альтернативный текст" />
+      </div>
+      <div class="text__container">
+        <div class="dish__info">
+          <div class="title" [ngClass]=" !dish.available ? 'available' : '' "> {{dish.name}} </div>
+          <div class="tag">{{ dish.top ? 'top' : '' }}</div>
+          <div class="description">
+            {{dish.description}}
+          </div>
+          <div class="info">
+            <div class="price">{{dish.price}}$</div>
+            <div class="weight">{{dish.weight}} </div>
+          </div>
         </div>
-    </div>
-    <div class="price__info">
-      <div class="price">{{dish.price}} $</div>
-    </div>
-    <div class="price__info">
-      <div class="price">{{dish.weight}} </div>
-    </div>
+        <div *ngIf="roleAdmin == 'admin'">
+          <div class="btn__group">
+            <app-button [style]="'primary'" (click)="showUpdateDishForm()">
+              Update
+            </app-button>
+            <app-button [style]="'secondary'" (click)="toggleModalDelete()">
+              Delete
+            </app-button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
+<div *ngIf="!category">
+  <div *ngIf="!updateDishForm">
+    <div class="dish__card">
+      <div class="img__container">
+        <img class="img" [ngClass]=" !dish.available ? 'available__img' : '' " src={{dish.img}}
+          alt="альтернативный текст" />
+      </div>
+      <div class="text__container">
+        <div class="dish__info">
+          <div class="title" [ngClass]=" !dish.available ? 'available' : '' "> {{dish.name}} </div>
+          <div class="tag">{{ dish.top ? 'top' : '' }}</div>
+          <div class="description">
+            {{dish.description}}
+          </div>
+          <div class="info">
+            <div class="price">{{dish.price}}$</div>
+            <div class="weight">{{dish.weight}} </div>
+          </div>
+        </div>
+        <div *ngIf="roleAdmin == 'admin'">
+          <div class="btn__group">
+            <app-button [style]="'primary'" (click)="showUpdateDishForm()">
+              Update
+            </app-button>
+            <app-button [style]="'secondary'" (click)="toggleModalDelete()">
+              Delete
+            </app-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Update form -->
+
+<div *ngIf="updateDishForm">
+  <!-- <app-form-dish [dish]="dish" ></app-form-dish> -->
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="dish__card">
+      <div class="img__container">
+        <img class="img" src={{dish.img}} alt="альтернативный текст" />
+      </div>
+      <div class="text__container">
+        <div class="dish__info">
+          <div class="title__update">
+            <app-input [label]="'Name'" formControlName="name"></app-input>
+          </div>
+          <div class="tag__update">
+            <select class="select" formControlName="categoryId">
+              <option *ngFor="let category of categories" [ngValue]="category.id">
+                {{category.name}}
+              </option>
+            </select>
+            <app-checkbox [label]="'Available'" formControlName="available"></app-checkbox>
+            <app-checkbox [label]="'Top'" formControlName="top"></app-checkbox>
+          </div>
+          <div class="description__update">
+            <textarea class="textarea" formControlName="description"></textarea>
+          </div>
+          <div class="info">
+            <div class="price">
+              <app-input [label]="'Price'" formControlName="price"></app-input>
+            </div>
+            <div class="weight">
+              <app-input [label]="'Weight'" formControlName="weight"></app-input>
+            </div>
+          </div>
+        </div>
+        <div class="btn__group">
+          <app-button [buttonSubmit]="true" [style]="'success'">
+            Save
+          </app-button>
+          <app-button (click)="hideUpdateDishForm($event)">
+            Cancel
+          </app-button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+<!-- Delete modal -->
+
+<app-modal [title]="''" [active]="activeDeleteModal" (buttonClick)="toggleModalDelete()">
+  <h4 class="question">Are you sure you want to delete this dish {{dish.name}}</h4>
+  <div class="modal__button">
+    <app-button [style]="'secondary'" (buttonClick)="deleteDish(dish.id)">
+      Delete
+    </app-button>
+    <app-button (buttonClick)="toggleModalDelete()">
+      Cancel
+    </app-button>
+  </div>
+</app-modal>

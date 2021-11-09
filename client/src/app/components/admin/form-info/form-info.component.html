@@ -1,0 +1,49 @@
+<div class="form">
+<form  [formGroup]="form" (ngSubmit)="onSubmit()" >
+    <div class="fields">
+        <div class="input">
+            <app-input [label]="'Address'"  formControlName="address"></app-input>
+        </div>
+        <div class="input">
+            <app-input [label]="'Phone'"  formControlName="phone"></app-input>
+        </div>
+        <div class="input">
+            <app-input [label]="'Wifi'" formControlName="wifi"></app-input>
+        </div>
+    </div>
+    <div class="button">
+        <app-button 
+        [style]="'success'" 
+        [buttonSubmit]="true"
+        [isDisabled]="disabled"
+        [loading]="loading"
+        >
+            Update
+        </app-button>
+        <app-button 
+        [buttonSubmit]="false"
+        (buttonClick)="cancel($event)">
+            Cancel
+        </app-button>
+    </div>
+    <div class="errors">
+        <div *ngIf=" submitted && form.controls.address.errors?.minlength" 
+        class="error">Address must be at least <br> 5 characters
+            long.</div>
+        <div *ngIf=" submitted && form.controls.address.errors?.maxlength" 
+        class="error">Address can be max 30 <br> characters long.</div>
+        <div *ngIf=" submitted && form.controls.phone.errors?.minlength" 
+        class="error">Phone must be at least <br> 10 characters
+            long.</div>
+        <div *ngIf=" submitted && form.controls.phone.errors?.maxlength" 
+        class="error">Phone can be max 30 <br> characters long.
+        </div>
+        <div *ngIf=" submitted && form.controls.wifi.errors?.minlength" 
+        class="error">Wifi must be at least <br> 5 characters
+            long.</div>
+        <div *ngIf=" submitted && form.controls.wifi.errors?.maxlength" 
+        class="error">Wifi can be max 30 <br> characters long.
+        </div>
+    </div>
+</form>
+</div>

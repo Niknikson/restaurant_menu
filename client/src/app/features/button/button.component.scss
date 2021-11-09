@@ -1,0 +1,86 @@
+@import '../../styles/colors.scss';
+
+.button {
+  -webkit-appearance: none;
+  border: 0;
+  outline: 0;
+  box-sizing: border-box;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-weight: 500;
+  //line-height: 1.75;
+  border-radius: 4px;
+  letter-spacing: 0.02857em;
+  letter-spacing: 0.03857em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  padding: 0.4em 1em;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+    margin: 5px;
+}
+
+.primary {
+  color: $withe;
+  background: $main-blue;
+  border: 1px solid $main-blue;
+  transition: color 0.3s ease, background 0.3s ease;
+
+  &:hover {
+    color: $withe;
+    background: $primary-hover;
+  }
+
+  &:disabled {
+    color: $grey;
+    background: $withe;
+    border-color: $grey-light;
+    cursor: default;
+  }
+}
+
+.secondary {
+  color: $withe;
+  background: $secondary;
+  border: 1px solid $secondary;
+  transition: color 0.3s ease, background 0.3s ease;
+
+  &:hover {
+    color: $withe;
+    background: $secondary-hover;
+    border: 1px solid $secondary;
+  }
+
+  &:disabled {
+    color: $grey;
+    background: $withe;
+    border-color: $grey-light;
+    cursor: default;
+  }
+  
+}
+
+.success {
+  color: $withe;
+  background: $success;
+  border: 1px solid $success;
+  transition: color 0.3s ease, background 0.3s ease;
+
+  &:hover {
+    color: $withe;
+    background: $success-hover;
+  }
+
+   &:disabled {
+    color: $grey;
+    background: $withe;
+    border-color: $grey-light;
+    cursor: default;
+  }
+ 
+}
+

@@ -1,0 +1,11 @@
+<button 
+type="buttonType" 
+class="button {{style}}" 
+(click)="onClick($event)" 
+[disabled]="isDisabled" 
+[ngClass]= " loading ? 'loading' : '' "
+[ngStyle]="{ disabled: isDisabled}">
+  <div *ngIf="loading">Loading...</div>
+  <div *ngIf="!loading"><ng-content></ng-content></div>
+  
+</button>

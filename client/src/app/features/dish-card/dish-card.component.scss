@@ -1,0 +1,165 @@
+@import "../../styles/colors.scss";
+
+.dish__card {
+    display: flex;
+    flex-direction: row;
+    background-color: $withe;
+    border-radius: 1px;
+    -webkit-box-shadow: 7px 6px 33px 1px rgba(34, 60, 80, 0.28);
+    -moz-box-shadow: 7px 6px 33px 1px rgba(34, 60, 80, 0.28);
+    box-shadow: 7px 6px 33px 1px rgba(34, 60, 80, 0.28);
+    max-width: 900px;
+    margin: 40px;
+    box-sizing: border-box;
+    height: 380px;
+    border-radius: 10px;
+    
+
+    .img__container {
+        width: 60%;
+        //box-sizing: border-box;
+
+        .img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .available__img {
+            -webkit-filter: grayscale(100%);
+            filter: grayscale(100%);
+        }
+    }
+
+    .text__container {
+        width: 40%;
+        box-sizing: border-box;
+        padding-bottom: 15px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        background-color: $withe;
+
+        .dish__info {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            height: 86%;
+
+            .title {
+                text-align: center;
+                font-size: 1.5rem;
+                padding: 0.7rem;
+                border-bottom: 1px solid grey;
+                font-family: "Playfair Display SC";
+                text-transform: capitalize;
+            }
+            .title__update {
+                text-align: center;
+                font-size: 1.5rem;
+                padding: 0.7rem;
+                text-transform: capitalize;
+            }
+            .available {
+                color: $grey;
+                text-decoration: line-through;
+            }
+            .tag {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .tag__update {
+                width: 80%;
+                display: flex;
+                //align-items: center;
+                justify-content: space-between;
+            }
+            .select {
+                background-color: $withe;
+                margin-right: 15px;
+                border: none;
+                border-bottom: 1px solid$grey;
+                text-transform: capitalize;
+                :focus {
+                    outline: none;
+                    border: none;
+                }
+            }
+            .available {
+                margin-right: 20px;
+            }
+
+            .description {
+                padding: 0.7rem;
+                font-size: 1rem;
+                object-fit: cover;
+            }
+            .description__update {
+                margin-top: 10px;
+                font-size: 0.8rem;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                margin-bottom: 5px;
+                .textarea {
+                    width: 90%;
+                    height: 4rem;
+                    border: 1px solid $grey-light;
+                    border-radius: 4px;
+                    padding: 2px;
+                    font-family: inherit;
+                    &:focus {
+                        -webkit-box-shadow: 0px 5px 10px -4px rgba(34, 60, 80, 0.2);
+                        -moz-box-shadow: 0px 5px 10px -4px rgba(34, 60, 80, 0.2);
+                        box-shadow: 0px 5px 10px -4px rgba(34, 60, 80, 0.2);
+                    }
+                }
+            }
+            .info {
+                width: 90%;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+            }
+        }
+
+        .btn__group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+@media only screen and (max-width: 39.9375em) {
+    .dish__card {
+        flex-direction: column;
+        height: 500px;
+
+        .img__container {
+            width: 100%;
+            height: 40%;
+            max-height: 300px;
+        }
+
+        .text__container {
+            width: 100%;
+            height: 60%;
+            border-top-right-radius: 0px;
+            border-bottom-left-radius: 10px;
+
+            .dish__info {
+                .description {
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+}
+
+
+.modal__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

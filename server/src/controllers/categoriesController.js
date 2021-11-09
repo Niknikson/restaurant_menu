@@ -7,7 +7,11 @@ class CategoriesController {
 
   async getAllCategories(req, res, next) {
     try {
-      const categories = await Categories.findAll();
+      const categories = await Categories.findAll({
+        order: [
+        [ 'createdAt', 'ASC'],
+        ]
+      });
       res.status(STATUS_CODES.OK).json(categories);
     } catch (e) {
       next(ApiError.notFound(e.message));
@@ -25,11 +29,12 @@ class CategoriesController {
   }
 
   async createCategory(req, res, next) {
-    const { name } = req.body;
+    const { name, available } = req.body;
     try {
-      await Categories.create({ name });
-      res.status(STATUS_CODES.CREATED).send(String(RES_MESSAGES.CREATE));
+      const category = await Categories.create({ name, available });
+      res.status(STATUS_CODES.ACCEPTED).send({ category, msg: RES_MESSAGES.CREATE});
     } catch (e) {
+      //res.status(400).json(e.errors)
       next(ApiError.badRequest(e.message));
     }
   }
@@ -39,7 +44,7 @@ class CategoriesController {
     const { name, available } = req.body;
     try {
       await Categories.update({ name, available }, { where: { id } });
-      res.status(STATUS_CODES.ACCEPTED).send(String(RES_MESSAGES.UPDATE));
+      res.status(STATUS_CODES.ACCEPTED).send({ msg:RES_MESSAGES.UPDATE});
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
@@ -49,7 +54,7 @@ class CategoriesController {
     const {id} = req.params;
     try {
       await Categories.destroy({ where: { id } });
-      res.status(STATUS_CODES.ACCEPTED).send(String(RES_MESSAGES.DELETE));
+      res.status(STATUS_CODES.ACCEPTED).send({msg:RES_MESSAGES.DELETE});
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }

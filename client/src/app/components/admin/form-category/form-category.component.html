@@ -1,0 +1,32 @@
+<div class="form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="fields">
+      <div class="input">
+        <app-input id="name" [label]="'Name'" formControlName="name"></app-input>
+      </div>
+      <div class="checkbox">
+        <app-checkbox [label]="'available'" formControlName="available"></app-checkbox>
+      </div>
+    </div>
+    <div class="button">
+      <app-button 
+      [style]="'success'" 
+      [buttonSubmit]="true"
+      [isDisabled]="disabled"
+      [loading]="loading"
+      >
+        Save
+      </app-button>
+      <app-button (buttonClick)="cancel($event)">
+        Cancel
+      </app-button>
+    </div>
+    <div class="errors">
+      <div *ngIf="submitted && form.controls.name.errors?.required" class="error"> Name is required </div>
+      <div *ngIf=" submitted && form.controls.name.errors?.minlength" class="error">Name must be at least <br> 3 characters long.</div>
+      <div *ngIf=" submitted && form.controls.name.errors?.maxlength" class="error">Name can be max 20 <br> characters long.</div>
+      <div *ngIf="errorMsg"> {{errorMsg}} </div>
+    </div>
+  </form>
+</div>
+ 

@@ -1,0 +1,101 @@
+@import "../../styles/colors.scss";
+
+.header {
+  position: fixed;
+  width: 100%;
+  padding: 0px 20px 10px 0px;
+  height: 60px;
+  background-color: $withe;
+  color: $grey-dark;
+  -webkit-box-shadow: 1px 5px 11px -2px rgba(34, 60, 80, 0.15);
+  -moz-box-shadow: 1px 5px 11px -2px rgba(34, 60, 80, 0.15);
+  box-shadow: 1px 5px 11px -2px rgba(34, 60, 80, 0.15);
+  z-index: 1000;
+
+  .header__content {
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .button__logo {
+      display: flex;
+      align-items: center;
+      .restaurant__logo {
+        height: 45px;
+      }
+    }
+
+    .search {
+      padding-left: 50px;
+    }
+
+    .wifi{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: small;
+      padding-top: 15px;
+      padding-right: 5px;
+    }
+  }
+}
+
+.burger__btn {
+  width: 20px;
+  height: 20px;
+  margin-left: 20;
+  position: relative;
+  cursor: pointer;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 23px;
+    background-color: $grey-dark;
+    height: 2px;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 23px;
+    background-color: $grey-dark;
+    height: 2px;
+  }
+  & span {
+    content: "";
+    position: absolute;
+    top: 9px;
+    width: 23px;
+    background-color: $grey-dark;
+    height: 2px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .wifi{
+    display: none;
+  }
+  .search {
+    max-width: 100px;
+    padding-left: 0;
+    padding-right: 50px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .wifi{
+    flex-direction: column;
+    font-size: x-small;
+  }
+}
+@media screen and (max-width: 370px) {
+  .wifi{
+    display: none !important;
+  }
+}

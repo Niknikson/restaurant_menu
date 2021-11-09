@@ -1,6 +1,14 @@
- <div class="nav__menu">
-      <h1 class="menu__title">Menu</h1>
-      <a routerLink="/">Home</a>
-      <a routerLink="/admin">Admin</a>
-    </div>
-<p>admin-page works!</p>
+<div class="admin__menu">
+    <app-menu></app-menu>
+</div>
+
+<div class="button__group">
+    <app-add-button-group></app-add-button-group>
+</div>
+
+<app-category-info></app-category-info>
+
+<app-all-modal></app-all-modal>
+
+<router-outlet></router-outlet>
+
